@@ -61,7 +61,6 @@ class Day01Test {
 
         // assert
         assertThat(sumOfCalibrationValues).isEqualTo(142)
-
     }
 
     @Test
@@ -95,7 +94,7 @@ class Day01Test {
     }
 
     @Test
-    fun should_read_calibration_value_with_words() {
+    fun should_read_calibration_value_with_words_two1nine() {
 
         // act
         val calibrationValue = Day01().readCalibrationValueWithWords("two1nine")
@@ -104,4 +103,83 @@ class Day01Test {
         assertThat(calibrationValue).isEqualTo(29)
     }
 
+    @Test
+    fun should_read_calibration_value_with_words_eightwothree() {
+
+        // act
+        val calibrationValue = Day01().readCalibrationValueWithWords("eightwothree")
+
+        // assert
+        assertThat(calibrationValue).isEqualTo(83)
+    }
+
+    @Test
+    fun should_read_calibration_value_with_words_abcone2threexyz() {
+
+        // act
+        val calibrationValue = Day01().readCalibrationValueWithWords("abcone2threexyz")
+
+        // assert
+        assertThat(calibrationValue).isEqualTo(13)
+    }
+
+    @Test
+    fun should_read_calibration_value_with_words_xtwone3four() {
+
+        // act
+        val calibrationValue = Day01().readCalibrationValueWithWords("xtwone3four")
+
+        // assert
+        assertThat(calibrationValue).isEqualTo(24)
+    }
+
+    @Test
+    fun should_read_calibration_value_with_words_4nineeightseven2() {
+
+        // act
+        val calibrationValue = Day01().readCalibrationValueWithWords("4nineeightseven2")
+
+        // assert
+        assertThat(calibrationValue).isEqualTo(42)
+    }
+
+    @Test
+    fun should_read_calibration_value_with_words_zoneight234() {
+
+        // act
+        val calibrationValue = Day01().readCalibrationValueWithWords("zoneight234")
+
+        // assert
+        assertThat(calibrationValue).isEqualTo(14)
+    }
+
+    @Test
+    fun should_read_calibration_value_with_words_7pqrstsixteen() {
+
+        // act
+        val calibrationValue = Day01().readCalibrationValueWithWords("7pqrstsixteen")
+
+        // assert
+        assertThat(calibrationValue).isEqualTo(76)
+    }
+
+    @Test
+    fun should_sum_up_calibration_values_with_words() {
+        // arrange
+        val calibrationValues = listOf(
+            "two1nine",
+            "eightwothree",
+            "abcone2threexyz",
+            "xtwone3four",
+            "4nineeightseven2",
+            "zoneight234",
+            "7pqrstsixteen"
+        )
+
+        // act
+        val sumOfCalibrationValues = Day01().sumUpCalibrationValuesWithWords(calibrationValues)
+
+        // assert
+        assertThat(sumOfCalibrationValues).isEqualTo(281)
+    }
 }

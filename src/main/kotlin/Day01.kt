@@ -6,7 +6,26 @@ import kotlin.io.path.name
 class Day01 {
 
     companion object {
-        val words = listOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
+        val words = listOf(
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "one",
+            "two",
+            "three",
+            "four",
+            "five",
+            "six",
+            "seven",
+            "eight",
+            "nine"
+        )
 
         val wordToDigit = mapOf(
             "one" to '1',
@@ -18,6 +37,15 @@ class Day01 {
             "seven" to '7',
             "eight" to '8',
             "nine" to '9',
+            "1" to '1',
+            "2" to '2',
+            "3" to '3',
+            "4" to '4',
+            "5" to '5',
+            "6" to '6',
+            "7" to '7',
+            "8" to '8',
+            "9" to '9',
         )
     }
 
@@ -67,6 +95,10 @@ class Day01 {
         val firstDigit = readFirstWord(line)
         val secondDigit = readLastWord(line)
         return "$firstDigit$secondDigit".toInt()
+    }
+
+    fun sumUpCalibrationValuesWithWords(calibrationValues: List<String>): Int {
+        return calibrationValues.sumOf { readCalibrationValueWithWords(it) }
     }
 
 }
