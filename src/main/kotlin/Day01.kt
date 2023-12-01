@@ -63,6 +63,12 @@ class Day01 {
         return wordToDigit.getOrElse(word) { throw NameNotFoundException(word) }
     }
 
+    fun readCalibrationValueWithWords(line: String): Int {
+        val firstDigit = readFirstWord(line)
+        val secondDigit = readLastWord(line)
+        return "$firstDigit$secondDigit".toInt()
+    }
+
 }
 
 fun main() {

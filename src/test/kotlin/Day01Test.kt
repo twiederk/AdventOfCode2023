@@ -66,7 +66,6 @@ class Day01Test {
 
     @Test
     fun should_read_first_word() {
-        // arrange
 
         // act
         val firstWord = Day01().readFirstWord("two1nine")
@@ -77,7 +76,6 @@ class Day01Test {
 
     @Test
     fun should_read_last_word() {
-        // arrange
 
         // act
         val lastWord = Day01().readLastWord("two1nine")
@@ -88,13 +86,22 @@ class Day01Test {
 
     @Test
     fun should_convert_word_to_digit() {
-        // arrange
 
         // act
         val digit = Day01().convertWordToDigit("one")
 
         // assert
         assertThat(digit).isEqualTo('1')
-
     }
+
+    @Test
+    fun should_read_calibration_value_with_words() {
+
+        // act
+        val calibrationValue = Day01().readCalibrationValueWithWords("two1nine")
+
+        // assert
+        assertThat(calibrationValue).isEqualTo(29)
+    }
+
 }
