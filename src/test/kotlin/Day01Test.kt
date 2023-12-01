@@ -16,5 +16,34 @@ class Day01Test {
         assertThat(items).hasSize(4)
     }
 
+    @Test
+    fun should_read_calibration_value() {
+
+        // act
+        val calibrationValue = Day01().readCalibrationValue("1abc2")
+
+        // assert
+        assertThat(calibrationValue).isEqualTo(12)
+    }
+
+    @Test
+    fun should_read_first_digit() {
+
+        // act
+        val firstDigit = Day01().readFirstDigit("1abc2")
+
+        // assert
+        assertThat(firstDigit).isEqualTo('1')
+    }
+
+    @Test
+    fun should_read_last_digit() {
+
+        // act
+        val lastDigit = Day01().readLastDigit("1abc2")
+
+        // assert
+        assertThat(lastDigit).isEqualTo('2')
+    }
 
 }
