@@ -20,6 +20,10 @@ class Day01 {
     fun readLastDigit(line: String): Char {
         return line.last { input -> input in '0'..'9' }
     }
+
+    fun sumUpCalibrationValues(calibrationValues: List<String>): Int {
+        return calibrationValues.sumOf { readCalibrationValue(it) }
+    }
 }
 
 fun main() {
