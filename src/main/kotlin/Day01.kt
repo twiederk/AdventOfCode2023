@@ -1,8 +1,25 @@
 import java.nio.file.Path
+import javax.naming.NameNotFoundException
 import kotlin.io.path.Path
 import kotlin.io.path.name
 
 class Day01 {
+
+    companion object {
+        val words = listOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
+
+        val wordToDigit = mapOf(
+            "one" to '1',
+            "two" to '2',
+            "three" to '3',
+            "four" to '4',
+            "five" to '5',
+            "six" to '6',
+            "seven" to '7',
+            "eight" to '8',
+            "nine" to '9',
+        )
+    }
 
     fun loadData(path: Path): List<String> {
         return Resources.resourceAsListOfString(path.name)
@@ -25,6 +42,27 @@ class Day01 {
     fun sumUpCalibrationValues(calibrationValues: List<String>): Int {
         return calibrationValues.sumOf { readCalibrationValue(it) }
     }
+
+    fun readFirstWord(line: String): Char? {
+        val result = line.findAnyOf(words)
+        result?.let {
+            return convertWordToDigit(result.second)
+        }
+        return null
+    }
+
+    fun readLastWord(line: String): Char? {
+        val result = line.findLastAnyOf(words)
+        result?.let {
+            return convertWordToDigit(result.second)
+        }
+        return null
+    }
+
+    fun convertWordToDigit(word: String): Char {
+        return wordToDigit.getOrElse(word) { throw NameNotFoundException(word) }
+    }
+
 }
 
 fun main() {

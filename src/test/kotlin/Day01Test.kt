@@ -63,4 +63,38 @@ class Day01Test {
         assertThat(sumOfCalibrationValues).isEqualTo(142)
 
     }
+
+    @Test
+    fun should_read_first_word() {
+        // arrange
+
+        // act
+        val firstWord = Day01().readFirstWord("two1nine")
+
+        // assert
+        assertThat(firstWord).isEqualTo('2')
+    }
+
+    @Test
+    fun should_read_last_word() {
+        // arrange
+
+        // act
+        val lastWord = Day01().readLastWord("two1nine")
+
+        // assert
+        assertThat(lastWord).isEqualTo('9')
+    }
+
+    @Test
+    fun should_convert_word_to_digit() {
+        // arrange
+
+        // act
+        val digit = Day01().convertWordToDigit("one")
+
+        // assert
+        assertThat(digit).isEqualTo('1')
+
+    }
 }
