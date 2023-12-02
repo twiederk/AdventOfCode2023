@@ -1,3 +1,5 @@
+typealias GameCheck = Map<String, Int>
+
 class Day02 {
 
     fun createGame(line: String): Game {
@@ -21,6 +23,13 @@ class Day02 {
         return draw
     }
 
+    fun checkGame(check: GameCheck, game: Game) {
+        check.entries.forEach {
+            game.possible = game.get(it.key) >= it.value
+        }
+
+    }
+
 }
 
 class Draw {
@@ -40,4 +49,10 @@ class Draw {
 data class Game(
     val score: Int,
     val draws: List<Draw>
-)
+) {
+    fun get(color: String): Int {
+        return 0
+    }
+
+    var possible = false
+}
