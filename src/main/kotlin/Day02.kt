@@ -1,6 +1,14 @@
+import java.nio.file.Path
+import kotlin.io.path.Path
+import kotlin.io.path.name
+
 typealias GameCheck = Map<String, Int>
 
 class Day02 {
+
+    fun loadData(path: Path): List<String> {
+        return Resources.resourceAsListOfString(path.name)
+    }
 
     fun createGame(line: String): Game {
         val score = line.substringAfter("Game ").substringBefore(":").toInt()
@@ -26,7 +34,7 @@ class Day02 {
     fun checkGame(check: GameCheck, game: Game) {
         game.possible = true
         for (checkEntry in check.entries) {
-            if (checkEntry.value <= game.get(checkEntry.key)) {
+            if (checkEntry.value < game.get(checkEntry.key)) {
                 game.possible = false
                 break
             }
@@ -72,4 +80,19 @@ data class Game(
     }
 
     var possible = false
+}
+
+fun main() {
+    val day02 = Day02()
+    val loadedGames = day02.loadData(Path("src", "main", "resources", "Day02_InputData.txt"))
+    val games = day02.createGames(loadedGames)
+    val check: GameCheck = mapOf(
+        "red" to 12,
+        "green" to 13,
+        "blue" to 14
+    )
+    day02.checkGames(check, games)
+    val part1 = day02.sumGames(games)
+    println("Day02 part1: $part1")
+
 }

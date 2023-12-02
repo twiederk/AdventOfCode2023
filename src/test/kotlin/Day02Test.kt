@@ -69,6 +69,45 @@ class Day02Test {
     }
 
     @Test
+    fun should_mark_game_4_impossible() {
+        // arrange
+        val check: GameCheck = mapOf("red" to 12, "green" to 13, "blue" to 14)
+        val game = Day02().createGame("Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red")
+
+        // act
+        Day02().checkGame(check, game)
+
+        // assert
+        assertThat(game.possible).isFalse
+    }
+
+    @Test
+    fun should_mark_game_5_possible() {
+        // arrange
+        val check: GameCheck = mapOf("red" to 12, "green" to 13, "blue" to 14)
+        val game = Day02().createGame("Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green")
+
+        // act
+        Day02().checkGame(check, game)
+
+        // assert
+        assertThat(game.possible).isTrue
+    }
+
+    @Test
+    fun should_mark_game_with_exact_match_possible() {
+        // arrange
+        val check: GameCheck = mapOf("red" to 12, "green" to 13, "blue" to 14)
+        val game = Day02().createGame("Game 5: 12 red, 14 blue, 13 green; 14 blue, 12 red, 13 green")
+
+        // act
+        Day02().checkGame(check, game)
+
+        // assert
+        assertThat(game.possible).isTrue
+    }
+
+    @Test
     fun should_return_max_of_blue() {
         // arrange
         val game = Day02().createGame("Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green")
@@ -169,6 +208,6 @@ class Day02Test {
 
         // assert
         assertThat(sumOfGames).isEqualTo(8)
-
     }
+
 }
