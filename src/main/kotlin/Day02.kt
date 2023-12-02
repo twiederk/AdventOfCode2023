@@ -34,6 +34,19 @@ class Day02 {
 
     }
 
+
+    fun createGames(loadedGames: List<String>): List<Game> {
+        return loadedGames.map { createGame(it) }
+    }
+
+    fun sumGames(games: List<Game>): Int {
+        return games.filter { it.possible }.sumOf { it.score }
+    }
+
+    fun checkGames(gameCheck: GameCheck, games: List<Game>) {
+        games.forEach { checkGame(gameCheck, it) }
+    }
+
 }
 
 class Draw {
