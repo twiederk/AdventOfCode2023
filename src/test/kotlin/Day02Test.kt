@@ -30,7 +30,7 @@ class Day02Test {
     }
 
     @Test
-    fun should_mark_game_possible_when_game_is_possible() {
+    fun should_mark_game_1_possible() {
         // arrange
         val check: GameCheck = mapOf("red" to 12, "green" to 13, "blue" to 14)
         val game = Day02().createGame("Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green")
@@ -43,6 +43,32 @@ class Day02Test {
     }
 
     @Test
+    fun should_mark_game_2_possible() {
+        // arrange
+        val check: GameCheck = mapOf("red" to 12, "green" to 13, "blue" to 14)
+        val game = Day02().createGame("Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue")
+
+        // act
+        Day02().checkGame(check, game)
+
+        // assert
+        assertThat(game.possible).isTrue
+    }
+
+    @Test
+    fun should_mark_game_3_impossible() {
+        // arrange
+        val check: GameCheck = mapOf("red" to 12, "green" to 13, "blue" to 14)
+        val game = Day02().createGame("Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red")
+
+        // act
+        Day02().checkGame(check, game)
+
+        // assert
+        assertThat(game.possible).isFalse
+    }
+
+    @Test
     fun should_return_max_of_blue() {
         // arrange
         val game = Day02().createGame("Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green")
@@ -51,7 +77,31 @@ class Day02Test {
         val count = game.get("blue")
 
         // assert
-        assertThat(count).isEqualTo(3)
-
+        assertThat(count).isEqualTo(6)
     }
+
+    @Test
+    fun should_return_max_of_red() {
+        // arrange
+        val game = Day02().createGame("Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green")
+
+        // act
+        val count = game.get("red")
+
+        // assert
+        assertThat(count).isEqualTo(4)
+    }
+
+    @Test
+    fun should_return_max_of_green() {
+        // arrange
+        val game = Day02().createGame("Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green")
+
+        // act
+        val count = game.get("green")
+
+        // assert
+        assertThat(count).isEqualTo(2)
+    }
+
 }

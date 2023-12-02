@@ -24,8 +24,12 @@ class Day02 {
     }
 
     fun checkGame(check: GameCheck, game: Game) {
-        check.entries.forEach {
-            game.possible = game.get(it.key) >= it.value
+        game.possible = true
+        for (checkEntry in check.entries) {
+            if (checkEntry.value <= game.get(checkEntry.key)) {
+                game.possible = false
+                break
+            }
         }
 
     }
@@ -51,7 +55,7 @@ data class Game(
     val draws: List<Draw>
 ) {
     fun get(color: String): Int {
-        return 0
+        return draws.maxOf { it.get(color) }
     }
 
     var possible = false
