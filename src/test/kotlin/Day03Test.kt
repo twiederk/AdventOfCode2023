@@ -49,4 +49,41 @@ class Day03Test {
         assertThat(result).isTrue()
     }
 
+    @Test
+    fun should_find_symbol() {
+        // arrange
+
+        // act
+        val symbols: List<Symbol> = Day03().findSymbols("...*......", 1)
+
+        // assert
+        assertThat(symbols).hasSize(1)
+        assertThat(symbols[0].x).isEqualTo(1)
+        assertThat(symbols[0].y).isEqualTo(3)
+        assertThat(symbols[0].symbol).isEqualTo('*')
+    }
+
+    @Test
+    fun should_find_all_symbols() {
+        // arrange
+        val engineSchematic = listOf(
+            "467..114..",
+            "...*......",
+            "..35..633.",
+            "......#...",
+            "617*......",
+            ".....+.58.",
+            "..592.....",
+            "......755.",
+            "...$.*....",
+            ".664.598..",
+        )
+
+        // act
+        val symbolList: List<Symbol> = Day03().findAllSymbols(engineSchematic)
+
+        // assert
+        assertThat(symbolList).hasSize(6)
+    }
+
 }
