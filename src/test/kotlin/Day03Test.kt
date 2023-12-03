@@ -128,15 +128,75 @@ class Day03Test {
 
         // assert
         assertThat(neighbors).contains(Point(2, 0), Point(2, 2), Point(3, 2))
-
     }
 
     @Test
-    fun name() {
-        println("467..114..")
-        println("467..114.."[0])
-        println("467..114.."[1])
-        println("467..114.."[2])
-        println("467..114.."[3])
+    fun should_scan_part_number_from_last_digit() {
+        // arrange
+        val engineSchematic = listOf(
+            "467..114..",
+            "...*......",
+            "..35..633.",
+            "......#...",
+            "617*......",
+            ".....+.58.",
+            "..592.....",
+            "......755.",
+            "...$.*....",
+            ".664.598..",
+        )
+
+        // act
+        val partNumber = Day03().scanPartNumber(engineSchematic, Point(2, 0))
+
+        // assert
+        assertThat(partNumber).isEqualTo(PartNumber(Point(0, 0), 467))
     }
+
+    @Test
+    fun should_scan_part_number_from_first_digit() {
+        // arrange
+        val engineSchematic = listOf(
+            "467..114..",
+            "...*......",
+            "..35..633.",
+            "......#...",
+            "617*......",
+            ".....+.58.",
+            "..592.....",
+            "......755.",
+            "...$.*....",
+            ".664.598..",
+        )
+
+        // act
+        val partNumber = Day03().scanPartNumber(engineSchematic, Point(0, 0))
+
+        // assert
+        assertThat(partNumber).isEqualTo(PartNumber(Point(0, 0), 467))
+    }
+
+    @Test
+    fun should_scan_part_number_from_middle_of_digit() {
+        // arrange
+        val engineSchematic = listOf(
+            "467..114..",
+            "...*......",
+            "..35..633.",
+            "......#...",
+            "617*......",
+            ".....+.58.",
+            "..592.....",
+            "......755.",
+            "...$.*....",
+            ".664.598..",
+        )
+
+        // act
+        val partNumber = Day03().scanPartNumber(engineSchematic, Point(1, 0))
+
+        // assert
+        assertThat(partNumber).isEqualTo(PartNumber(Point(0, 0), 467))
+    }
+
 }

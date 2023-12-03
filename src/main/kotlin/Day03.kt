@@ -30,6 +30,29 @@ class Day03 {
         return symbolList
     }
 
+    fun scanPartNumber(engineSchematic: EngineSchematic, pointOfNumber: Point): PartNumber {
+        val line = engineSchematic[pointOfNumber.y]
+        var result = ""
+        var x = pointOfNumber.x
+        for (indexLeft in pointOfNumber.x downTo 0) {
+            val char = line[indexLeft]
+            if (char.isDigit()) {
+                result = "$char$result"
+                x = indexLeft
+            }
+        }
+        for (indexRight in (pointOfNumber.x + 1)..<line.length) {
+            val char = line[indexRight]
+            if (char.isDigit()) {
+                result = "$result$char"
+                continue
+            }
+            break
+        }
+        return PartNumber(Point(x, pointOfNumber.y), result.toInt())
+    }
+
+
 }
 
 data class Symbol(
@@ -63,6 +86,13 @@ data class Symbol(
     }
 
 }
+
+
+data class PartNumber(
+    val coords: Point,
+    val number: Int
+)
+
 
 fun main() {
 
