@@ -56,10 +56,24 @@ class Day03 {
         return neighborNumbers.map { scanPartNumber(engineSchematic, it) }.toSet()
     }
 
-    fun sumPartNumbers(partNumbers: List<PartNumber>): Int {
+    fun sumPartNumbers(partNumbers: Set<PartNumber>): Int {
         return partNumbers.sumOf { it.number }
     }
 
+    fun executePart1(engineSchematic: EngineSchematic): Int {
+        val symbolList = findAllSymbols(engineSchematic)
+        val neighborNumbers = symbolList.flatMap { it.neighborNumbers(engineSchematic) }
+        val partNumbers = scanPartNumbers(engineSchematic, neighborNumbers)
+        println(partNumbers)
+        return sumPartNumbers(partNumbers)
+
+    }
+
+    fun finaAllPartNumbers(engineSchematic: List<String>): Set<PartNumber> {
+        val symbolList = findAllSymbols(engineSchematic)
+        val neighborNumbers = symbolList.flatMap { it.neighborNumbers(engineSchematic) }
+        return scanPartNumbers(engineSchematic, neighborNumbers)
+    }
 
 }
 

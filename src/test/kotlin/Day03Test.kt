@@ -228,7 +228,7 @@ class Day03Test {
     @Test
     fun should_sum_part_numbers() {
         // arrange
-        val partNumbers = listOf(
+        val partNumbers = setOf(
             PartNumber(Point(0, 0), 467),
             PartNumber(Point(2, 2), 35)
         )
@@ -238,6 +238,63 @@ class Day03Test {
 
         // assert
         assertThat(sum).isEqualTo(502)
+    }
+
+    @Test
+    fun should_find_all_numberParts() {
+        // arrange
+        val engineSchematic = listOf(
+            "467..114..",
+            "...*......",
+            "..35..633.",
+            "......#...",
+            "617*......",
+            ".....+.58.",
+            "..592.....",
+            "......755.",
+            "...$.*....",
+            ".664.598..",
+        )
+
+        // act
+        val result = Day03().finaAllPartNumbers(engineSchematic)
+
+        // assert
+        assertThat(result).contains(
+            PartNumber(Point(0, 0), 467),
+            PartNumber(Point(2, 2), 35),
+            PartNumber(Point(6, 2), 633),
+            PartNumber(Point(0, 4), 617),
+            PartNumber(Point(2, 6), 592),
+            PartNumber(Point(6, 7), 755),
+            PartNumber(Point(1, 9), 664),
+            PartNumber(Point(5, 9), 598),
+        )
+        // sum => 4.361
+
+    }
+
+    @Test
+    fun should_execute_part_1() {
+        // arrange
+        val engineSchematic = listOf(
+            "467..114..",
+            "...*......",
+            "..35..633.",
+            "......#...",
+            "617*......",
+            ".....+.58.",
+            "..592.....",
+            "......755.",
+            "...$.*....",
+            ".664.598..",
+        )
+
+        // act
+        val result = Day03().executePart1(engineSchematic)
+
+        // assert
+        assertThat(result).isEqualTo(4361)
 
     }
 }
