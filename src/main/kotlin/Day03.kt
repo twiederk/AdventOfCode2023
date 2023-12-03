@@ -1,4 +1,5 @@
 import java.nio.file.Path
+import java.nio.file.Paths
 
 typealias EngineSchematic = List<String>
 
@@ -66,15 +67,20 @@ class Day03 {
         val symbolList = findAllSymbolsInEngineSchematic(engineSchematic)
         val neighborNumbers = symbolList.flatMap { it.neighborNumbers(engineSchematic) }
         val partNumbers = scanPartNumbers(engineSchematic, neighborNumbers)
-        println(partNumbers)
         return sumPartNumbers(partNumbers)
-
     }
 
     fun findAllPartNumbers(engineSchematic: List<String>): Set<PartNumber> {
         val symbolList = findAllSymbolsInEngineSchematic(engineSchematic)
         val neighborNumbers = symbolList.flatMap { it.neighborNumbers(engineSchematic) }
         return scanPartNumbers(engineSchematic, neighborNumbers)
+    }
+
+    fun executePart2(engineSchematic: List<String>): Int {
+        val symbolList = findAllSymbolsInEngineSchematic(engineSchematic)
+        val neighborNumbers = symbolList.flatMap { it.neighborNumbers(engineSchematic) }
+        val partNumbers = scanPartNumbers(engineSchematic, neighborNumbers)
+        return sumPartNumbers(partNumbers)
     }
 
 }
@@ -119,5 +125,11 @@ data class PartNumber(
 
 
 fun main() {
+
+    val day03 = Day03()
+    val engineSchematic = day03.loadData(Paths.get("src", "main", "resources", "Day03_InputData.txt"))
+
+    val sumOfPart1 = day03.executePart1(engineSchematic)
+    println("Day03 part1: $sumOfPart1")
 
 }

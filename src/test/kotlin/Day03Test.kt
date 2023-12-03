@@ -326,6 +326,29 @@ class Day03Test {
 
         // assert
         assertThat(result).isEqualTo(4361)
-
     }
+
+    @Test
+    fun should_execute_part_2() {
+        // arrange
+        val engineSchematic = listOf(
+            "467..114..",
+            "...*......",
+            "..35..633.",
+            "......#...",
+            "617*......",
+            ".....+.58.",
+            "..592.....",
+            "......755.",
+            "...$.*....",
+            ".664.598..",
+        )
+
+        // act
+        val result = Day03().executePart2(engineSchematic)
+
+        // assert
+        assertThat(result).isEqualTo(467835)
+    }
+
 }
