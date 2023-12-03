@@ -225,4 +225,19 @@ class Day03Test {
         )
     }
 
+    @Test
+    fun should_sum_part_numbers() {
+        // arrange
+        val partNumbers = listOf(
+            PartNumber(Point(0, 0), 467),
+            PartNumber(Point(2, 2), 35)
+        )
+
+        // act
+        val sum = Day03().sumPartNumbers(partNumbers)
+
+        // assert
+        assertThat(sum).isEqualTo(502)
+
+    }
 }

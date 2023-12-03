@@ -56,6 +56,10 @@ class Day03 {
         return neighborNumbers.map { scanPartNumber(engineSchematic, it) }.toSet()
     }
 
+    fun sumPartNumbers(partNumbers: List<PartNumber>): Int {
+        return partNumbers.sumOf { it.number }
+    }
+
 
 }
 
