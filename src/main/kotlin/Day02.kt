@@ -108,4 +108,7 @@ fun main() {
     val part1 = day02.sumGames(games)
     println("Day02 part1: $part1")
 
+    val part2 = day02.powerOfGames(games)
+    println("Day02 part2: $part2")
+
 }
