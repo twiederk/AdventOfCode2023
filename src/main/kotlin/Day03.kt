@@ -52,6 +52,10 @@ class Day03 {
         return PartNumber(Point(x, pointOfNumber.y), result.toInt())
     }
 
+    fun scanPartNumbers(engineSchematic: List<String>, neighborNumbers: List<Point>): Set<PartNumber> {
+        return neighborNumbers.map { scanPartNumber(engineSchematic, it) }.toSet()
+    }
+
 
 }
 

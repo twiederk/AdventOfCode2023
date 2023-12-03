@@ -199,4 +199,30 @@ class Day03Test {
         assertThat(partNumber).isEqualTo(PartNumber(Point(0, 0), 467))
     }
 
+    @Test
+    fun should_return_number_parts() {
+        val engineSchematic = listOf(
+            "467..114..",
+            "...*......",
+            "..35..633.",
+            "......#...",
+            "617*......",
+            ".....+.58.",
+            "..592.....",
+            "......755.",
+            "...$.*....",
+            ".664.598..",
+        )
+        val neighborNumbers = listOf(Point(2, 0), Point(2, 2), Point(3, 2))
+
+        // act
+        val partNumbers = Day03().scanPartNumbers(engineSchematic, neighborNumbers)
+
+        // assert
+        assertThat(partNumbers).contains(
+            PartNumber(Point(0, 0), 467),
+            PartNumber(Point(2, 2), 35)
+        )
+    }
+
 }
