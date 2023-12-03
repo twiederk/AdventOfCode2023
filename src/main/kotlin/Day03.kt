@@ -39,7 +39,9 @@ class Day03 {
             if (char.isDigit()) {
                 result = "$char$result"
                 x = indexLeft
+                continue
             }
+            break
         }
         for (indexRight in (pointOfNumber.x + 1)..<line.length) {
             val char = line[indexRight]
@@ -78,22 +80,22 @@ class Day03 {
 }
 
 data class Symbol(
-    val x: Int,
-    val y: Int,
+    val column: Int,
+    val row: Int,
     val symbol: Char
 ) {
     fun neighborCoords(): List<Point> {
         return listOf(
-            Point(x - 1, y - 1),
-            Point(x, y - 1),
-            Point(x + 1, y - 1),
+            Point(column - 1, row - 1),
+            Point(column, row - 1),
+            Point(column + 1, row - 1),
 
-            Point(x - 1, y),
-            Point(x + 1, y),
+            Point(column - 1, row),
+            Point(column + 1, row),
 
-            Point(x - 1, y + 1),
-            Point(x, y + 1),
-            Point(x + 1, y + 1),
+            Point(column - 1, row + 1),
+            Point(column, row + 1),
+            Point(column + 1, row + 1),
         )
     }
 

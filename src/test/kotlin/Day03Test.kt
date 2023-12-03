@@ -58,8 +58,8 @@ class Day03Test {
 
         // assert
         assertThat(symbols).hasSize(1)
-        assertThat(symbols[0].x).isEqualTo(1)
-        assertThat(symbols[0].y).isEqualTo(3)
+        assertThat(symbols[0].column).isEqualTo(3)
+        assertThat(symbols[0].row).isEqualTo(1)
         assertThat(symbols[0].symbol).isEqualTo('*')
     }
 
@@ -206,7 +206,7 @@ class Day03Test {
     }
 
     @Test
-    fun should_return_number_parts() {
+    fun should_return_number_parts_of_1st_symbol() {
         val engineSchematic = listOf(
             "467..114..",
             "...*......",
@@ -228,6 +228,31 @@ class Day03Test {
         assertThat(partNumbers).contains(
             PartNumber(Point(0, 0), 467),
             PartNumber(Point(2, 2), 35)
+        )
+    }
+
+    @Test
+    fun should_return_number_parts_of_2nd_symbol() {
+        val engineSchematic = listOf(
+            "467..114..",
+            "...*......",
+            "..35..633.",
+            "......#...",
+            "617*......",
+            ".....+.58.",
+            "..592.....",
+            "......755.",
+            "...$.*....",
+            ".664.598..",
+        )
+        val neighborNumbers = listOf(Point(6, 2), Point(7, 2))
+
+        // act
+        val partNumbers = Day03().scanPartNumbers(engineSchematic, neighborNumbers)
+
+        // assert
+        assertThat(partNumbers).contains(
+            PartNumber(Point(6, 2), 633),
         )
     }
 
