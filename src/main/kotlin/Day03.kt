@@ -152,4 +152,7 @@ fun main() {
     val sumOfPart1 = day03.executePart1(engineSchematic)
     println("Day03 part1: $sumOfPart1")
 
+    val sumOfPart2 = day03.executePart2(engineSchematic)
+    println("Day03 part2: $sumOfPart2")
+
 }
