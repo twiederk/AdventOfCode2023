@@ -36,7 +36,33 @@ data class Symbol(
     val x: Int,
     val y: Int,
     val symbol: Char
-)
+) {
+    fun neighborCoords(): List<Point> {
+        return listOf(
+            Point(x - 1, y - 1),
+            Point(x, y - 1),
+            Point(x + 1, y - 1),
+
+            Point(x - 1, y),
+            Point(x + 1, y),
+
+            Point(x - 1, y + 1),
+            Point(x, y + 1),
+            Point(x + 1, y + 1),
+        )
+    }
+
+    fun neighborNumbers(engineSchematic: List<String>): List<Point> {
+        val neighborNumbers = mutableListOf<Point>()
+        for (neighbor in neighborCoords()) {
+            if (engineSchematic[neighbor.y][neighbor.x].isDigit()) {
+                neighborNumbers.add(Point(neighbor.x, neighbor.y))
+            }
+        }
+        return neighborNumbers
+    }
+
+}
 
 fun main() {
 

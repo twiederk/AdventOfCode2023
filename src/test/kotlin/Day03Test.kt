@@ -86,4 +86,57 @@ class Day03Test {
         assertThat(symbolList).hasSize(6)
     }
 
+    @Test
+    fun should_return_neighbor_coords() {
+        // arrange
+
+        // act
+        val neighborCoords = Symbol(1, 1, '#').neighborCoords()
+
+        // assert
+        assertThat(neighborCoords).hasSize(8)
+        assertThat(neighborCoords[0]).isEqualTo(Point(0, 0))
+        assertThat(neighborCoords[1]).isEqualTo(Point(1, 0))
+        assertThat(neighborCoords[2]).isEqualTo(Point(2, 0))
+
+        assertThat(neighborCoords[3]).isEqualTo(Point(0, 1))
+        assertThat(neighborCoords[4]).isEqualTo(Point(2, 1))
+
+        assertThat(neighborCoords[5]).isEqualTo(Point(0, 2))
+        assertThat(neighborCoords[6]).isEqualTo(Point(1, 2))
+        assertThat(neighborCoords[7]).isEqualTo(Point(2, 2))
+    }
+
+    @Test
+    fun should_return_neighbor_numbers() {
+        // arrange
+        val engineSchematic = listOf(
+            "467..114..",
+            "...*......",
+            "..35..633.",
+            "......#...",
+            "617*......",
+            ".....+.58.",
+            "..592.....",
+            "......755.",
+            "...$.*....",
+            ".664.598..",
+        )
+
+        // act
+        val neighbors = Symbol(3, 1, '*').neighborNumbers(engineSchematic)
+
+        // assert
+        assertThat(neighbors).contains(Point(2, 0), Point(2, 2), Point(3, 2))
+
+    }
+
+    @Test
+    fun name() {
+        println("467..114..")
+        println("467..114.."[0])
+        println("467..114.."[1])
+        println("467..114.."[2])
+        println("467..114.."[3])
+    }
 }
