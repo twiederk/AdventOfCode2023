@@ -76,11 +76,31 @@ class Day03 {
         return scanPartNumbers(engineSchematic, neighborNumbers)
     }
 
-    fun executePart2(engineSchematic: List<String>): Int {
+    fun executePart2(engineSchematic: EngineSchematic): Int {
         val symbolList = findAllSymbolsInEngineSchematic(engineSchematic)
-        val neighborNumbers = symbolList.flatMap { it.neighborNumbers(engineSchematic) }
-        val partNumbers = scanPartNumbers(engineSchematic, neighborNumbers)
-        return sumPartNumbers(partNumbers)
+        val gears = isGear(engineSchematic, symbolList)
+        var gearRations = 0
+        for (gear in gears) {
+            val neighborNumbers = gear.neighborNumbers(engineSchematic)
+            val partNumbers = scanPartNumbers(engineSchematic, neighborNumbers)
+            val partNumbersList = partNumbers.toList()
+            val gearRatio = partNumbersList[0].number * partNumbersList[1].number
+            gearRations += gearRatio
+        }
+        return gearRations
+    }
+
+    fun isGear(engineSchematic: EngineSchematic, symbolList: List<Symbol>): List<Symbol> {
+        val properSymbols = symbolList.filter { it.symbol == '*' }
+        val gears = mutableListOf<Symbol>()
+        for (currSymbol in properSymbols) {
+            val neighborNumbers = currSymbol.neighborNumbers(engineSchematic)
+            val partNumbers = scanPartNumbers(engineSchematic, neighborNumbers)
+            if (partNumbers.size == 2) {
+                gears.add(currSymbol)
+            }
+        }
+        return gears
     }
 
 }

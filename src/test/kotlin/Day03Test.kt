@@ -329,6 +329,34 @@ class Day03Test {
     }
 
     @Test
+    fun should_filter_gears() {
+        // arrange
+        val engineSchematic = listOf(
+            "467..114..",
+            "...*......",
+            "..35..633.",
+            "......#...",
+            "617*......",
+            ".....+.58.",
+            "..592.....",
+            "......755.",
+            "...$.*....",
+            ".664.598..",
+        )
+        val symbolList = Day03().findAllSymbolsInEngineSchematic(engineSchematic)
+
+        // act
+        val gearList = Day03().isGear(engineSchematic, symbolList)
+
+        // assert
+        assertThat(gearList).containsOnly(
+            Symbol(3, 1, '*'),
+            Symbol(5, 8, '*'),
+        )
+
+    }
+
+    @Test
     fun should_execute_part_2() {
         // arrange
         val engineSchematic = listOf(
