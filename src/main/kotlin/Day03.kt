@@ -12,20 +12,20 @@ class Day03 {
         return !(char in '0'..'9' || char == '.')
     }
 
-    fun findSymbols(line: String, x: Int): List<Symbol> {
+    fun findSymbolsInLine(line: String, y: Int): List<Symbol> {
         val symbolList = mutableListOf<Symbol>()
         for ((index, symbol) in line.withIndex()) {
             if (isSymbol(symbol)) {
-                symbolList.add(Symbol(x, index, symbol))
+                symbolList.add(Symbol(index, y, symbol))
             }
         }
         return symbolList
     }
 
-    fun findAllSymbols(engineSchematic: List<String>): List<Symbol> {
+    fun findAllSymbolsInEngineSchematic(engineSchematic: List<String>): List<Symbol> {
         val symbolList = mutableListOf<Symbol>()
-        for ((index, line) in engineSchematic.withIndex()) {
-            symbolList.addAll(findSymbols(line, index))
+        for ((y, line) in engineSchematic.withIndex()) {
+            symbolList.addAll(findSymbolsInLine(line, y))
         }
         return symbolList
     }
@@ -61,7 +61,7 @@ class Day03 {
     }
 
     fun executePart1(engineSchematic: EngineSchematic): Int {
-        val symbolList = findAllSymbols(engineSchematic)
+        val symbolList = findAllSymbolsInEngineSchematic(engineSchematic)
         val neighborNumbers = symbolList.flatMap { it.neighborNumbers(engineSchematic) }
         val partNumbers = scanPartNumbers(engineSchematic, neighborNumbers)
         println(partNumbers)
@@ -69,8 +69,8 @@ class Day03 {
 
     }
 
-    fun finaAllPartNumbers(engineSchematic: List<String>): Set<PartNumber> {
-        val symbolList = findAllSymbols(engineSchematic)
+    fun findAllPartNumbers(engineSchematic: List<String>): Set<PartNumber> {
+        val symbolList = findAllSymbolsInEngineSchematic(engineSchematic)
         val neighborNumbers = symbolList.flatMap { it.neighborNumbers(engineSchematic) }
         return scanPartNumbers(engineSchematic, neighborNumbers)
     }

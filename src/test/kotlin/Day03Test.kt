@@ -54,7 +54,7 @@ class Day03Test {
         // arrange
 
         // act
-        val symbols: List<Symbol> = Day03().findSymbols("...*......", 1)
+        val symbols: List<Symbol> = Day03().findSymbolsInLine("...*......", 1)
 
         // assert
         assertThat(symbols).hasSize(1)
@@ -80,10 +80,16 @@ class Day03Test {
         )
 
         // act
-        val symbolList: List<Symbol> = Day03().findAllSymbols(engineSchematic)
+        val symbolList: List<Symbol> = Day03().findAllSymbolsInEngineSchematic(engineSchematic)
 
         // assert
         assertThat(symbolList).hasSize(6)
+        assertThat(symbolList[0]).isEqualTo(Symbol(3, 1, '*'))
+        assertThat(symbolList[1]).isEqualTo(Symbol(6, 3, '#'))
+        assertThat(symbolList[2]).isEqualTo(Symbol(3, 4, '*'))
+        assertThat(symbolList[3]).isEqualTo(Symbol(5, 5, '+'))
+        assertThat(symbolList[4]).isEqualTo(Symbol(3, 8, '$'))
+        assertThat(symbolList[5]).isEqualTo(Symbol(5, 8, '*'))
     }
 
     @Test
@@ -257,7 +263,7 @@ class Day03Test {
         )
 
         // act
-        val result = Day03().finaAllPartNumbers(engineSchematic)
+        val result = Day03().findAllPartNumbers(engineSchematic)
 
         // assert
         assertThat(result).contains(
