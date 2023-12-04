@@ -1,5 +1,6 @@
 import java.lang.IllegalArgumentException
 import java.nio.file.Path
+import java.nio.file.Paths
 
 class Day04 {
 
@@ -15,6 +16,16 @@ class Day04 {
         val numbersInt = numbersString.filter { it.isNotEmpty() }. map { it.toInt() }
         return Card(winningNumbersInt, numbersInt)
     }
+
+    fun createAllCards(data: List<String>): List<Card> {
+        return data.map { createCard(it) }
+    }
+
+    fun totalPoints(cards: List<Card>): Int {
+        return cards.sumOf { it.points()
+        }
+    }
+
 
 }
 
@@ -43,4 +54,14 @@ data class Card(
             else -> throw IllegalArgumentException("Number of wins to large")
         }
 
+}
+
+fun main() {
+    val day04 = Day04()
+    val data = day04.loadData(Paths.get("src", "main", "resources", "Day04_InputData.txt"))
+    val cards = day04.createAllCards(data)
+
+    val totalPoints = day04.totalPoints(cards)
+
+    println("Day04 part1: $totalPoints")
 }
