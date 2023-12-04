@@ -27,6 +27,16 @@ class Day04 {
         }
     }
 
+    fun wonCards(cardRepository: List<Card>): List<Card> {
+        val wonCards = mutableListOf<Card>()
+        cardRepository.forEach {  it.wonCards(cardRepository, wonCards) }
+        return wonCards
+    }
+
+    fun totalCards(cardRepository: List<Card>): Int {
+        val wonCards = wonCards(cardRepository)
+        return cardRepository.size + wonCards.size
+    }
 
 }
 
@@ -74,6 +84,8 @@ fun main() {
     val cards = day04.createAllCards(data)
 
     val totalPoints = day04.totalPoints(cards)
-
     println("Day04 part1: $totalPoints")
+
+    val totalCards = day04.totalCards(cards)
+    println("Day04 part2: $totalCards")
 }
