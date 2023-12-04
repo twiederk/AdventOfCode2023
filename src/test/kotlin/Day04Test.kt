@@ -187,7 +187,7 @@ class Day04Test {
     }
 
     @Test
-    fun should_create_copies_of_scratch_cards_out_of_bounds() {
+    fun should_create_copies_of_scratch_cards_3() {
         // arrange
         val card = Card(1, listOf(1, 2, 3, 4, 5), listOf(1, 2, 3, 4, 5))
         val cardRepository = listOf(
@@ -205,5 +205,26 @@ class Day04Test {
 
         // assert
         assertThat(wonCards.map { it.number }).contains(2, 3, 4, 5, 6, 6)
+    }
+
+    @Test
+    fun should_create_copies_of_scratch_cards_out_of_bounds() {
+        // arrange
+        val card = Card(1, listOf(1, 2, 3, 4, 5), listOf(1, 2, 3, 4, 5))
+        val cardRepository = listOf(
+            Card(1, listOf(), listOf()),
+            Card(2, listOf(), listOf()),
+            Card(3, listOf(), listOf()),
+            Card(4, listOf(1), listOf(1)),
+            Card(5, listOf(1), listOf(1)),
+            Card(6, listOf(1), listOf(1)),
+        )
+        val wonCards = mutableListOf<Card>()
+
+        // act
+        card.wonCards(cardRepository, wonCards)
+
+        // assert
+        assertThat(wonCards.map { it.number }).contains(2, 3, 4, 5, 5, 6, 6, 6)
     }
 }
