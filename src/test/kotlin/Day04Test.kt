@@ -139,10 +139,71 @@ class Day04Test {
     }
 
     // store card repository
-    // add card number to card
+    // + add card number to card
     // create copies of scratch cards
     // add copies to won scratch cards list
     // calculate total number of scratch cards: size of won scratch cards list + size of card repository
 
+    @Test
+    fun should_create_copies_of_scratch_cards_1() {
+        // arrange
+        val card = Card(1, listOf(1, 2, 3, 4, 5), listOf(1, 2, 3, 4, 5))
+        val cardRepository = listOf(
+            Card(1, listOf(), listOf()),
+            Card(2, listOf(), listOf()),
+            Card(3, listOf(), listOf()),
+            Card(4, listOf(), listOf()),
+            Card(5, listOf(), listOf()),
+            Card(6, listOf(), listOf()),
+        )
+        val wonCards = mutableListOf<Card>()
 
+        // act
+        card.wonCards(cardRepository, wonCards)
+
+        // assert
+        assertThat(wonCards.map { it.number }).contains(2, 3, 4, 5, 6)
+    }
+
+    @Test
+    fun should_create_copies_of_scratch_cards_2() {
+        // arrange
+        val card = Card(1, listOf(1, 2, 3, 4, 5), listOf(1, 2, 3, 4, 5))
+        val cardRepository = listOf(
+            Card(1, listOf(), listOf()),
+            Card(2, listOf(), listOf()),
+            Card(3, listOf(), listOf()),
+            Card(4, listOf(), listOf()),
+            Card(5, listOf(1), listOf(1)),
+            Card(6, listOf(), listOf()),
+        )
+        val wonCards = mutableListOf<Card>()
+
+        // act
+        card.wonCards(cardRepository, wonCards)
+
+        // assert
+        assertThat(wonCards.map { it.number }).contains(2, 3, 4, 5, 6, 6)
+    }
+
+    @Test
+    fun should_create_copies_of_scratch_cards_out_of_bounds() {
+        // arrange
+        val card = Card(1, listOf(1, 2, 3, 4, 5), listOf(1, 2, 3, 4, 5))
+        val cardRepository = listOf(
+            Card(1, listOf(), listOf()),
+            Card(2, listOf(), listOf()),
+            Card(3, listOf(), listOf()),
+            Card(4, listOf(), listOf()),
+            Card(5, listOf(1), listOf(1)),
+            Card(6, listOf(1), listOf(1)),
+        )
+        val wonCards = mutableListOf<Card>()
+
+        // act
+        card.wonCards(cardRepository, wonCards)
+
+        // assert
+        assertThat(wonCards.map { it.number }).contains(2, 3, 4, 5, 6, 6)
+    }
 }

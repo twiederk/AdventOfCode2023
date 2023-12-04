@@ -56,6 +56,16 @@ data class Card(
             else -> throw IllegalArgumentException("Number of wins to large")
         }
 
+    fun wonCards(cardRepository: List<Card>, wonCards: MutableList<Card>) {
+        for (index in number ..< number + wins().size) {
+            if (index >= cardRepository.size)
+                continue
+            val wonCard = cardRepository[index].copy()
+            wonCards.add(wonCard)
+            wonCard.wonCards(cardRepository, wonCards)
+        }
+    }
+
 }
 
 fun main() {
