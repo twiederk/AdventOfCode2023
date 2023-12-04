@@ -9,12 +9,13 @@ class Day04 {
     }
 
     fun createCard(line: String): Card {
+        val number = line.substringAfter("Card ").substringBefore(":").trim().toInt()
         val winningNumbersString = line.substringAfter(": ").substringBefore(" | ").split(' ')
         val winningNumbersInt = winningNumbersString.filter { it.isNotEmpty() }. map { it.toInt() }
 
         val numbersString = line.substringAfter(" | ").split(' ')
         val numbersInt = numbersString.filter { it.isNotEmpty() }. map { it.toInt() }
-        return Card(winningNumbersInt, numbersInt)
+        return Card(number, winningNumbersInt, numbersInt)
     }
 
     fun createAllCards(data: List<String>): List<Card> {
@@ -31,6 +32,7 @@ class Day04 {
 
 
 data class Card(
+    val number : Int,
     val winningNumbers: List<Int>,
     val numbers: List<Int>
 ) {

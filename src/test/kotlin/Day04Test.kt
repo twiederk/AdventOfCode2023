@@ -22,6 +22,7 @@ class Day04Test {
         val card = Day04().createCard("Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53")
 
         // assert
+        assertThat(card.number).isEqualTo(1)
         assertThat(card.winningNumbers).containsExactly(41, 48, 83, 86, 17)
         assertThat(card.numbers).containsExactly(83, 86, 6, 31, 17, 9, 48, 53)
     }
@@ -48,7 +49,7 @@ class Day04Test {
     @Test
     fun should_count_number_of_wins() {
         // arrange
-        val card = Card(listOf(41, 48, 83, 86, 17), listOf(83, 86, 6, 31, 17, 9, 48, 53))
+        val card = Card(1, listOf(41, 48, 83, 86, 17), listOf(83, 86, 6, 31, 17, 9, 48, 53))
 
         // act
         val wins = card.wins()
@@ -60,7 +61,7 @@ class Day04Test {
     @Test
     fun should_return_points_of_card() {
         // arrange
-        val card = Card(listOf(41, 48, 83, 86, 17), listOf(83, 86, 6, 31, 17, 9, 48, 53))
+        val card = Card(1, listOf(41, 48, 83, 86, 17), listOf(83, 86, 6, 31, 17, 9, 48, 53))
 
         // act
         val points = card.points()
@@ -72,7 +73,7 @@ class Day04Test {
     @Test
     fun should_return_points_of_wins_0() {
         // arrange
-        val card = Card(listOf(12), listOf(1))
+        val card = Card(0, listOf(12), listOf(1))
 
         // act
         val points = card.points()
@@ -84,7 +85,7 @@ class Day04Test {
     @Test
     fun should_return_points_of_wins_1() {
         // arrange
-        val card = Card(listOf(12), listOf(12))
+        val card = Card(0, listOf(12), listOf(12))
 
         // act
         val points = card.points()
@@ -96,7 +97,7 @@ class Day04Test {
     @Test
     fun should_return_points_of_wins_2() {
         // arrange
-        val card = Card(listOf(12, 16), listOf(12, 16))
+        val card = Card(0, listOf(12, 16), listOf(12, 16))
 
         // act
         val points = card.points()
@@ -108,7 +109,7 @@ class Day04Test {
     @Test
     fun should_return_points_of_wins_3() {
         // arrange
-        val card = Card(listOf(12, 16, 20), listOf(12, 16, 20))
+        val card = Card(0, listOf(12, 16, 20), listOf(12, 16, 20))
 
         // act
         val points = card.points()
@@ -136,4 +137,12 @@ class Day04Test {
         // assert
         assertThat(totalPoints).isEqualTo(13)
     }
+
+    // store card repository
+    // add card number to card
+    // create copies of scratch cards
+    // add copies to won scratch cards list
+    // calculate total number of scratch cards: size of won scratch cards list + size of card repository
+
+
 }
