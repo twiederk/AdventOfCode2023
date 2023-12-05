@@ -106,9 +106,16 @@ data class Almanac(
 }
 
 fun main() {
-    val seeds = Day05().loadSeeds(Paths.get("src", "main", "resources", "Day05_InputData.txt"))
-    val almanac = Day05().loadAlmanac(Paths.get("src", "main", "resources", "Day05_InputData.txt"))
-    val lowestLocation = almanac.getLowestLocationOfSeeds(seeds)
+    val inputFile = Paths.get("src", "main", "resources", "Day05_InputData.txt")
+    val day05 = Day05()
 
+    val seeds = day05.loadSeeds(inputFile)
+    val almanac = day05.loadAlmanac(inputFile)
+    val lowestLocation = almanac.getLowestLocationOfSeeds(seeds)
     println("Day05 part1: $lowestLocation")
+
+    val seedRanges = day05.loadSeedRanges(inputFile)
+    val lowestLocationPart2 = almanac.getLowestLocationOfSeedRanges(seedRanges)
+    println("Day05 part2: $lowestLocationPart2")
+
 }
