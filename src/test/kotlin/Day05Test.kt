@@ -4,33 +4,91 @@ import org.junit.jupiter.api.Test
 class Day05Test {
 
     @Test
-    fun should_create_mappings() {
-        // arrange
-        val rangeInfo = RangeInfo(50, 98, 2)
+    fun should_return_dest_category_when_in_source_category() {
 
         // act
-        val mapEntries = Day05().createMappings(rangeInfo)
+        val destCategory = RangeInfo(52, 50, 78).getDestCategory(79)
 
         // assert
-        assertThat(mapEntries).contains(
-            Mapping(98, 50),
-            Mapping(99, 51),
-        )
+        assertThat(destCategory).isEqualTo(81)
     }
 
     @Test
-    fun should_create_mapping_table() {
+    fun should_return_NOT_IN_RANGE_when_not_in_source_category() {
+
+        // act
+        val destCategory = RangeInfo(52, 50, 48).getDestCategory(14)
+
+        // assert
+        assertThat(destCategory).isEqualTo(RangeInfo.NOT_IN_RANGE)
+    }
+
+    @Test
+    fun should_return_dest_category_from_CategoryTable_for_seed_79() {
         // arrange
-        val rangeInfos = listOf(
-            RangeInfo(50, 98, 2),
-            RangeInfo(52, 50, 48),
+        val categoryTable = CategoryTable(
+            listOf(
+                RangeInfo(50, 98, 2),
+                RangeInfo(52, 50, 48),
+            )
         )
 
         // act
-        val mappingTable = Day05().createMappingTable(rangeInfos)
+        val destCategory = categoryTable.getDestCategory(79)
 
         // assert
-        assertThat(mappingTable).hasSize(50)
-
+        assertThat(destCategory).isEqualTo(81)
     }
+
+    @Test
+    fun should_return_dest_category_from_CategoryTable_for_seed_14() {
+        // arrange
+        val categoryTable = CategoryTable(
+            listOf(
+                RangeInfo(50, 98, 2),
+                RangeInfo(52, 50, 48),
+            )
+        )
+
+        // act
+        val destCategory = categoryTable.getDestCategory(14)
+
+        // assert
+        assertThat(destCategory).isEqualTo(14)
+    }
+
+    @Test
+    fun should_return_dest_category_from_CategoryTable_for_seed_55() {
+        // arrange
+        val categoryTable = CategoryTable(
+            listOf(
+                RangeInfo(50, 98, 2),
+                RangeInfo(52, 50, 48),
+            )
+        )
+
+        // act
+        val destCategory = categoryTable.getDestCategory(55)
+
+        // assert
+        assertThat(destCategory).isEqualTo(57)
+    }
+
+    @Test
+    fun should_return_dest_category_from_CategoryTable_for_seed_13() {
+        // arrange
+        val categoryTable = CategoryTable(
+            listOf(
+                RangeInfo(50, 98, 2),
+                RangeInfo(52, 50, 48),
+            )
+        )
+
+        // act
+        val destCategory = categoryTable.getDestCategory(13)
+
+        // assert
+        assertThat(destCategory).isEqualTo(13)
+    }
+
 }
