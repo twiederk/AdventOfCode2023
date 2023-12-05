@@ -33,3 +33,16 @@ data class CategoryTable(
     }
 
 }
+
+data class Almanac(
+    val categoryTables: List<CategoryTable>
+) {
+    fun getLocation(seed: Long): Long {
+        var dest = seed
+        for (categoryTable in categoryTables) {
+            dest = categoryTable.getDestCategory(dest)
+        }
+        return dest
+    }
+
+}
