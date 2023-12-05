@@ -188,4 +188,14 @@ class Day05Test {
         assertThat(location).isEqualTo(35)
     }
 
+    @Test
+    fun should_return_lowest_location() {
+        // arrange
+
+        // act
+        val lowestLocation = almanac.getLowestLocation(listOf(79, 14, 55, 13))
+
+        // assert
+        assertThat(lowestLocation).isEqualTo(35)
+    }
 }

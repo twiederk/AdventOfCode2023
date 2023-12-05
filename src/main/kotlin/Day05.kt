@@ -45,4 +45,8 @@ data class Almanac(
         return dest
     }
 
+    fun getLowestLocation(seeds: List<Long>): Long {
+        return seeds.minOf { getLocation(it) }
+    }
+
 }
