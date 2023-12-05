@@ -190,13 +190,28 @@ class Day05Test {
     }
 
     @Test
-    fun should_return_lowest_location() {
+    fun should_return_lowest_location_of_seeds() {
 
         // act
-        val lowestLocation = almanac.getLowestLocation(listOf(79, 14, 55, 13))
+        val lowestLocation = almanac.getLowestLocationOfSeeds(listOf(79, 14, 55, 13))
 
         // assert
         assertThat(lowestLocation).isEqualTo(35)
+    }
+
+    @Test
+    fun should_return_lowest_location_of_seed_ranges() {
+        // arrange
+        val seedRanges = listOf(
+            (79L..92L),
+            (55L..67L)
+        )
+
+        // act
+        val lowestLocation = almanac.getLowestLocationOfSeedRanges(seedRanges)
+
+        // assert
+        assertThat(lowestLocation).isEqualTo(46)
     }
 
     @Test
@@ -217,6 +232,19 @@ class Day05Test {
 
         // assert
         assertThat(almanac.categoryTables).hasSize(7)
-        assertThat(almanac.getLowestLocation(listOf(79, 14, 55, 13))).isEqualTo(35)
+        assertThat(almanac.getLowestLocationOfSeeds(listOf(79, 14, 55, 13))).isEqualTo(35)
     }
+
+    @Test
+    fun should_load_seed_ranges() {
+
+        // act
+        val seedRanges = Day05().loadSeedRanges(Paths.get("src", "test", "resources", "Day05_TestData.txt"))
+
+        // assert
+        assertThat(seedRanges).hasSize(2)
+        assertThat(seedRanges[0]).isEqualTo(79L..92L)
+        assertThat(seedRanges[1]).isEqualTo(55L..67L)
+    }
+
 }

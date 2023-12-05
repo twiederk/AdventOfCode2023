@@ -1,4 +1,5 @@
 import java.nio.file.Path
+import java.nio.file.Paths
 
 class Day05 {
     fun loadSeeds(path: Path): List<Long> {
@@ -27,6 +28,18 @@ class Day05 {
             allCategories.add(CategoryTable(currCategory))
         }
         return Almanac(allCategories)
+    }
+
+    fun loadSeedRanges(path: Path): List<LongRange> {
+        val firstLine =  Resources.resourceAsListOfString(path.toFile().name)[0]
+        val seedRangesArray = firstLine.substringAfter("seeds: ").split(" ")
+        val seedRanges = mutableListOf<LongRange>()
+        for (index in seedRangesArray.indices step 2) {
+            val start = seedRangesArray[index].toLong()
+            val end = start + seedRangesArray[index + 1].toLong() - 1
+            seedRanges.add(start..end)
+        }
+        return seedRanges
     }
 
 }
@@ -73,8 +86,29 @@ data class Almanac(
         return dest
     }
 
-    fun getLowestLocation(seeds: List<Long>): Long {
+    fun getLowestLocationOfSeeds(seeds: List<Long>): Long {
         return seeds.minOf { getLocation(it) }
     }
 
+    fun getLowestLocationOfSeedRanges(seedRanges: List<LongRange>): Long {
+        var lowestLocation = Long.MAX_VALUE
+        for (seedRange in seedRanges) {
+            for (seed in seedRange) {
+                val location = getLocation(seed)
+                if (location < lowestLocation) {
+                    lowestLocation = location
+                }
+            }
+        }
+        return lowestLocation
+    }
+
+}
+
+fun main() {
+    val seeds = Day05().loadSeeds(Paths.get("src", "main", "resources", "Day05_InputData.txt"))
+    val almanac = Day05().loadAlmanac(Paths.get("src", "main", "resources", "Day05_InputData.txt"))
+    val lowestLocation = almanac.getLowestLocationOfSeeds(seeds)
+
+    println("Day05 part1: $lowestLocation")
 }
