@@ -201,12 +201,22 @@ class Day05Test {
 
     @Test
     fun should_load_list_of_seeds() {
-        // arrange
 
         // act
         val seeds = Day05().loadSeeds(Paths.get("src", "test", "resources", "Day05_TestData.txt"))
 
         // assert
         assertThat(seeds).contains(79, 14, 55, 13)
+    }
+
+    @Test
+    fun should_load_Almanac() {
+
+        // act
+        val almanac = Day05().loadAlmanac(Paths.get("src", "test", "resources", "Day05_TestData.txt"))
+
+        // assert
+        assertThat(almanac.categoryTables).hasSize(7)
+        assertThat(almanac.getLowestLocation(listOf(79, 14, 55, 13))).isEqualTo(35)
     }
 }

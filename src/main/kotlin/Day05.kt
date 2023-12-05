@@ -7,6 +7,28 @@ class Day05 {
         return seedValues.map { it.toLong() }
     }
 
+    fun loadAlmanac(path: Path): Almanac {
+        val data = Resources.resourceAsListOfString(path.toFile().name).drop(2)
+        val allCategories = mutableListOf<CategoryTable>()
+        var currCategory: MutableList<RangeInfo>? = null
+        for (line in data) {
+            if (line.isEmpty()) continue
+            if (line[0].isDigit()) {
+                val (dest, source, range) = line.split(" ").map { it.toLong() }
+                currCategory?.add(RangeInfo(dest, source, range))
+                continue
+            }
+            if (currCategory != null) {
+                allCategories.add(CategoryTable(currCategory))
+            }
+            currCategory = mutableListOf()
+        }
+        currCategory?.let {
+            allCategories.add(CategoryTable(currCategory))
+        }
+        return Almanac(allCategories)
+    }
+
 }
 
 data class RangeInfo(
