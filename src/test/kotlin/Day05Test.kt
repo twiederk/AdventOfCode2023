@@ -1,5 +1,6 @@
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import java.nio.file.Paths
 
 class Day05Test {
 
@@ -190,12 +191,22 @@ class Day05Test {
 
     @Test
     fun should_return_lowest_location() {
-        // arrange
 
         // act
         val lowestLocation = almanac.getLowestLocation(listOf(79, 14, 55, 13))
 
         // assert
         assertThat(lowestLocation).isEqualTo(35)
+    }
+
+    @Test
+    fun should_load_list_of_seeds() {
+        // arrange
+
+        // act
+        val seeds = Day05().loadSeeds(Paths.get("src", "test", "resources", "Day05_TestData.txt"))
+
+        // assert
+        assertThat(seeds).contains(79, 14, 55, 13)
     }
 }

@@ -1,5 +1,11 @@
+import java.nio.file.Path
 
 class Day05 {
+    fun loadSeeds(path: Path): List<Long> {
+        val firstLine = Resources.resourceAsListOfString(path.toFile().name)[0]
+        val seedValues = firstLine.substringAfter("seeds: ").split(" ")
+        return seedValues.map { it.toLong() }
+    }
 
 }
 
@@ -13,7 +19,7 @@ data class RangeInfo(
         const val NOT_IN_RANGE = -1L
     }
 
-    private val offset : Long = destinationRangeStart - sourceRangeStart
+    private val offset: Long = destinationRangeStart - sourceRangeStart
 
     fun getDestCategory(sourceCategory: Long): Long {
         if (sourceCategory in sourceRangeStart..<sourceRangeStart + rangeLength) {
