@@ -6,42 +6,38 @@ class Day06 {
     fun loadRaces(path: Path): List<Race> {
         val rawData = Resources.resourceAsListOfString(path.toFile().name)
         val times = rawData[0].substringAfter("Time:    ").replace("\\s+".toRegex(), "|").split("|").drop(1)
-        println("times: $times")
         val distances = rawData[1].substringAfter("Distance:").replace("\\s+".toRegex(), "|").split("|").drop(1)
-        println("distances: $distances")
         val races = mutableListOf<Race>()
         for (index in times.indices) {
-            races.add(Race(times[index].toInt(), distances[index].toInt()))
+            races.add(Race(times[index].toLong(), distances[index].toLong()))
         }
         return races
     }
 
     fun loadRace(path: Path): Race {
         val rawData = Resources.resourceAsListOfString(path.toFile().name)
-        val time = rawData[0].substringAfter("Time:    ").replace("\\s+".toRegex(), "").toInt()
-        println("time: $time")
-        val distance = rawData[1].substringAfter("Distance:").replace("\\s+".toRegex(), "").toInt()
-        println("distance: $distance")
+        val time = rawData[0].substringAfter("Time:    ").replace("\\s+".toRegex(), "").toLong()
+        val distance = rawData[1].substringAfter("Distance:").replace("\\s+".toRegex(), "").toLong()
         return Race(time, distance)
     }
 
 
-    fun calculateMarginOfError(races: List<Race>): Int {
+    fun calculateMarginOfError(races: List<Race>): Long {
         return races.map { it.wins() }.reduce { sum, element -> sum * element }
     }
 
 }
 
 data class Race(
-    val time: Int,
-    val distance: Int
+    val time: Long,
+    val distance: Long
 ) {
-    fun holdButton(seconds: Int): Int {
+    fun holdButton(seconds: Long): Long {
         return (time - seconds) * seconds
     }
 
-    fun wins(): Int {
-        var wins = 0
+    fun wins(): Long {
+        var wins = 0L
         for (seconds in 0..time) {
             if (holdButton(seconds) > distance) {
                 wins++
