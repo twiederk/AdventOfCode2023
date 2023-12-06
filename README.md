@@ -13,6 +13,8 @@
 ## Resources
 
 ## To Do
+* Replace for-loop with streams everywhere
+* Optimize performance of Day05 part 2
 
 [1]: src/main/kotlin/Day01.kt
 [2]: src/main/kotlin/Day02.kt
