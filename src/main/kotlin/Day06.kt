@@ -20,4 +20,8 @@ class Day06 {
 data class Race(
     val time: Int,
     val distance: Int
-)
+) {
+    fun holdButton(seconds: Int): Int {
+        return (time - seconds) * seconds
+    }
+}
