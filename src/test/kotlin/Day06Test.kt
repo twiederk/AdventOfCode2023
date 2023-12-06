@@ -19,6 +19,16 @@ class Day06Test {
     }
 
     @Test
+    fun should_load_race() {
+
+        // act
+        val races = Day06().loadRace(Paths.get("src", "test", "resources", "Day06_TestData.txt"))
+
+        // assert
+        assertThat(races).isEqualTo(Race(71530, 940200))
+    }
+
+    @Test
     fun should_return_distance_when_button_is_hold_for_0() {
 
         // act
