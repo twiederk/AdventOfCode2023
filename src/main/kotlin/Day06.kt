@@ -15,6 +15,10 @@ class Day06 {
         return races
     }
 
+    fun calculateMarginOfError(races: List<Race>): Int {
+        return races.map { it.wins() }.reduce { sum, element -> sum * element }
+    }
+
 }
 
 data class Race(
@@ -24,4 +28,15 @@ data class Race(
     fun holdButton(seconds: Int): Int {
         return (time - seconds) * seconds
     }
+
+    fun wins(): Int {
+        var wins = 0
+        for (seconds in 0..time) {
+            if (holdButton(seconds) > distance) {
+                wins++
+            }
+        }
+        return wins
+    }
+
 }

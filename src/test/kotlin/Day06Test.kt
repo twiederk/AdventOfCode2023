@@ -20,7 +20,6 @@ class Day06Test {
 
     @Test
     fun should_return_distance_when_button_is_hold_for_0() {
-        // arrange
 
         // act
         val distance = Race(7, 9).holdButton(0)
@@ -31,7 +30,6 @@ class Day06Test {
 
     @Test
     fun should_return_distance_when_button_is_hold_for_1() {
-        // arrange
 
         // act
         val distance = Race(7, 9).holdButton(1)
@@ -42,7 +40,6 @@ class Day06Test {
 
     @Test
     fun should_return_distance_when_button_is_hold_for_2() {
-        // arrange
 
         // act
         val distance = Race(7, 9).holdButton(2)
@@ -53,7 +50,6 @@ class Day06Test {
 
     @Test
     fun should_return_distance_when_button_is_hold_for_3() {
-        // arrange
 
         // act
         val distance = Race(7, 9).holdButton(3)
@@ -64,7 +60,6 @@ class Day06Test {
 
     @Test
     fun should_return_distance_when_button_is_hold_for_4() {
-        // arrange
 
         // act
         val distance = Race(7, 9).holdButton(4)
@@ -75,7 +70,6 @@ class Day06Test {
 
     @Test
     fun should_return_distance_when_button_is_hold_for_5() {
-        // arrange
 
         // act
         val distance = Race(7, 9).holdButton(5)
@@ -97,7 +91,6 @@ class Day06Test {
 
     @Test
     fun should_return_distance_when_button_is_hold_for_7() {
-        // arrange
 
         // act
         val distance = Race(7, 9).holdButton(7)
@@ -106,4 +99,53 @@ class Day06Test {
         assertThat(distance).isEqualTo(0)
     }
 
+    @Test
+    fun should_return_number_of_ways_to_win_for_race_1() {
+        // arrange
+
+        // act
+        val wins = Race(7, 9).wins()
+
+        // assert
+        assertThat(wins).isEqualTo(4)
+
+    }
+
+    @Test
+    fun should_return_number_of_ways_to_win_for_race_2() {
+        // arrange
+
+        // act
+        val wins = Race(15, 40).wins()
+
+        // assert
+        assertThat(wins).isEqualTo(8)
+    }
+
+    @Test
+    fun should_return_number_of_ways_to_win_for_race_3() {
+
+        // act
+        val wins = Race(30, 200).wins()
+
+        // assert
+        assertThat(wins).isEqualTo(9)
+    }
+
+    @Test
+    fun should_return_margin_of_error() {
+        // arrange
+        val races = listOf(
+            Race(7, 9),
+            Race(15, 40),
+            Race(30, 200),
+        )
+
+        // act
+        val marginOfError = Day06().calculateMarginOfError(races)
+
+        // assert
+        assertThat(marginOfError).isEqualTo(288)
+
+    }
 }
