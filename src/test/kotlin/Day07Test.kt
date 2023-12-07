@@ -129,7 +129,6 @@ class Day07Test {
 
     @Test
     fun should_lesser_when_comparing_HIGH_CARD_with_ONE_PAIR() {
-        // arrange
 
         // act
         val result = HandComparator().compare(HIGH_CARD, ONE_PAIR)
@@ -141,7 +140,6 @@ class Day07Test {
 
     @Test
     fun should_equal_when_comparing_HIGH_CARD_with_HIGH_CARD() {
-        // arrange
 
         // act
         val result = HandComparator().compare(HIGH_CARD, HIGH_CARD)
@@ -153,7 +151,6 @@ class Day07Test {
 
     @Test
     fun should_return_greater_when_comparing_ONE_PAIR_with_HIGH_CARD() {
-        // arrange
 
         // act
         val result = HandComparator().compare(ONE_PAIR, HIGH_CARD)
@@ -163,4 +160,26 @@ class Day07Test {
         assertThat(result).isEqualTo(1)
     }
 
+    @Test
+    fun should_compare_hands_of_same_type_but_different_cards() {
+        // arrange
+        val greaterHand = Hand("KK677", 0)
+        val lowerHand = Hand("KTJJT", 0)
+
+        // act
+        val result = HandComparator().compare(greaterHand, lowerHand)
+
+        // assert
+        assertThat(result).isEqualTo(1)
+    }
+
+    @Test
+    fun char_values() {
+        val order = listOf('A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2').reversed()
+        order.forEach { println("$it: ${it.code}") }
+
+        val orderString = "23456879TJQKA"
+        println("A: ${orderString.indexOf('A')}     T: ${orderString.indexOf('T')}")
+
+    }
 }

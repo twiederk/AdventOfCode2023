@@ -46,10 +46,24 @@ enum class Strength {
 
 class HandComparator : Comparator<Hand> {
 
+    companion object {
+        const val CARD_ORDER = "23456879TJQKA"
+
+    }
     override fun compare(hand1: Hand, hand2: Hand): Int {
         val strength1 = hand1.strength().ordinal
         val strength2 = hand2.strength().ordinal
-        return strength1.compareTo(strength2)
+        val typeCompare = strength1.compareTo(strength2)
+        if (typeCompare != 0)
+            return typeCompare
+        for (index in hand1.cards.indices) {
+            val order1 = CARD_ORDER.indexOf(hand1.cards[index])
+            val order2 = CARD_ORDER.indexOf(hand2.cards[index])
+            val orderCompare = order1.compareTo(order2)
+            if (orderCompare != 0)
+                return orderCompare
+        }
+        return 0
     }
 
 }
