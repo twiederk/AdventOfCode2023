@@ -22,5 +22,4 @@
 [3]: src/main/kotlin/Day03.kt
 [4]: src/main/kotlin/Day04.kt
 [5]: src/main/kotlin/Day05.kt
-
 [6]: src/main/kotlin/Day06.kt
