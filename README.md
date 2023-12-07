@@ -10,12 +10,14 @@
 | [4] | Scratchcards                    | SOLVED | SOLVED |       |
 | [5] | If You Give A Seed A Fertilizer | SOLVED | SOLVED |       |
 | [6] | Wait For It                     | SOLVED | SOLVED |       |
+| [7] | Camel Card                      | SOLVED | SOLVED |       |
 
 ## Resources
 
 ## To Do
 * Replace for-loop with streams everywhere
 * Optimize performance of Day05 part 2
+* Refactor Day07 strengthWithJoker
 
 [1]: src/main/kotlin/Day01.kt
 [2]: src/main/kotlin/Day02.kt
@@ -23,3 +25,4 @@
 [4]: src/main/kotlin/Day04.kt
 [5]: src/main/kotlin/Day05.kt
 [6]: src/main/kotlin/Day06.kt
+[7]: src/main/kotlin/Day07.kt

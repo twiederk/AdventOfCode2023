@@ -339,14 +339,85 @@ class Day07Test {
     }
 
     @Test
-    fun should_calculate_strength_with_joker() {
-        // arrange
+    fun should_calculate_strength_with_joker_for_T55J5() {
 
         // act
         val strengthWithJoker = Hand("T55J5", 0).strengthWithJoker()
 
         // assert
         assertThat(strengthWithJoker).isEqualTo(Strength.FOUR_OF_A_KIND)
-
     }
+
+    @Test
+    fun should_calculate_strength_with_joker_for_KTJJT() {
+
+        // act
+        val strengthWithJoker = Hand("KTJJT", 0).strengthWithJoker()
+
+        // assert
+        assertThat(strengthWithJoker).isEqualTo(Strength.FOUR_OF_A_KIND)
+    }
+
+    @Test
+    fun should_calculate_strength_with_joker_for_QQQJA() {
+
+        // act
+        val strengthWithJoker = Hand("QQQJA", 0).strengthWithJoker()
+
+        // assert
+        assertThat(strengthWithJoker).isEqualTo(Strength.FOUR_OF_A_KIND)
+    }
+
+    @Test
+    fun should_sort_hands_with_joker() {
+        // arrange
+        val hands = listOf(
+            Hand("32T3K", 765),
+            Hand("T55J5", 684),
+            Hand("KK677", 28),
+            Hand("KTJJT", 220),
+            Hand("QQQJA", 483),
+        )
+
+        // act
+        val orderedHands = Day07().orderHandsWithJoker(hands)
+
+        // assert
+        assertThat(orderedHands).containsExactly(
+            Hand("32T3K", 765),
+            Hand("KK677", 28),
+            Hand("T55J5", 684),
+            Hand("QQQJA", 483),
+            Hand("KTJJT", 220),
+        )
+    }
+
+    @Test
+    fun should_calculate_total_wins_with_joker() {
+        // arrange
+        val orderedHands = listOf(
+            Hand("32T3K", 765),
+            Hand("KK677", 28),
+            Hand("T55J5", 684),
+            Hand("QQQJA", 483),
+            Hand("KTJJT", 220),
+        )
+
+        // act
+        val totalWins = Day07().totalWins(orderedHands)
+
+        // assert
+        assertThat(totalWins).isEqualTo(5905)
+    }
+
+    @Test
+    fun should_calculate_strength_with_joker_of_JJJJJ() {
+
+        // act
+        val strength = Hand("JJJJJ", 0).strengthWithJoker()
+
+        // assert
+        assertThat(strength).isEqualTo(Strength.FIVE_OF_A_KIND)
+    }
+
 }

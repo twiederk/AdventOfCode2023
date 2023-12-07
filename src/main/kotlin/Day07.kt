@@ -15,6 +15,10 @@ class Day07 {
         return hands.sortedWith(HandComparator())
     }
 
+    fun orderHandsWithJoker(hands: List<Hand>): List<Hand> {
+        return hands.sortedWith(HandComparatorWithJoker())
+    }
+
     fun totalWins(orderedHands: List<Hand>): Long {
         var totalWins = 0L
         for ((index, hand) in orderedHands.withIndex()) {
@@ -58,13 +62,17 @@ data class Hand(
         if (joker != null) {
             val newGroups = groups.filter { it.key != 'J' }.toMutableMap()
             val sortedGroups = newGroups.values.sortedBy { it.size }.reversed()
-            val largestGroup = newGroups[sortedGroups.first()[0]]
-            val keyOfLargestGroup = largestGroup!![0]
-            val newlargestGroup = largestGroup.toMutableList()
-            newlargestGroup.addAll(joker)
-            val newestGroups = groups.filter { it.key != 'J' && it.key != keyOfLargestGroup }.toMutableMap()
-            newestGroups[keyOfLargestGroup] = newlargestGroup.toList()
-            groups = newestGroups
+            if (sortedGroups.isNotEmpty()) {
+                val largestGroup = newGroups[sortedGroups.first()[0]]
+                val keyOfLargestGroup = largestGroup!![0]
+                val newLargestGroup = largestGroup.toMutableList()
+                newLargestGroup.addAll(joker)
+                val newestGroups = groups.filter { it.key != 'J' && it.key != keyOfLargestGroup }.toMutableMap()
+                newestGroups[keyOfLargestGroup] = newLargestGroup.toList()
+                groups = newestGroups
+            } else {
+                groups = mapOf('J' to listOf('J', 'J', 'J', 'J', 'J'))
+            }
         }
         return when (groups.size) {
             1 -> return Strength.FIVE_OF_A_KIND
@@ -89,13 +97,10 @@ enum class Strength {
     HIGH_CARD, ONE_PAIR, TWO_PAIR, THREE_OF_A_KIND, FULL_HOUSE, FOUR_OF_A_KIND, FIVE_OF_A_KIND
 }
 
-class HandComparator(
-    val cardOrder: String = CARD_ORDER_PART_1
-) : Comparator<Hand> {
+class HandComparator : Comparator<Hand> {
 
     companion object {
         const val CARD_ORDER_PART_1 = "23456789TJQKA"
-        const val CARD_ORDER_PART_2 = "J23456789TQKA"
 
     }
 
@@ -106,8 +111,33 @@ class HandComparator(
         if (typeCompare != 0)
             return typeCompare
         for (index in hand1.cards.indices) {
-            val order1 = cardOrder.indexOf(hand1.cards[index])
-            val order2 = cardOrder.indexOf(hand2.cards[index])
+            val order1 = CARD_ORDER_PART_1.indexOf(hand1.cards[index])
+            val order2 = CARD_ORDER_PART_1.indexOf(hand2.cards[index])
+            val orderCompare = order1.compareTo(order2)
+            if (orderCompare != 0)
+                return orderCompare
+        }
+        return 0
+    }
+
+}
+
+class HandComparatorWithJoker : Comparator<Hand> {
+
+    companion object {
+        const val CARD_ORDER_PART_2 = "J23456789TQKA"
+
+    }
+
+    override fun compare(hand1: Hand, hand2: Hand): Int {
+        val strength1 = hand1.strengthWithJoker().ordinal
+        val strength2 = hand2.strengthWithJoker().ordinal
+        val typeCompare = strength1.compareTo(strength2)
+        if (typeCompare != 0)
+            return typeCompare
+        for (index in hand1.cards.indices) {
+            val order1 = CARD_ORDER_PART_2.indexOf(hand1.cards[index])
+            val order2 = CARD_ORDER_PART_2.indexOf(hand2.cards[index])
             val orderCompare = order1.compareTo(order2)
             if (orderCompare != 0)
                 return orderCompare
@@ -123,4 +153,9 @@ fun main() {
     val orderedHands = day07.orderHands(hands)
     val part1 = day07.totalWins(orderedHands)
     println("Day07 part1: $part1")
+
+    val orderedHandsWithJoker = day07.orderHandsWithJoker(hands)
+    val part2 = day07.totalWins(orderedHandsWithJoker)
+    println("Day07 part2: $part2")
+
 }
