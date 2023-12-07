@@ -22,25 +22,21 @@ data class Hand(
 
     fun strength(): Strength {
         val groups = groupCards()
-        if (groups.size == 1) {
-            return Strength.FIVE_OF_A_KIND
-        }
-        if (groups.size == 2) {
-            if (groups.values.maxOf { it.size } == 4)
-                return Strength.FOUR_OF_A_KIND
+        return when (groups.size) {
+            1 -> return Strength.FIVE_OF_A_KIND
+            2 -> return if (groups.values.maxOf { it.size } == 4)
+                Strength.FOUR_OF_A_KIND
             else
-                return Strength.FULL_HOUSE
-        }
-        if (groups.size == 3) {
-            if (groups.values.maxOf { it.size } == 3)
-                return Strength.THREE_OF_A_KIND
+                Strength.FULL_HOUSE
+
+            3 -> return if (groups.values.maxOf { it.size } == 3)
+                Strength.THREE_OF_A_KIND
             else
-                return Strength.TWO_PAIR
+                Strength.TWO_PAIR
+
+            4 -> return Strength.ONE_PAIR
+            else -> Strength.HIGH_CARD
         }
-        if (groups.size == 4) {
-            return Strength.ONE_PAIR
-        }
-        return Strength.HIGH_CARD
     }
 }
 
