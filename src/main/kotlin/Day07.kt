@@ -14,6 +14,14 @@ class Day07 {
         return hands.sortedWith(HandComparator())
     }
 
+    fun totalWins(orderedHands: List<Hand>): Int {
+        var totalWins = 0
+        for ((index, hand) in orderedHands.withIndex()) {
+            totalWins += hand.bid * (index + 1)
+        }
+        return totalWins
+    }
+
 }
 
 data class Hand(

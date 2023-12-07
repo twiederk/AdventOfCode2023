@@ -193,8 +193,26 @@ class Day07Test {
             Hand("KTJJT", 220),
             Hand("KK677", 28),
             Hand("T55J5", 684),
-            Hand("QQQJA", 483)
+            Hand("QQQJA", 483),
         )
     }
 
+    @Test
+    fun should_calculate_total_wins() {
+        // arrange
+        var orderedHands = listOf(
+            Hand("32T3K", 765),
+            Hand("KTJJT", 220),
+            Hand("KK677", 28),
+            Hand("T55J5", 684),
+            Hand("QQQJA", 483),
+        )
+
+        // act
+        val totalWins = Day07().totalWins(orderedHands)
+
+        // assert
+        assertThat(totalWins).isEqualTo(6440)
+
+    }
 }
