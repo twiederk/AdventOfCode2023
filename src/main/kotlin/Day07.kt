@@ -43,3 +43,13 @@ data class Hand(
 enum class Strength {
     HIGH_CARD, ONE_PAIR, TWO_PAIR, THREE_OF_A_KIND, FULL_HOUSE, FOUR_OF_A_KIND, FIVE_OF_A_KIND
 }
+
+class HandComparator : Comparator<Hand> {
+
+    override fun compare(hand1: Hand, hand2: Hand): Int {
+        val strength1 = hand1.strength().ordinal
+        val strength2 = hand2.strength().ordinal
+        return strength1.compareTo(strength2)
+    }
+
+}

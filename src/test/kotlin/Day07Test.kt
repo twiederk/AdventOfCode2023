@@ -4,6 +4,14 @@ import java.nio.file.Paths
 
 class Day07Test {
 
+    val HIGH_CARD = Hand("12345", 0)
+    val ONE_PAIR = Hand("AA123", 0)
+    val TWO_PAIR = Hand("AA1BB", 0)
+    val THREE_OF_A_KIND = Hand("AAA12", 0)
+    val FULL_HOUSE = Hand("AAABB", 0)
+    val FOUR_OF_A_KIND = Hand("AAAAB", 0)
+    val FIVE_OF_A_KIND = Hand("AAAAA", 0)
+
     @Test
     fun should_load_hands() {
 
@@ -117,6 +125,42 @@ class Day07Test {
 
         // assert
         assertThat(strength).isEqualTo(Strength.HIGH_CARD)
+    }
+
+    @Test
+    fun should_lesser_when_comparing_HIGH_CARD_with_ONE_PAIR() {
+        // arrange
+
+        // act
+        val result = HandComparator().compare(HIGH_CARD, ONE_PAIR)
+
+
+        // assert
+        assertThat(result).isEqualTo(-1)
+    }
+
+    @Test
+    fun should_equal_when_comparing_HIGH_CARD_with_HIGH_CARD() {
+        // arrange
+
+        // act
+        val result = HandComparator().compare(HIGH_CARD, HIGH_CARD)
+
+
+        // assert
+        assertThat(result).isEqualTo(0)
+    }
+
+    @Test
+    fun should_return_greater_when_comparing_ONE_PAIR_with_HIGH_CARD() {
+        // arrange
+
+        // act
+        val result = HandComparator().compare(ONE_PAIR, HIGH_CARD)
+
+
+        // assert
+        assertThat(result).isEqualTo(1)
     }
 
 }
