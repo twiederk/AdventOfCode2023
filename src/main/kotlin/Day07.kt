@@ -51,6 +51,38 @@ data class Hand(
             else -> Strength.HIGH_CARD
         }
     }
+
+    fun strengthWithJoker(): Strength {
+        var groups = groupCards()
+        val joker = groups['J']
+        if (joker != null) {
+            val newGroups = groups.filter { it.key != 'J' }.toMutableMap()
+            val sortedGroups = newGroups.values.sortedBy { it.size }.reversed()
+            val largestGroup = newGroups[sortedGroups.first()[0]]
+            val keyOfLargestGroup = largestGroup!![0]
+            val newlargestGroup = largestGroup.toMutableList()
+            newlargestGroup.addAll(joker)
+            val newestGroups = groups.filter { it.key != 'J' && it.key != keyOfLargestGroup }.toMutableMap()
+            newestGroups[keyOfLargestGroup] = newlargestGroup.toList()
+            groups = newestGroups
+        }
+        return when (groups.size) {
+            1 -> return Strength.FIVE_OF_A_KIND
+            2 -> return if (groups.values.maxOf { it.size } == 4)
+                Strength.FOUR_OF_A_KIND
+            else
+                Strength.FULL_HOUSE
+
+            3 -> return if (groups.values.maxOf { it.size } == 3)
+                Strength.THREE_OF_A_KIND
+            else
+                Strength.TWO_PAIR
+
+            4 -> return Strength.ONE_PAIR
+            else -> Strength.HIGH_CARD
+        }
+    }
+
 }
 
 enum class Strength {
@@ -66,6 +98,7 @@ class HandComparator(
         const val CARD_ORDER_PART_2 = "J23456789TQKA"
 
     }
+
     override fun compare(hand1: Hand, hand2: Hand): Int {
         val strength1 = hand1.strength().ordinal
         val strength2 = hand2.strength().ordinal

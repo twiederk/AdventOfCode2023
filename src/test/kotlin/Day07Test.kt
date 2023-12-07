@@ -338,4 +338,15 @@ class Day07Test {
         assertThat(result).isEqualTo(1)
     }
 
+    @Test
+    fun should_calculate_strength_with_joker() {
+        // arrange
+
+        // act
+        val strengthWithJoker = Hand("T55J5", 0).strengthWithJoker()
+
+        // assert
+        assertThat(strengthWithJoker).isEqualTo(Strength.FOUR_OF_A_KIND)
+
+    }
 }
