@@ -10,6 +10,10 @@ class Day07 {
         }
     }
 
+    fun orderHands(hands: List<Hand>): List<Hand> {
+        return hands.sortedWith(HandComparator())
+    }
+
 }
 
 data class Hand(

@@ -174,12 +174,27 @@ class Day07Test {
     }
 
     @Test
-    fun char_values() {
-        val order = listOf('A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2').reversed()
-        order.forEach { println("$it: ${it.code}") }
+    fun should_sort_hands() {
+        // arrange
+        val hands = listOf(
+            Hand("32T3K", 765),
+            Hand("T55J5", 684),
+            Hand("KK677", 28),
+            Hand("KTJJT", 220),
+            Hand("QQQJA", 483),
+        )
 
-        val orderString = "23456879TJQKA"
-        println("A: ${orderString.indexOf('A')}     T: ${orderString.indexOf('T')}")
+        // act
+        val orderedHands = Day07().orderHands(hands)
 
+        // assert
+        assertThat(orderedHands).containsExactly(
+            Hand("32T3K", 765),
+            Hand("KTJJT", 220),
+            Hand("KK677", 28),
+            Hand("T55J5", 684),
+            Hand("QQQJA", 483)
+        )
     }
+
 }
