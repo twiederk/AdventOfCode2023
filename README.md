@@ -9,6 +9,7 @@
 | [3] | Gear Ratios                     | SOLVED | SOLVED |       |
 | [4] | Scratchcards                    | SOLVED | SOLVED |       |
 | [5] | If You Give A Seed A Fertilizer | SOLVED | SOLVED |       |
+| [6] | Wait For It                     | SOLVED | SOLVED |       |
 
 ## Resources
 
@@ -21,3 +22,5 @@
 [3]: src/main/kotlin/Day03.kt
 [4]: src/main/kotlin/Day04.kt
 [5]: src/main/kotlin/Day05.kt
+
+[5]: src/main/kotlin/Day06.kt
