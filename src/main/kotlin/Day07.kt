@@ -15,4 +15,8 @@ class Day07 {
 data class Hand(
     val cards: String,
     val bid: Int
-)
+) {
+    fun groupCards(): Map<Char, List<Char>> {
+        return cards.groupBy { it }
+    }
+}
