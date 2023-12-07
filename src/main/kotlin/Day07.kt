@@ -1,4 +1,5 @@
 import java.nio.file.Path
+import java.nio.file.Paths
 
 class Day07 {
 
@@ -14,8 +15,8 @@ class Day07 {
         return hands.sortedWith(HandComparator())
     }
 
-    fun totalWins(orderedHands: List<Hand>): Int {
-        var totalWins = 0
+    fun totalWins(orderedHands: List<Hand>): Long {
+        var totalWins = 0L
         for ((index, hand) in orderedHands.withIndex()) {
             totalWins += hand.bid * (index + 1)
         }
@@ -59,7 +60,7 @@ enum class Strength {
 class HandComparator : Comparator<Hand> {
 
     companion object {
-        const val CARD_ORDER = "23456879TJQKA"
+        const val CARD_ORDER = "23456789TJQKA"
 
     }
     override fun compare(hand1: Hand, hand2: Hand): Int {
@@ -78,4 +79,12 @@ class HandComparator : Comparator<Hand> {
         return 0
     }
 
+}
+
+fun main() {
+    val day07 = Day07()
+    val hands = day07.loadHands(Paths.get("src", "main", "resources", "Day07_InputData.txt"))
+    val orderedHands = day07.orderHands(hands)
+    val part1 = day07.totalWins(orderedHands)
+    println("Day07 part1: $part1")
 }

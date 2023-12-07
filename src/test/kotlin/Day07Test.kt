@@ -200,7 +200,7 @@ class Day07Test {
     @Test
     fun should_calculate_total_wins() {
         // arrange
-        var orderedHands = listOf(
+        val orderedHands = listOf(
             Hand("32T3K", 765),
             Hand("KTJJT", 220),
             Hand("KK677", 28),
@@ -213,6 +213,129 @@ class Day07Test {
 
         // assert
         assertThat(totalWins).isEqualTo(6440)
-
     }
+
+    @Test
+    fun should_compare_correctly() {
+        // arrange
+        val hand1 = Hand("33332", 0)
+        val hand2 = Hand("2AAAA", 0)
+
+        // act
+        val result = HandComparator().compare(hand1, hand2)
+
+        // assert
+        assertThat(result).isEqualTo(1)
+    }
+
+    @Test
+    fun should_sort_properly() {
+        // arrange
+        val hands = listOf(
+            Hand("2345A", 1),
+            Hand("Q2KJJ", 13),
+            Hand("Q2Q2Q", 19),
+            Hand("T3T3J", 17),
+            Hand("T3Q33", 11),
+            Hand("2345J", 3),
+            Hand("J345A", 2),
+            Hand("32T3K", 5),
+            Hand("T55J5", 29),
+            Hand("KK677", 7),
+            Hand("KTJJT", 34),
+            Hand("QQQJA", 31),
+            Hand("JJJJJ", 37),
+            Hand("JAAAA", 43),
+            Hand("AAAAJ", 59),
+            Hand("AAAAA", 61),
+            Hand("2AAAA", 23),
+            Hand("2JJJJ", 53),
+            Hand("JJJJ2", 41),
+        )
+        // act
+        val orderedHands = Day07().orderHands(hands)
+
+        // assert
+        assertThat(orderedHands).containsExactly(
+            Hand("2345J", 3),
+            Hand("2345A", 1),
+            Hand("J345A", 2),
+            Hand("32T3K", 5),
+            Hand("Q2KJJ", 13),
+            Hand("T3T3J", 17),
+            Hand("KTJJT", 34),
+            Hand("KK677", 7),
+            Hand("T3Q33", 11),
+            Hand("T55J5", 29),
+            Hand("QQQJA", 31),
+            Hand("Q2Q2Q", 19),
+            Hand("2JJJJ", 53),
+            Hand("2AAAA", 23),
+            Hand("JJJJ2", 41),
+            Hand("JAAAA", 43),
+            Hand("AAAAJ", 59),
+            Hand("JJJJJ", 37),
+            Hand("AAAAA", 61),
+        )
+    }
+
+    @Test
+    fun should_calculate_total_wins_properly() {
+        // arrange
+        val hands = listOf(
+            Hand("2345A", 1),
+            Hand("Q2KJJ", 13),
+            Hand("Q2Q2Q", 19),
+            Hand("T3T3J", 17),
+            Hand("T3Q33", 11),
+            Hand("2345J", 3),
+            Hand("J345A", 2),
+            Hand("32T3K", 5),
+            Hand("T55J5", 29),
+            Hand("KK677", 7),
+            Hand("KTJJT", 34),
+            Hand("QQQJA", 31),
+            Hand("JJJJJ", 37),
+            Hand("JAAAA", 43),
+            Hand("AAAAJ", 59),
+            Hand("AAAAA", 61),
+            Hand("2AAAA", 23),
+            Hand("2JJJJ", 53),
+            Hand("JJJJ2", 41),
+        )
+        val orderedHands = Day07().orderHands(hands)
+
+        // act
+        val totalWins = Day07().totalWins(orderedHands)
+
+        // assert
+        assertThat(totalWins).isEqualTo(6592)
+    }
+
+    @Test
+    fun should_compare_two_four_hands() {
+        // arrange
+        val hand1 = Hand("33332", 0)
+        val hand2 = Hand("2AAAA", 0)
+
+        // act
+        val result = HandComparator().compare(hand1, hand2)
+
+        // assert
+        assertThat(result).isEqualTo(1)
+    }
+
+    @Test
+    fun should_compare_two_full_house_hands() {
+        // arrange
+        val hand1 = Hand("77888", 0)
+        val hand2 = Hand("77788", 0)
+
+        // act
+        val result = HandComparator().compare(hand1, hand2)
+
+        // assert
+        assertThat(result).isEqualTo(1)
+    }
+
 }
