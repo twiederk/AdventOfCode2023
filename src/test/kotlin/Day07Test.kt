@@ -48,4 +48,75 @@ class Day07Test {
         assertThat(groups['T']).isEqualTo(listOf('T'))
         assertThat(groups['J']).isEqualTo(listOf('J'))
     }
+
+    @Test
+    fun should_return_strength_of_ONE_PAIR() {
+
+        // act
+        val strength = Hand("32T3K", 765).strength()
+
+        // assert
+        assertThat(strength).isEqualTo(Strength.ONE_PAIR)
+    }
+
+    @Test
+    fun should_return_strength_THREE_OF_A_KIND() {
+
+        // act
+        val strength = Hand("T55J5", 684).strength()
+
+        // assert
+        assertThat(strength).isEqualTo(Strength.THREE_OF_A_KIND)
+    }
+
+    @Test
+    fun should_return_strength_of_TWO_PAIR() {
+
+        // act
+        val strength = Hand("KK677", 28).strength()
+
+        // assert
+        assertThat(strength).isEqualTo(Strength.TWO_PAIR)
+    }
+
+    @Test
+    fun should_return_strength_of_FIVE_OF_A_KIND() {
+
+        // act
+        val strength = Hand("AAAAA", 0).strength()
+
+        // assert
+        assertThat(strength).isEqualTo(Strength.FIVE_OF_A_KIND)
+    }
+
+    @Test
+    fun should_return_strength_of_FOUR_OF_A_KIND() {
+
+        // act
+        val strength = Hand("AA1AA", 0).strength()
+
+        // assert
+        assertThat(strength).isEqualTo(Strength.FOUR_OF_A_KIND)
+    }
+
+    @Test
+    fun should_return_strength_of_FULL_HOUSE() {
+
+        // act
+        val strength = Hand("AABBA", 0).strength()
+
+        // assert
+        assertThat(strength).isEqualTo(Strength.FULL_HOUSE)
+    }
+
+    @Test
+    fun should_return_strength_of_HIGH_CARD() {
+
+        // act
+        val strength = Hand("ABCDE", 0).strength()
+
+        // assert
+        assertThat(strength).isEqualTo(Strength.HIGH_CARD)
+    }
+
 }
