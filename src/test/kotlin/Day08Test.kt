@@ -128,4 +128,64 @@ class Day08Test {
         )
     }
 
+    @Test
+    fun should_count_steps_simultaneously() {
+        // arrange
+        val nodes = mapOf(
+            "11A" to Node("11A", "11B", "XXX"),
+            "11B" to Node("11B", "XXX", "11Z"),
+            "11T" to Node("11Z", "11B", "XXX"),
+            "22A" to Node("22A", "22B", "XXX"),
+            "22B" to Node("22B", "22C", "22C"),
+            "22C" to Node("22C", "22Z", "22Z"),
+            "22Z" to Node("22Z", "22B", "22B"),
+            "XXX" to Node("XXX", "XXX", "XXX"),
+        )
+        val instructions = "LR"
+
+        // act
+        val steps = Day08().countStepsSimultaneously(instructions, nodes)
+
+        // assert
+        assertThat(steps).isEqualTo(6)
+
+    }
+
+    @Test
+    fun should_return_true_when_starting_node() {
+
+        // act
+        val result = Node("11A", "11B", "XXX").isStartingNode()
+
+        // assert
+        assertThat(result).isTrue()
+    }
+
+    @Test
+    fun should_return_false_when_not_starting_node() {
+
+        // act
+        val result = Node("11B", "XXX", "11Z").isStartingNode()
+
+        // assert
+        assertThat(result).isFalse()
+    }
+
+    @Test
+    fun should_return_true_when_end_node() {
+        // act
+        val result = Node("11Z", "11B", "XXX").isEndNode()
+
+        // assert
+        assertThat(result).isTrue()
+    }
+
+    @Test
+    fun should_return_false_when_not_end_node() {
+        // act
+        val result = Node("22B", "22C", "22C").isEndNode()
+
+        // assert
+        assertThat(result).isFalse()
+    }
 }

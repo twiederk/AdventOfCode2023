@@ -25,7 +25,7 @@ class Day08 {
         while (true) {
             val instruction = instructions.nth(steps)
             steps++
-            node = nodes.getOrElse(node.next(instruction)) { throw IllegalArgumentException("Node not found: AAA") }
+            node = nodes.getOrElse(node.next(instruction)) { throw IllegalArgumentException("Node not found") }
             if (node.name == "ZZZ") {
                 return steps
             }
@@ -33,7 +33,21 @@ class Day08 {
     }
 
     fun startingNodes(nodes: List<Node>): List<Node> {
-        return nodes.filter { it.name[2] == 'A' }
+        return nodes.filter { it.isStartingNode() }
+    }
+
+    fun countStepsSimultaneously(instructions: String, nodes: Map<String, Node>): Int {
+        val startingNodes = startingNodes(nodes.values.toList()).toTypedArray()
+        var steps = 0
+        while (true) {
+            val instruction = instructions.nth(steps)
+            steps++
+            for (index in startingNodes.indices) {
+                startingNodes[index] =
+                    nodes.getOrElse(startingNodes[index].next(instruction)) { throw IllegalArgumentException("Node not found") }
+            }
+
+        }
     }
 }
 
@@ -47,6 +61,14 @@ data class Node(
             'L' -> left
             else -> right
         }
+    }
+
+    fun isStartingNode(): Boolean {
+        return name[2] == 'A'
+    }
+
+    fun isEndNode(): Boolean {
+        return name[2] == 'Z'
     }
 }
 
