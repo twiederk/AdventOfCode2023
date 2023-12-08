@@ -13,10 +13,7 @@ class Day02 {
     fun createGame(line: String): Game {
         val score = line.substringAfter("Game ").substringBefore(":").toInt()
         val drawParts = line.substringAfter(":").split(';')
-        val draws = mutableListOf<Draw>()
-        for (drawPart in drawParts) {
-            draws.add(createDraw(drawPart))
-        }
+        val draws = drawParts.map { createDraw(it) }.toMutableList()
         return Game(score, draws)
     }
 
