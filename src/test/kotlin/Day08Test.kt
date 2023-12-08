@@ -1,4 +1,4 @@
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.nio.file.Paths
 
@@ -6,13 +6,31 @@ class Day08Test {
 
     @Test
     fun should_load_instructions() {
-        // arrange
 
         // act
         val instructions = Day08().loadInstructions(Paths.get("src", "test", "resources", "Day08_TestData.txt"))
 
         // assert
-        Assertions.assertThat(instructions).isEqualTo("RL")
+        assertThat(instructions).isEqualTo("RL")
+    }
+
+    @Test
+    fun should_load_nodes() {
+        // arrange
+
+        // act
+        val nodes = Day08().loadNodes(Paths.get("src", "test", "resources", "Day08_TestData.txt"))
+
+        // assert
+        assertThat(nodes).containsExactly(
+            Node("AAA", "BBB", "CCC"),
+            Node("BBB", "DDD", "EEE"),
+            Node("CCC", "ZZZ", "GGG"),
+            Node("DDD", "DDD", "DDD"),
+            Node("EEE", "EEE", "EEE"),
+            Node("GGG", "GGG", "GGG"),
+            Node("ZZZ", "ZZZ", "ZZZ"),
+        )
 
     }
 }
