@@ -1,3 +1,4 @@
+import java.math.BigInteger
 import java.nio.file.Path
 import java.nio.file.Paths
 
@@ -36,23 +37,21 @@ class Day08 {
         return nodes.filter { it.isStartingNode() }
     }
 
-    fun countStepsSimultaneously(instructions: String, nodes: Map<String, Node>): Int {
+    fun countStepsSimultaneously(instructions: String, nodes: Map<String, Node>): BigInteger {
         val startingNodes = startingNodes(nodes.values.toList()).toTypedArray()
-        var steps = 0
-        while (true) {
-            val instruction = instructions.nth(steps)
-            steps++
-            for (index in startingNodes.indices) {
-                startingNodes[index] =
-                    nodes.getOrElse(startingNodes[index].next(instruction)) { throw IllegalArgumentException("Not found from ${startingNodes[index]} with $instruction") }
-            }
-            if (isEnd(startingNodes))
-                return steps
-        }
+        val loops = startingNodes.map { it.loop(instructions, nodes) }
+        val lcm = loops.map { BigInteger.valueOf(it.zIndices[0].toLong()) }.reduce { a, b -> lcm(a, b) }
+        return lcm
     }
 
     fun isEnd(nodes: Array<Node>): Boolean {
         return nodes.count { it.isEndNode() } == nodes.size
+    }
+
+    fun lcm(number1: BigInteger, number2: BigInteger): BigInteger {
+        val gcd: BigInteger = number1.gcd(number2)
+        val absProduct = number1.multiply(number2).abs()
+        return absProduct.divide(gcd)
     }
 }
 
@@ -92,16 +91,25 @@ data class Node(
             index = (index + 1) % instructions.length
         }
         val loopStart = visited.indexOf(visitedNodeKey)
+        val zIndices = mutableListOf<Int>()
+        for (zIndex in visited.indices) {
+            if (visited[zIndex][2] == 'Z') {
+                zIndices.add(zIndex)
+            }
+        }
         return Loop(
             loopStart = loopStart,
-            size = visited.size - loopStart
+            size = visited.size - loopStart,
+            zIndices = zIndices
+
         )
     }
 }
 
 data class Loop(
     val loopStart: Int,
-    val size: Int
+    val size: Int,
+    val zIndices: List<Int>
 )
 
 fun main() {
