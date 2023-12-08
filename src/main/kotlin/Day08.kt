@@ -30,7 +30,10 @@ class Day08 {
                 return steps
             }
         }
-        return -1
+    }
+
+    fun startingNodes(nodes: List<Node>): List<Node> {
+        return nodes.filter { it.name[2] == 'A' }
     }
 }
 

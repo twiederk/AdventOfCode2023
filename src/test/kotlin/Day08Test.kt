@@ -104,4 +104,28 @@ class Day08Test {
         assertThat(instruction).isEqualTo('R')
     }
 
+    @Test
+    fun should_return_all_nodes_ending_with_A() {
+        // arrange
+        val nodes = listOf(
+            Node("11A", "11B", "XXX"),
+            Node("11B", "XXX", "11Z"),
+            Node("11Z", "11B", "XXX"),
+            Node("22A", "22B", "XXX"),
+            Node("22B", "22C", "22C"),
+            Node("22C", "22Z", "22Z"),
+            Node("22Z", "22B", "22B"),
+            Node("XXX", "XXX", "XXX"),
+        )
+
+        // act
+        val startingNodes = Day08().startingNodes(nodes)
+
+        // assert
+        assertThat(startingNodes).containsExactly(
+            Node("11A", "11B", "XXX"),
+            Node("22A", "22B", "XXX"),
+        )
+    }
+
 }
