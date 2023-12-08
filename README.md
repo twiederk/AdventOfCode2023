@@ -2,15 +2,16 @@
 
 ## Overview of the puzzles
 
-| Day | Title                           | Part 1 | Part 2 | Notes |
-|----:|---------------------------------|--------|--------|-------|
-| [1] | Trebuchet?!                     | SOLVED | SOLVED |       |
-| [2] | Cube Conundrum                  | SOLVED | SOLVED |       |
-| [3] | Gear Ratios                     | SOLVED | SOLVED |       |
-| [4] | Scratchcards                    | SOLVED | SOLVED |       |
-| [5] | If You Give A Seed A Fertilizer | SOLVED | SOLVED |       |
-| [6] | Wait For It                     | SOLVED | SOLVED |       |
-| [7] | Camel Card                      | SOLVED | SOLVED |       |
+| Day | Title                           | Part 1 | Part 2 | Notes                                |
+|----:|---------------------------------|--------|--------|--------------------------------------|
+| [1] | Trebuchet?!                     | SOLVED | SOLVED |                                      |
+| [2] | Cube Conundrum                  | SOLVED | SOLVED |                                      |
+| [3] | Gear Ratios                     | SOLVED | SOLVED |                                      |
+| [4] | Scratchcards                    | SOLVED | SOLVED |                                      |
+| [5] | If You Give A Seed A Fertilizer | SOLVED | SOLVED |                                      |
+| [6] | Wait For It                     | SOLVED | SOLVED |                                      |
+| [7] | Camel Card                      | SOLVED | SOLVED |                                      |
+| [8] | Haunted Wasteland               | SOLVED | SOLVED | Find loops and use LCM (see [Video]) |
 
 ## Resources
 
@@ -26,3 +27,6 @@
 [5]: src/main/kotlin/Day05.kt
 [6]: src/main/kotlin/Day06.kt
 [7]: src/main/kotlin/Day07.kt
+[8]: src/main/kotlin/Day08.kt
+
+[Video]: https://www.youtube.com/watch?v=UFa236NO4TU
