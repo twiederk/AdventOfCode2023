@@ -204,4 +204,31 @@ class Day08Test {
         assertThat(result).isTrue()
     }
 
+    @Test
+    fun should_find_all_starting_nodes_in_real_data() {
+        // arrange
+        val nodes = Day08().loadNodes(Paths.get("src", "main", "resources", "Day08_InputData.txt"))
+
+        // act
+        val startingNodes = Day08().startingNodes(nodes.values.toList())
+
+        // assert
+        assertThat(startingNodes).hasSize(6)
+    }
+
+    @Test
+    fun should_find_loop_of_node_AAA() {
+        // arrange
+        val instructions = Day08().loadInstructions(Paths.get("src", "main", "resources", "Day08_InputData.txt"))
+        val nodes = Day08().loadNodes(Paths.get("src", "main", "resources", "Day08_InputData.txt"))
+        val startingNode = nodes.getOrElse("AAA") { throw IllegalArgumentException("Can't find node AAA") }
+
+        // act
+        val loop = startingNode.loop(instructions, nodes)
+
+        // assert
+        assertThat(loop.loopStart).isEqualTo(8)
+        assertThat(loop.size).isEqualTo(11911)
+    }
+
 }

@@ -75,7 +75,34 @@ data class Node(
     fun isEndNode(): Boolean {
         return name[2] == 'Z'
     }
+
+    fun loop(instructions: String, nodes: Map<String, Node>): Loop {
+        val visited = mutableListOf<String>()
+        var currentNode = this
+        var index = 0
+        var visitedNodeKey = "${currentNode.name}-$index"
+        while (!visited.contains(visitedNodeKey)) {
+            visited.add(visitedNodeKey)
+
+            val instruction = instructions[index]
+            currentNode =
+                nodes.getOrElse(currentNode.next(instruction)) { throw IllegalArgumentException("Node not found") }
+            visitedNodeKey = "${currentNode.name}-$index"
+
+            index = (index + 1) % instructions.length
+        }
+        val loopStart = visited.indexOf(visitedNodeKey)
+        return Loop(
+            loopStart = loopStart,
+            size = visited.size - loopStart
+        )
+    }
 }
+
+data class Loop(
+    val loopStart: Int,
+    val size: Int
+)
 
 fun main() {
     val day08 = Day08()
