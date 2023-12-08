@@ -85,4 +85,8 @@ fun main() {
 
     val part1 = day08.countSteps(instructions, nodes)
     println("Day08 part1: $part1")
+
+    val part2 = day08.countStepsSimultaneously(instructions, nodes)
+    println("Day08 part2: $part2")
+
 }
