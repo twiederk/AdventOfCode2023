@@ -44,10 +44,15 @@ class Day08 {
             steps++
             for (index in startingNodes.indices) {
                 startingNodes[index] =
-                    nodes.getOrElse(startingNodes[index].next(instruction)) { throw IllegalArgumentException("Node not found") }
+                    nodes.getOrElse(startingNodes[index].next(instruction)) { throw IllegalArgumentException("Not found from ${startingNodes[index]} with $instruction") }
             }
-
+            if (isEnd(startingNodes))
+                return steps
         }
+    }
+
+    fun isEnd(nodes: Array<Node>): Boolean {
+        return nodes.count { it.isEndNode() } == nodes.size
     }
 }
 

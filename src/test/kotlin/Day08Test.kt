@@ -134,7 +134,7 @@ class Day08Test {
         val nodes = mapOf(
             "11A" to Node("11A", "11B", "XXX"),
             "11B" to Node("11B", "XXX", "11Z"),
-            "11T" to Node("11Z", "11B", "XXX"),
+            "11Z" to Node("11Z", "11B", "XXX"),
             "22A" to Node("22A", "22B", "XXX"),
             "22B" to Node("22B", "22C", "22C"),
             "22C" to Node("22C", "22Z", "22Z"),
@@ -188,4 +188,20 @@ class Day08Test {
         // assert
         assertThat(result).isFalse()
     }
+
+    @Test
+    fun should_return_true_when_all_nodes_are_end_nodes() {
+        // arrange
+        val nodes = arrayOf(
+            Node("11Z", "11B", "XXX"),
+            Node("22Z", "22B", "XXX"),
+        )
+
+        // act
+        val result = Day08().isEnd(nodes)
+
+        // assert
+        assertThat(result).isTrue()
+    }
+
 }
