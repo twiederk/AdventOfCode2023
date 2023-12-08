@@ -6,14 +6,15 @@ class Day08 {
         return Resources.resourceAsListOfString(path.toFile().name)[0]
     }
 
-    fun loadNodes(path: Path): List<Node> {
+    fun loadNodes(path: Path): Map<String, Node> {
         val nodesList = Resources.resourceAsListOfString(path.toFile().name).drop(2)
-        return nodesList.map {
-            Node(
-                name = it.substring(0, 3),
-                left = it.substring(7, 10),
-                right = it.substring(12, 15)
-            )
+        return nodesList.associate {
+            it.substring(0, 3) to
+                    Node(
+                        name = it.substring(0, 3),
+                        left = it.substring(7, 10),
+                        right = it.substring(12, 15)
+                    )
         }
     }
 }
