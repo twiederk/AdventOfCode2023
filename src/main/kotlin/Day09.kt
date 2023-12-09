@@ -8,5 +8,15 @@ class Day09 {
         }
     }
 
+    fun predictNextValue(history: List<Long>): Long {
+        if (history.sum() == 0L) return 0L
+        val nextDiff = history.windowed(2).map { it[1] - it[0] }
+        return history.last() + predictNextValue(nextDiff)
+    }
+
+    fun sumOfNextValues(histories: List<List<Long>>): Long {
+        return histories.sumOf { predictNextValue(it) }
+    }
+
 }
 
