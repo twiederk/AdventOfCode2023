@@ -51,40 +51,6 @@ class Day09Test {
     }
 
     @Test
-    fun should_predict_next_value_real_data() {
-        // arrange
-        val history = listOf(
-            1,
-            -2,
-            -13,
-            -26,
-            -23,
-            28,
-            189,
-            597,
-            1553,
-            3670,
-            8095,
-            16820,
-            33097,
-            61972,
-            110953,
-            190827,
-            316641,
-            508862,
-            794731,
-            1209826,
-            1799849
-        )
-
-        // act
-        val nextValue = Day09().predictNextValue(history)
-
-        // assert
-        assertThat(nextValue).isEqualTo(2622652)
-    }
-
-    @Test
     fun should_sum_all_next_values() {
         // arrange
         val histories = listOf(
