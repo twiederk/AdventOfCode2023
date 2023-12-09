@@ -12,7 +12,7 @@
 | [6] | Wait For It                     | SOLVED | SOLVED |                                                                               |
 | [7] | Camel Card                      | SOLVED | SOLVED |                                                                               |
 | [8] | Haunted Wasteland               | SOLVED | SOLVED | Find loops and use LCM (see [Video])                                          |
-| [9] | Mirage Maintenance              | SOLVED | OPEN   | history.sum() is not the same as history.all { it == 0 }, because of [-1, 1 ] |
+| [9] | Mirage Maintenance              | SOLVED | SOLVED | history.sum() is not the same as history.all { it == 0 }, because of [-1, 1 ] |
 
 ## Resources
 

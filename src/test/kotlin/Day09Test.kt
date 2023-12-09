@@ -66,4 +66,58 @@ class Day09Test {
         assertThat(nextValue).isEqualTo(114)
     }
 
+    @Test
+    fun should_predict_previous_value_test_data_1() {
+        // arrange
+        val history = listOf(0, 3, 6, 9, 12, 15)
+
+        // act
+        val nextValue = Day09().predictPreviousValue(history)
+
+        // assert
+        assertThat(nextValue).isEqualTo(-3)
+    }
+
+    @Test
+    fun should_predict_previous_value_test_data_2() {
+        // arrange
+        val history = listOf(1, 3, 6, 10, 15, 21)
+
+        // act
+        val nextValue = Day09().predictPreviousValue(history)
+
+        // assert
+        assertThat(nextValue).isEqualTo(0)
+    }
+
+    @Test
+    fun should_predict_previous_value_test_data_3() {
+        // arrange
+        val history = listOf(10, 13, 16, 21, 30, 45)
+
+        // act
+        val nextValue = Day09().predictPreviousValue(history)
+
+        // assert
+        assertThat(nextValue).isEqualTo(5)
+    }
+
+    @Test
+    fun should_sum_all_previous_values() {
+        // arrange
+        val histories = listOf(
+            listOf(0, 3, 6, 9, 12, 15),
+            listOf(1, 3, 6, 10, 15, 21),
+            listOf(10, 13, 16, 21, 30, 45),
+        )
+
+        // act
+        val nextValue = Day09().sumOfPreviousValues(histories)
+
+        // assert
+        assertThat(nextValue).isEqualTo(2)
+    }
+
+
+
 }
