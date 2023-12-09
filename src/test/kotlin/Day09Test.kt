@@ -17,7 +17,7 @@ class Day09Test {
     @Test
     fun should_predict_next_value_test_data_1() {
         // arrange
-        val history = listOf(0L, 3L, 6L, 9L, 12L, 15L)
+        val history = listOf(0, 3, 6, 9, 12, 15)
 
         // act
         val nextValue = Day09().predictNextValue(history)
@@ -29,7 +29,7 @@ class Day09Test {
     @Test
     fun should_predict_next_value_test_data_2() {
         // arrange
-        val history = listOf(1L, 3L, 6L, 10L, 15L, 21L)
+        val history = listOf(1, 3, 6, 10, 15, 21)
 
         // act
         val nextValue = Day09().predictNextValue(history)
@@ -41,7 +41,7 @@ class Day09Test {
     @Test
     fun should_predict_next_value_test_data_3() {
         // arrange
-        val history = listOf(10L, 13L, 16L, 21L, 30L, 45L)
+        val history = listOf(10, 13, 16, 21, 30, 45)
 
         // act
         val nextValue = Day09().predictNextValue(history)
@@ -54,43 +54,43 @@ class Day09Test {
     fun should_predict_next_value_real_data() {
         // arrange
         val history = listOf(
-            1L,
-            -2L,
-            -13L,
-            -26L,
-            -23L,
-            28L,
-            189L,
-            597L,
-            1553L,
-            3670L,
-            8095L,
-            16820L,
-            33097L,
-            61972L,
-            110953L,
-            190827L,
-            316641L,
-            508862L,
-            794731L,
-            1209826L,
-            1799849L
+            1,
+            -2,
+            -13,
+            -26,
+            -23,
+            28,
+            189,
+            597,
+            1553,
+            3670,
+            8095,
+            16820,
+            33097,
+            61972,
+            110953,
+            190827,
+            316641,
+            508862,
+            794731,
+            1209826,
+            1799849
         )
 
         // act
         val nextValue = Day09().predictNextValue(history)
 
         // assert
-        assertThat(nextValue).isEqualTo(2622652L)
+        assertThat(nextValue).isEqualTo(2622652)
     }
 
     @Test
     fun should_sum_all_next_values() {
         // arrange
         val histories = listOf(
-            listOf(0L, 3L, 6L, 9L, 12L, 15),
-            listOf(1L, 3L, 6L, 10L, 15L, 21),
-            listOf(10L, 13L, 16L, 21L, 30L, 45),
+            listOf(0, 3, 6, 9, 12, 15),
+            listOf(1, 3, 6, 10, 15, 21),
+            listOf(10, 13, 16, 21, 30, 45),
         )
 
         // act
