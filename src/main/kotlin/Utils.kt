@@ -52,7 +52,22 @@ fun String.nth(n: Int): Char =
 data class Point(
     val x: Int,
     val y: Int
-)
+) {
+    fun neighbors(grid: List<String>): List<Point> {
+        val neighbors = mutableListOf<Point>()
+        // north
+        if (y - 1 >= 0) neighbors.add(Point(x, y - 1))
+        // south
+        if (y + 1 < grid.size) neighbors.add(Point(x, y + 1))
+        // west
+        if (x - 1 >= 0) neighbors.add(Point(x - 1, y))
+        // east
+        if (x + 1 < grid[0].length) neighbors.add(Point(x + 1, y))
+
+        return neighbors
+    }
+
+}
 
 data class LongPoint(
     val x: Long,
