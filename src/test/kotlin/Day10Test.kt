@@ -37,7 +37,7 @@ class Day10Test {
         val startingPosition = Day10().startingPosition(simpleMaze)
 
         // assert
-        assertThat(startingPosition).isEqualTo(Point(1, 1))
+        assertThat(startingPosition).isEqualTo(MazePoint(1, 1, 'S'))
 
     }
 
@@ -48,19 +48,19 @@ class Day10Test {
         val startingPosition = Day10().startingPosition(complexMaze)
 
         // assert
-        assertThat(startingPosition).isEqualTo(Point(0, 2))
+        assertThat(startingPosition).isEqualTo(MazePoint(0, 2, 'S'))
     }
 
     @Test
     fun should_return_neighbors_of_north_west_corner() {
 
         // act
-        val neighbors = Point(0, 0).neighbors(simpleMaze)
+        val neighbors = MazePoint(0, 0).neighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
-            Point(0, 1), // south
-            Point(1, 0), // east
+            MazePoint(0, 1, '7'), // south
+            MazePoint(1, 0, 'L'), // east
         )
     }
 
@@ -68,12 +68,12 @@ class Day10Test {
     fun should_return_neighbors_of_north_east_corner() {
 
         // act
-        val neighbors = Point(4, 0).neighbors(simpleMaze)
+        val neighbors = MazePoint(4, 0).neighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
-            Point(4, 1), // south
-            Point(3, 0), // west
+            MazePoint(4, 1, '|'), // south
+            MazePoint(3, 0, 'F'), // west
         )
     }
 
@@ -81,12 +81,12 @@ class Day10Test {
     fun should_return_neighbors_of_south_west_corner() {
 
         // act
-        val neighbors = Point(0, 4).neighbors(simpleMaze)
+        val neighbors = MazePoint(0, 4).neighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
-            Point(0, 3), // north
-            Point(1, 4), // east
+            MazePoint(0, 3, '-'), // north
+            MazePoint(1, 4, '|'), // east
         )
     }
 
@@ -94,12 +94,12 @@ class Day10Test {
     fun should_return_neighbors_of_south_east_corner() {
 
         // act
-        val neighbors = Point(4, 4).neighbors(simpleMaze)
+        val neighbors = MazePoint(4, 4).neighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
-            Point(4, 3), // north
-            Point(3, 4), // west
+            MazePoint(4, 3, '|'), // north
+            MazePoint(3, 4, 'J'), // west
         )
     }
 
@@ -107,14 +107,14 @@ class Day10Test {
     fun should_return_neighbors_of_center() {
 
         // act
-        val neighbors = Point(1, 1).neighbors(simpleMaze)
+        val neighbors = MazePoint(1, 1).neighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
-            Point(1, 0), // north
-            Point(1, 2), // south
-            Point(0, 1), // east
-            Point(2, 1), // west
+            MazePoint(1, 0, 'L'), // north
+            MazePoint(1, 2, '|'), // south
+            MazePoint(0, 1, '7'), // east
+            MazePoint(2, 1, '-'), // west
         )
     }
 
@@ -122,13 +122,13 @@ class Day10Test {
     fun should_return_neighbors_of_north_wall() {
 
         // act
-        val neighbors = Point(1, 0).neighbors(simpleMaze)
+        val neighbors = MazePoint(1, 0).neighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
-            Point(1, 1), // south
-            Point(0, 0), // east
-            Point(2, 0), // west
+            MazePoint(1, 1, 'S'), // south
+            MazePoint(0, 0, '-'), // east
+            MazePoint(2, 0, '|'), // west
         )
     }
 
@@ -136,13 +136,13 @@ class Day10Test {
     fun should_return_neighbors_of_south_wall() {
 
         // act
-        val neighbors = Point(1, 4).neighbors(simpleMaze)
+        val neighbors = MazePoint(1, 4).neighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
-            Point(1, 3), // north
-            Point(0, 4), // east
-            Point(2, 4), // west
+            MazePoint(1, 3, 'L'), // north
+            MazePoint(0, 4, 'L'), // east
+            MazePoint(2, 4, '-'), // west
         )
     }
 
@@ -150,13 +150,13 @@ class Day10Test {
     fun should_return_neighbors_of_east_wall() {
 
         // act
-        val neighbors = Point(0, 1).neighbors(simpleMaze)
+        val neighbors = MazePoint(0, 1).neighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
-            Point(0, 0), // north
-            Point(0, 2), // south
-            Point(1, 1), // west
+            MazePoint(0, 0, '-'), // north
+            MazePoint(0, 2, 'L'), // south
+            MazePoint(1, 1, 'S'), // west
         )
     }
 
@@ -164,13 +164,13 @@ class Day10Test {
     fun should_return_neighbors_of_west_wall() {
 
         // act
-        val neighbors = Point(4, 1).neighbors(simpleMaze)
+        val neighbors = MazePoint(4, 1).neighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
-            Point(4, 0), // north
-            Point(4, 2), // south
-            Point(3, 1), // east
+            MazePoint(4, 0, '7'), // north
+            MazePoint(4, 2, '|'), // south
+            MazePoint(3, 1, '7'), // east
         )
     }
 
