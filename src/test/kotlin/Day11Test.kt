@@ -113,13 +113,11 @@ class Day11Test {
 
     @Test
     fun should_scan_for_galaxies() {
-        // arrange
 
         // act
         val galaxies = Day11().galaxies(expandedGalaxyImage)
 
         // assert
-        galaxies.forEach { println(it) }
         assertThat(galaxies).hasSize(9)
     }
 
@@ -179,6 +177,21 @@ class Day11Test {
 
         // assert
         assertThat(sumOfDistances).isEqualTo(374)
-
     }
+
+    @Test
+    fun should_calculate_distance_with_expand() {
+        // arrange
+        val galaxies = Day11().galaxies(galaxyImage)
+        val rowsToExpand = Day11().rowsToExpand(galaxyImage)
+        val colsToExpand = Day11().colsToExpand(galaxyImage)
+        val expand = 1
+
+        // act
+        val distance = Day11().calcDistanceWithExpand(galaxies[0], galaxies[6], rowsToExpand, colsToExpand, expand)
+
+        // assert
+        assertThat(distance).isEqualTo(15)
+    }
+
 }

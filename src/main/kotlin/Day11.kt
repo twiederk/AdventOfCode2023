@@ -86,6 +86,33 @@ class Day11 {
         return galaxyPairs.sumOf { it.first.manhattenDistance(it.second) }
     }
 
+    fun calcDistanceWithExpand(
+        galaxy1: Point2D,
+        galaxy2: Point2D,
+        rowsToExpand: List<Int>,
+        colsToExpand: List<Int>,
+        expand: Int
+    ): Int {
+        val distance = galaxy1.manhattenDistance(galaxy2)
+        val colExpand = expand(galaxy1.x, galaxy2.x, colsToExpand, expand)
+        val rowExpand = expand(galaxy1.y, galaxy2.y, rowsToExpand, expand)
+        return distance + colExpand + rowExpand
+    }
+
+    private fun expand(start: Int, end: Int, indices: List<Int>, expand: Int): Int {
+        var totalExpand = 0
+        var range = start..end
+        if (end < start) {
+            range = end..start
+        }
+        for (index in range) {
+            if (index in indices) {
+                totalExpand += expand
+            }
+        }
+        return totalExpand
+    }
+
 }
 
 fun main() {
