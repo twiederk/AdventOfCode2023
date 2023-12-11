@@ -4,7 +4,7 @@ import java.nio.file.Paths
 
 class Day10Test {
 
-    val simpleMaze: Maze = listOf(
+    private val simpleMaze: Maze = listOf(
         "-L|F7",
         "7S-7|",
         "L|7||",
@@ -12,7 +12,7 @@ class Day10Test {
         "L|-JF",
     )
 
-    val complexMaze: Maze = listOf(
+    private val complexMaze: Maze = listOf(
         "7-F7-",
         ".FJ|7",
         "SJLL7",
