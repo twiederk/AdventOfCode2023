@@ -113,6 +113,15 @@ class Day11 {
         return totalExpand
     }
 
+    fun sumOfDistancesWithExpand(
+        galaxyPairs: List<Pair<Point2D, Point2D>>,
+        rowsToExpand: List<Int>,
+        colsToExpand: List<Int>,
+        expand: Int
+    ): Int {
+        return galaxyPairs.sumOf { calcDistanceWithExpand(it.first, it.second, rowsToExpand, colsToExpand, expand) }
+    }
+
 }
 
 fun main() {
@@ -123,4 +132,6 @@ fun main() {
     val galaxyPairs = day11.galaxyPairs(galaxies)
     val part1 = day11.sumOfDistances(galaxyPairs)
     println("part1 = $part1")
+
+
 }

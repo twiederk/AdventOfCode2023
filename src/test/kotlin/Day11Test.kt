@@ -194,4 +194,52 @@ class Day11Test {
         assertThat(distance).isEqualTo(15)
     }
 
+    @Test
+    fun should_sum_distances_with_expand_1() {
+        // arrange
+        val galaxies = Day11().galaxies(galaxyImage)
+        val galaxyPairs = Day11().galaxyPairs(galaxies)
+        val rowsToExpand = listOf(3, 7)
+        val colsToExpand = listOf(2, 5, 8)
+        val expand = 1
+
+        // act
+        val sumOfDistances = Day11().sumOfDistancesWithExpand(galaxyPairs, rowsToExpand, colsToExpand, expand)
+
+        // assert
+        assertThat(sumOfDistances).isEqualTo(374)
+    }
+
+    @Test
+    fun should_sum_distances_with_expand_10() {
+        // arrange
+        val galaxies = Day11().galaxies(galaxyImage)
+        val galaxyPairs = Day11().galaxyPairs(galaxies)
+        val rowsToExpand = listOf(3, 7)
+        val colsToExpand = listOf(2, 5, 8)
+        val expand = 9
+
+        // act
+        val sumOfDistances = Day11().sumOfDistancesWithExpand(galaxyPairs, rowsToExpand, colsToExpand, expand)
+
+        // assert
+        assertThat(sumOfDistances).isEqualTo(1030)
+    }
+
+    @Test
+    fun should_sum_distances_with_expand_100() {
+        // arrange
+        val galaxies = Day11().galaxies(galaxyImage)
+        val galaxyPairs = Day11().galaxyPairs(galaxies)
+        val rowsToExpand = listOf(3, 7)
+        val colsToExpand = listOf(2, 5, 8)
+        val expand = 99
+
+        // act
+        val sumOfDistances = Day11().sumOfDistancesWithExpand(galaxyPairs, rowsToExpand, colsToExpand, expand)
+
+        // assert
+        assertThat(sumOfDistances).isEqualTo(8410)
+    }
+
 }
