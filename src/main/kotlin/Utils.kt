@@ -53,6 +53,14 @@ data class Point(
     val x: Int,
     val y: Int
 ) {
+
+    companion object {
+        val NORTH = Point(0, -1)
+        val EAST = Point(1, 0)
+        val SOUTH = Point(0, 1)
+        val WEST = Point(-1, 0)
+    }
+
     fun neighbors(grid: List<String>): List<Point> {
         val neighbors = mutableListOf<Point>()
         // north
@@ -67,6 +75,11 @@ data class Point(
         return neighbors
     }
 
+    operator fun minus(other: Point): Point =
+        Point(x - other.x, y - other.y)
+
+    operator fun plus(other: Point): Point =
+        Point(x + other.x, y + other.y)
 }
 
 data class LongPoint(
