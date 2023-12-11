@@ -1,4 +1,5 @@
 import java.nio.file.Path
+import java.nio.file.Paths
 
 typealias Maze = List<String>
 
@@ -94,3 +95,11 @@ data class MazePoint(
 
 }
 
+
+fun main() {
+    val day10 = Day10()
+    val maze = day10.loadMaze(Paths.get("src", "main", "resources", "Day10_InputData.txt"))
+    val start = day10.startingPosition(maze).copy(pipe = '|')
+    val part1 = day10.mainPipe(maze, start, MazePoint.SOUTH)
+    println("part1 = $part1")
+}
