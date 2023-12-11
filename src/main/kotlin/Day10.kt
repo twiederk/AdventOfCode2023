@@ -40,8 +40,26 @@ class Day10 {
         return mainPipe
     }
 
-    fun part1(maze: List<String>, start: MazePoint, direction: MazePoint): Int {
+    fun part1(maze: Maze, start: MazePoint, direction: MazePoint): Int {
         return mainPipe(maze, start, direction).size / 2
+    }
+
+    fun cleanMaze(maze: Maze, mainPipe: List<MazePoint>): List<String> {
+        val cleanMaze = mutableListOf<String>()
+        val mainPipePoint2D = mainPipe.map { Point2D(it.x, it.y) }
+        for (row in maze.indices) {
+            val newLine = maze[row].toCharArray()
+            for (col in maze[0].indices) {
+                val currPoint = Point2D(col, row)
+                if (currPoint in mainPipePoint2D) {
+                    newLine[col] = maze[row][col]
+                } else {
+                    newLine[col] = '.'
+                }
+            }
+            cleanMaze.add(String(newLine))
+        }
+        return cleanMaze
     }
 
 }

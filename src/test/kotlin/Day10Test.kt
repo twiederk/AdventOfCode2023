@@ -225,8 +225,28 @@ class Day10Test {
 
         // assert
         assertThat(part1).isEqualTo(8)
-
-
     }
+
+    @Test
+    fun should_remove_everything_except_the_main_pipe() {
+        // arrange
+        val maze = complexMaze
+        val start = MazePoint(0, 2, '|')
+        val direction = MazePoint.SOUTH
+        val mainPipe = Day10().mainPipe(maze, start, direction)
+
+        // act
+        val cleanMaze = Day10().cleanMaze(maze, mainPipe)
+
+        // assert
+        println(mainPipe.size)
+        println(mainPipe)
+        maze.forEach { println(it) }
+        println("**********")
+        cleanMaze.forEach { println(it) }
+        assertThat(cleanMaze[0].length).isEqualTo(maze[0].length)
+        assertThat(cleanMaze.size).isEqualTo(maze.size)
+    }
+
 }
 
