@@ -228,7 +228,7 @@ class Day10Test {
     }
 
     @Test
-    fun should_remove_everything_except_the_main_pipe() {
+    fun should_calculate_part_2() {
         // arrange
         val maze = complexMaze
         val start = MazePoint(0, 2, '|')
@@ -236,16 +236,10 @@ class Day10Test {
         val mainPipe = Day10().mainPipe(maze, start, direction)
 
         // act
-        val cleanMaze = Day10().cleanMaze(maze, mainPipe)
+        val part2 = Day10().part2(maze, mainPipe)
 
         // assert
-        println(mainPipe.size)
-        println(mainPipe)
-        maze.forEach { println(it) }
-        println("**********")
-        cleanMaze.forEach { println(it) }
-        assertThat(cleanMaze[0].length).isEqualTo(maze[0].length)
-        assertThat(cleanMaze.size).isEqualTo(maze.size)
+        assertThat(part2).isEqualTo(1)
     }
 
 }

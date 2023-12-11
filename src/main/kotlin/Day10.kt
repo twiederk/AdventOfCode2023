@@ -44,22 +44,39 @@ class Day10 {
         return mainPipe(maze, start, direction).size / 2
     }
 
-    fun cleanMaze(maze: Maze, mainPipe: List<MazePoint>): List<String> {
+    fun part2(maze: Maze, mainPipe: List<MazePoint>): Int {
         val cleanMaze = mutableListOf<String>()
         val mainPipePoint2D = mainPipe.map { Point2D(it.x, it.y) }
+        var count = 0
         for (row in maze.indices) {
             val newLine = maze[row].toCharArray()
+            var isInside = false
             for (col in maze[0].indices) {
                 val currPoint = Point2D(col, row)
                 if (currPoint in mainPipePoint2D) {
                     newLine[col] = maze[row][col]
+                    if (maze[row][col] in listOf('|', 'L', 'J')) {
+                        isInside = !isInside
+                    }
                 } else {
-                    newLine[col] = '.'
+                    if (isInside) {
+                        newLine[col] = '#'
+                        count++
+                    } else {
+                        newLine[col] = '.'
+                    }
+
                 }
             }
             cleanMaze.add(String(newLine))
         }
-        return cleanMaze
+//        println(mainPipe.size)
+//        println(mainPipe)
+//        maze.forEach { println(it) }
+//        println("**********")
+        cleanMaze.forEach { println(it) }
+
+        return count
     }
 
 }
@@ -126,4 +143,8 @@ fun main() {
     val start = day10.startingPosition(maze).copy(pipe = '|')
     val part1 = day10.part1(maze, start, MazePoint.SOUTH)
     println("part1 = $part1")
+
+    val mainPipe = day10.mainPipe(maze, start, MazePoint.SOUTH)
+    val part2 = day10.part2(maze, mainPipe)
+    println("part2 = $part2")
 }
