@@ -19,6 +19,24 @@ class Day10 {
         throw IllegalStateException("Can't find starting point")
     }
 
+    //    "-L|F7",
+//    "7S-7|",
+//    "L|7||",
+//    "-L-J|",
+//    "L|-JF",
+    fun mainPipe(maze: List<String>, start: MazePoint, direction: MazePoint): Int {
+        var current = start
+        var length = 0
+        var nextDirection = direction
+        while (current.pipe != 'S') {
+            length++
+            nextDirection = current.next(nextDirection)
+            current += nextDirection
+            current = current.copy(pipe = maze[current.y][current.x])
+        }
+        return length / 2
+    }
+
 }
 
 data class MazePoint(

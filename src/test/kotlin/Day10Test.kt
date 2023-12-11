@@ -184,5 +184,34 @@ class Day10Test {
         assertThat(direction).isEqualTo(MazePoint.NORTH)
 
     }
+
+    @Test
+    fun should_run_through_simple_maze() {
+        // arrange
+        val maze = simpleMaze
+        val start = MazePoint(1, 1, '|')
+        val direction = MazePoint.SOUTH
+
+        // act
+        val length = Day10().mainPipe(maze, start, direction)
+
+        // assert
+        assertThat(length).isEqualTo(4)
+    }
+
+    @Test
+    fun should_run_through_complex_maze() {
+        // arrange
+        val maze = complexMaze
+        val start = MazePoint(0, 2, '|')
+        val direction = MazePoint.SOUTH
+
+        // act
+        val length = Day10().mainPipe(maze, start, direction)
+
+        // assert
+        assertThat(length).isEqualTo(8)
+    }
+
 }
 
