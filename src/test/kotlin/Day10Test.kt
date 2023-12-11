@@ -193,10 +193,10 @@ class Day10Test {
         val direction = MazePoint.SOUTH
 
         // act
-        val length = Day10().mainPipe(maze, start, direction)
+        val mainPipe = Day10().mainPipe(maze, start, direction)
 
         // assert
-        assertThat(length).isEqualTo(4)
+        assertThat(mainPipe.size).isEqualTo(8)
     }
 
     @Test
@@ -207,11 +207,26 @@ class Day10Test {
         val direction = MazePoint.SOUTH
 
         // act
-        val length = Day10().mainPipe(maze, start, direction)
+        val mainPipe = Day10().mainPipe(maze, start, direction)
 
         // assert
-        assertThat(length).isEqualTo(8)
+        assertThat(mainPipe.size).isEqualTo(16)
     }
 
+    @Test
+    fun should_calculate_part_1() {
+        // arrange
+        val maze = complexMaze
+        val start = MazePoint(0, 2, '|')
+        val direction = MazePoint.SOUTH
+
+        // act
+        val part1 = Day10().part1(maze, start, direction)
+
+        // assert
+        assertThat(part1).isEqualTo(8)
+
+
+    }
 }
 

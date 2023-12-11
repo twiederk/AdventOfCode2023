@@ -25,17 +25,23 @@ class Day10 {
 //    "L|7||",
 //    "-L-J|",
 //    "L|-JF",
-    fun mainPipe(maze: List<String>, start: MazePoint, direction: MazePoint): Int {
+    fun mainPipe(maze: List<String>, start: MazePoint, direction: MazePoint): List<MazePoint> {
         var current = start
         var length = 0
         var nextDirection = direction
+        val mainPipe = mutableListOf<MazePoint>()
         while (current.pipe != 'S') {
             length++
+            mainPipe.add(current)
             nextDirection = current.next(nextDirection)
             current += nextDirection
             current = current.copy(pipe = maze[current.y][current.x])
         }
-        return length / 2
+        return mainPipe
+    }
+
+    fun part1(maze: List<String>, start: MazePoint, direction: MazePoint): Int {
+        return mainPipe(maze, start, direction).size / 2
     }
 
 }
@@ -100,6 +106,6 @@ fun main() {
     val day10 = Day10()
     val maze = day10.loadMaze(Paths.get("src", "main", "resources", "Day10_InputData.txt"))
     val start = day10.startingPosition(maze).copy(pipe = '|')
-    val part1 = day10.mainPipe(maze, start, MazePoint.SOUTH)
+    val part1 = day10.part1(maze, start, MazePoint.SOUTH)
     println("part1 = $part1")
 }
