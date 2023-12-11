@@ -60,5 +60,16 @@ class Day11 {
         return expandRows(expandedCols, rowsToExpand)
     }
 
+    fun galaxies(expandedGalaxyImage: List<String>): List<Point2D> {
+        val galaxies = mutableListOf<Point2D>()
+        expandedGalaxyImage
+            .forEachIndexed { y, line ->
+                line.forEachIndexed { x, char ->
+                    if (char == '#') galaxies.add(Point2D(x, y))
+                }
+            }
+        return galaxies
+    }
+
 
 }

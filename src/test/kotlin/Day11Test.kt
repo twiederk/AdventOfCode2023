@@ -17,6 +17,21 @@ class Day11Test {
         "#...#.....",
     )
 
+    private val expandedGalaxyImage = listOf(
+        "....#........",
+        ".........#...",
+        "#............",
+        ".............",
+        ".............",
+        "........#....",
+        ".#...........",
+        "............#",
+        ".............",
+        ".............",
+        ".........#...",
+        "#....#.......",
+    )
+
     @Test
     fun should_load_galaxy_image() {
 
@@ -94,6 +109,18 @@ class Day11Test {
             ".........#...",
             "#....#.......",
         )
-
     }
+
+
+    @Test
+    fun should_scan_for_galaxies() {
+        // arrange
+
+        // act
+        val galaxies = Day11().galaxies(expandedGalaxyImage)
+
+        // assert
+        assertThat(galaxies).hasSize(9)
+    }
+
 }
