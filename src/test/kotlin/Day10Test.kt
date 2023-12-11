@@ -59,8 +59,8 @@ class Day10Test {
 
         // assert
         assertThat(neighbors).containsExactly(
-            MazePoint(0, 1, '7'), // south
-            MazePoint(1, 0, 'L'), // east
+            MazePoint(0, 1), // south
+            MazePoint(1, 0), // east
         )
     }
 
@@ -72,8 +72,8 @@ class Day10Test {
 
         // assert
         assertThat(neighbors).containsExactly(
-            MazePoint(4, 1, '|'), // south
-            MazePoint(3, 0, 'F'), // west
+            MazePoint(4, 1), // south
+            MazePoint(3, 0), // west
         )
     }
 
@@ -85,8 +85,8 @@ class Day10Test {
 
         // assert
         assertThat(neighbors).containsExactly(
-            MazePoint(0, 3, '-'), // north
-            MazePoint(1, 4, '|'), // east
+            MazePoint(0, 3), // north
+            MazePoint(1, 4), // east
         )
     }
 
@@ -98,8 +98,8 @@ class Day10Test {
 
         // assert
         assertThat(neighbors).containsExactly(
-            MazePoint(4, 3, '|'), // north
-            MazePoint(3, 4, 'J'), // west
+            MazePoint(4, 3), // north
+            MazePoint(3, 4), // west
         )
     }
 
@@ -111,10 +111,10 @@ class Day10Test {
 
         // assert
         assertThat(neighbors).containsExactly(
-            MazePoint(1, 0, 'L'), // north
-            MazePoint(1, 2, '|'), // south
-            MazePoint(0, 1, '7'), // east
-            MazePoint(2, 1, '-'), // west
+            MazePoint(1, 0), // north
+            MazePoint(1, 2), // south
+            MazePoint(0, 1), // east
+            MazePoint(2, 1), // west
         )
     }
 
@@ -126,9 +126,9 @@ class Day10Test {
 
         // assert
         assertThat(neighbors).containsExactly(
-            MazePoint(1, 1, 'S'), // south
-            MazePoint(0, 0, '-'), // east
-            MazePoint(2, 0, '|'), // west
+            MazePoint(1, 1), // south
+            MazePoint(0, 0), // east
+            MazePoint(2, 0), // west
         )
     }
 
@@ -140,9 +140,9 @@ class Day10Test {
 
         // assert
         assertThat(neighbors).containsExactly(
-            MazePoint(1, 3, 'L'), // north
-            MazePoint(0, 4, 'L'), // east
-            MazePoint(2, 4, '-'), // west
+            MazePoint(1, 3), // north
+            MazePoint(0, 4), // east
+            MazePoint(2, 4), // west
         )
     }
 
@@ -154,9 +154,9 @@ class Day10Test {
 
         // assert
         assertThat(neighbors).containsExactly(
-            MazePoint(0, 0, '-'), // north
-            MazePoint(0, 2, 'L'), // south
-            MazePoint(1, 1, 'S'), // west
+            MazePoint(0, 0), // north
+            MazePoint(0, 2), // south
+            MazePoint(1, 1), // west
         )
     }
 
@@ -168,32 +168,21 @@ class Day10Test {
 
         // assert
         assertThat(neighbors).containsExactly(
-            MazePoint(4, 0, '7'), // north
-            MazePoint(4, 2, '|'), // south
-            MazePoint(3, 1, '7'), // east
+            MazePoint(4, 0), // north
+            MazePoint(4, 2), // south
+            MazePoint(3, 1), // east
         )
     }
 
     @Test
-    fun `should return false when | -`() {
+    fun should_return_next_direction() {
 
         // act
-        val result = Day10().isConnected('|', '-')
+        val direction = (MazePoint(1, 1, '|')).next(MazePoint.NORTH)
 
         // assert
-        assertThat(result).isFalse()
+        assertThat(direction).isEqualTo(MazePoint.NORTH)
+
     }
-
-    @Test
-    fun `should return false when - |`() {
-        // arrange
-
-        // act
-        val result = Day10().isConnected('-', '|')
-
-        // assert
-        assertThat(result).isFalse()
-    }
-
 }
 

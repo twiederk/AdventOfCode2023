@@ -46,6 +46,22 @@ data class MazePoint(
         val EAST = MazePoint(1, 0)
         val SOUTH = MazePoint(0, 1)
         val WEST = MazePoint(-1, 0)
+
+        val movements: Map<Pair<Char, MazePoint>, MazePoint> =
+            mapOf(
+                ('|' to SOUTH) to SOUTH,
+                ('|' to NORTH) to NORTH,
+                ('-' to EAST) to EAST,
+                ('-' to WEST) to WEST,
+                ('L' to WEST) to NORTH,
+                ('L' to SOUTH) to EAST,
+                ('J' to SOUTH) to WEST,
+                ('J' to EAST) to NORTH,
+                ('7' to EAST) to SOUTH,
+                ('7' to NORTH) to WEST,
+                ('F' to WEST) to SOUTH,
+                ('F' to NORTH) to EAST
+            )
     }
 
     fun cardinalNeighbors(maze: List<String>): List<MazePoint> {
@@ -62,10 +78,15 @@ data class MazePoint(
     }
 
     operator fun minus(other: MazePoint): MazePoint =
-        MazePoint(x - other.x, y - other.y, pipe)
+        MazePoint(x - other.x, y - other.y, other.pipe)
 
     operator fun plus(other: MazePoint): MazePoint =
-        MazePoint(x + other.x, y + other.y, pipe)
+        MazePoint(x + other.x, y + other.y, other.pipe)
+
+    fun next(fromDirection: MazePoint): MazePoint {
+        return movements[(pipe to fromDirection)]
+            ?: throw IllegalArgumentException("Can't move from $this coming from $fromDirection")
+    }
 
 }
 
