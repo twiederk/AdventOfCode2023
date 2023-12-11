@@ -49,37 +49,37 @@ fun <T> List<T>.nth(n: Int): T =
 fun String.nth(n: Int): Char =
     this[n % length]
 
-data class Point(
+data class Point2D(
     val x: Int,
     val y: Int
 ) {
 
     companion object {
-        val NORTH = Point(0, -1)
-        val EAST = Point(1, 0)
-        val SOUTH = Point(0, 1)
-        val WEST = Point(-1, 0)
+        val NORTH = Point2D(0, -1)
+        val EAST = Point2D(1, 0)
+        val SOUTH = Point2D(0, 1)
+        val WEST = Point2D(-1, 0)
     }
 
-    fun neighbors(grid: List<String>): List<Point> {
-        val neighbors = mutableListOf<Point>()
+    fun cardinalNeighbors(grid: List<String>): List<Point2D> {
+        val neighbors = mutableListOf<Point2D>()
         // north
-        if (y - 1 >= 0) neighbors.add(Point(x, y - 1))
+        if (y - 1 >= 0) neighbors.add(this + NORTH)
         // south
-        if (y + 1 < grid.size) neighbors.add(Point(x, y + 1))
+        if (y + 1 < grid.size) neighbors.add(this + SOUTH)
         // west
-        if (x - 1 >= 0) neighbors.add(Point(x - 1, y))
+        if (x - 1 >= 0) neighbors.add(this + WEST)
         // east
-        if (x + 1 < grid[0].length) neighbors.add(Point(x + 1, y))
+        if (x + 1 < grid[0].length) neighbors.add(this + EAST)
 
         return neighbors
     }
 
-    operator fun minus(other: Point): Point =
-        Point(x - other.x, y - other.y)
+    operator fun minus(other: Point2D): Point2D =
+        Point2D(x - other.x, y - other.y)
 
-    operator fun plus(other: Point): Point =
-        Point(x + other.x, y + other.y)
+    operator fun plus(other: Point2D): Point2D =
+        Point2D(x + other.x, y + other.y)
 }
 
 data class LongPoint(
