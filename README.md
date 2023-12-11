@@ -2,17 +2,18 @@
 
 ## Overview of the puzzles
 
-| Day | Title                           | Part 1 | Part 2 | Notes                                                                         |
-|----:|---------------------------------|--------|--------|-------------------------------------------------------------------------------|
-| [1] | Trebuchet?!                     | SOLVED | SOLVED |                                                                               |
-| [2] | Cube Conundrum                  | SOLVED | SOLVED |                                                                               |
-| [3] | Gear Ratios                     | SOLVED | SOLVED |                                                                               |
-| [4] | Scratchcards                    | SOLVED | SOLVED |                                                                               |
-| [5] | If You Give A Seed A Fertilizer | SOLVED | SOLVED |                                                                               |
-| [6] | Wait For It                     | SOLVED | SOLVED |                                                                               |
-| [7] | Camel Card                      | SOLVED | SOLVED |                                                                               |
-| [8] | Haunted Wasteland               | SOLVED | SOLVED | Find loops and use LCM (see [Video])                                          |
-| [9] | Mirage Maintenance              | SOLVED | SOLVED | history.sum() is not the same as history.all { it == 0 }, because of [-1, 1 ] |
+|  Day | Title                           | Part 1 | Part 2 | Notes                                                                         |
+|-----:|---------------------------------|--------|--------|-------------------------------------------------------------------------------|
+|  [1] | Trebuchet?!                     | SOLVED | SOLVED |                                                                               |
+|  [2] | Cube Conundrum                  | SOLVED | SOLVED |                                                                               |
+|  [3] | Gear Ratios                     | SOLVED | SOLVED |                                                                               |
+|  [4] | Scratchcards                    | SOLVED | SOLVED |                                                                               |
+|  [5] | If You Give A Seed A Fertilizer | SOLVED | SOLVED |                                                                               |
+|  [6] | Wait For It                     | SOLVED | SOLVED |                                                                               |
+|  [7] | Camel Card                      | SOLVED | SOLVED |                                                                               |
+|  [8] | Haunted Wasteland               | SOLVED | SOLVED | Find loops and use LCM (see [Video])                                          |
+|  [9] | Mirage Maintenance              | SOLVED | SOLVED | history.sum() is not the same as history.all { it == 0 }, because of [-1, 1 ] |
+| [10] | Mirage Maintenance              | SOLVED |        | Reviewed solution of from [Todd Ginsberg], in particular about movement       |
 
 ## Resources
 
@@ -31,4 +32,8 @@
 [8]: src/main/kotlin/Day08.kt
 [9]: src/main/kotlin/Day09.kt
 
+[10]: src/main/kotlin/Day10.kt
+
 [Video]: https://www.youtube.com/watch?v=UFa236NO4TU
+
+[Todd Ginsberg]: https://todd.ginsberg.com/post/advent-of-code/2023/day10/
