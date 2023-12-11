@@ -25,5 +25,40 @@ class Day11 {
         return colsToExpand
     }
 
+    fun expandCols(galaxyImage: List<String>, colsToExpand: List<Int>): List<String> {
+        val expandedGalaxyImage = mutableListOf<String>()
+        for (line in galaxyImage) {
+            var newLine = ""
+            for (index in galaxyImage[0].indices) {
+                if (index in colsToExpand) {
+                    newLine += ".."
+                } else {
+                    newLine += line[index]
+                }
+            }
+            expandedGalaxyImage.add(newLine)
+        }
+        return expandedGalaxyImage
+    }
+
+    fun expandRows(galaxyImage: List<String>, rowsToExpand: List<Int>): List<String> {
+        val expandedGalaxyImage = mutableListOf<String>()
+
+        for ((index, line) in galaxyImage.withIndex()) {
+            expandedGalaxyImage.add(line)
+            if (index in rowsToExpand) {
+                expandedGalaxyImage.add(line)
+            }
+        }
+        return expandedGalaxyImage
+    }
+
+    fun expandGalaxyImage(galaxyImage: List<String>): List<String> {
+        val colsToExpand = colsToExpand(galaxyImage)
+        val rowsToExpand = rowsToExpand(galaxyImage)
+        val expandedCols = expandCols(galaxyImage, colsToExpand)
+        return expandRows(expandedCols, rowsToExpand)
+    }
+
 
 }
