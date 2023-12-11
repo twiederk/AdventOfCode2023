@@ -1,4 +1,5 @@
 import java.nio.file.Path
+import java.nio.file.Paths
 
 class Day11 {
     fun loadGalaxyImage(path: Path): List<String> {
@@ -81,5 +82,18 @@ class Day11 {
         return galaxyPairs
     }
 
+    fun sumOfDistances(galaxyPairs: List<Pair<Point2D, Point2D>>): Int {
+        return galaxyPairs.sumOf { it.first.manhattenDistance(it.second) }
+    }
 
+}
+
+fun main() {
+    val day11 = Day11()
+    val galaxyImage = day11.loadGalaxyImage(Paths.get("src", "main", "resources", "Day11_InputData.txt"))
+    val expandedGalaxyImage = day11.expandGalaxyImage(galaxyImage)
+    val galaxies = day11.galaxies(expandedGalaxyImage)
+    val galaxyPairs = day11.galaxyPairs(galaxies)
+    val part1 = day11.sumOfDistances(galaxyPairs)
+    println("part1 = $part1")
 }

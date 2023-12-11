@@ -1,5 +1,6 @@
 import java.io.File
 import java.net.URI
+import kotlin.math.abs
 
 
 /**
@@ -79,6 +80,9 @@ data class Point2D(
 
     operator fun plus(other: Point2D): Point2D =
         Point2D(x + other.x, y + other.y)
+
+    fun manhattenDistance(other: Point2D): Int =
+        abs(x - other.x) + abs(y - other.y)
 }
 
 data class LongPoint(
