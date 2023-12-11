@@ -51,15 +51,21 @@ data class MazePoint(
     fun cardinalNeighbors(maze: List<String>): List<MazePoint> {
         val neighbors = mutableListOf<MazePoint>()
         // north
-        if (y - 1 >= 0) neighbors.add(MazePoint(x, y - 1, maze[y - 1][x]))
+        if (y - 1 >= 0) neighbors.add(this + NORTH)
         // south
-        if (y + 1 < maze.size) neighbors.add(MazePoint(x, y + 1, maze[y + 1][x]))
+        if (y + 1 < maze.size) neighbors.add(this + SOUTH)
         // west
-        if (x - 1 >= 0) neighbors.add(MazePoint(x - 1, y, maze[y][x - 1]))
+        if (x - 1 >= 0) neighbors.add(this + WEST)
         // east
-        if (x + 1 < maze[0].length) neighbors.add(MazePoint(x + 1, y, maze[y][x + 1]))
-
+        if (x + 1 < maze[0].length) neighbors.add(this + EAST)
         return neighbors
     }
+
+    operator fun minus(other: MazePoint): MazePoint =
+        MazePoint(x - other.x, y - other.y, pipe)
+
+    operator fun plus(other: MazePoint): MazePoint =
+        MazePoint(x + other.x, y + other.y, pipe)
+
 }
 
