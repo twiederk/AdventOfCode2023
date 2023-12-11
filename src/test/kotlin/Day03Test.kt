@@ -101,16 +101,16 @@ class Day03Test {
 
         // assert
         assertThat(neighborCoords).hasSize(8)
-        assertThat(neighborCoords[0]).isEqualTo(Point(0, 0))
-        assertThat(neighborCoords[1]).isEqualTo(Point(1, 0))
-        assertThat(neighborCoords[2]).isEqualTo(Point(2, 0))
+        assertThat(neighborCoords[0]).isEqualTo(Point2D(0, 0))
+        assertThat(neighborCoords[1]).isEqualTo(Point2D(1, 0))
+        assertThat(neighborCoords[2]).isEqualTo(Point2D(2, 0))
 
-        assertThat(neighborCoords[3]).isEqualTo(Point(0, 1))
-        assertThat(neighborCoords[4]).isEqualTo(Point(2, 1))
+        assertThat(neighborCoords[3]).isEqualTo(Point2D(0, 1))
+        assertThat(neighborCoords[4]).isEqualTo(Point2D(2, 1))
 
-        assertThat(neighborCoords[5]).isEqualTo(Point(0, 2))
-        assertThat(neighborCoords[6]).isEqualTo(Point(1, 2))
-        assertThat(neighborCoords[7]).isEqualTo(Point(2, 2))
+        assertThat(neighborCoords[5]).isEqualTo(Point2D(0, 2))
+        assertThat(neighborCoords[6]).isEqualTo(Point2D(1, 2))
+        assertThat(neighborCoords[7]).isEqualTo(Point2D(2, 2))
     }
 
     @Test
@@ -133,7 +133,7 @@ class Day03Test {
         val neighbors = Symbol(3, 1, '*').neighborNumbers(engineSchematic)
 
         // assert
-        assertThat(neighbors).contains(Point(2, 0), Point(2, 2), Point(3, 2))
+        assertThat(neighbors).contains(Point2D(2, 0), Point2D(2, 2), Point2D(3, 2))
     }
 
     @Test
@@ -153,10 +153,10 @@ class Day03Test {
         )
 
         // act
-        val partNumber = Day03().scanPartNumber(engineSchematic, Point(2, 0))
+        val partNumber = Day03().scanPartNumber(engineSchematic, Point2D(2, 0))
 
         // assert
-        assertThat(partNumber).isEqualTo(PartNumber(Point(0, 0), 467))
+        assertThat(partNumber).isEqualTo(PartNumber(Point2D(0, 0), 467))
     }
 
     @Test
@@ -176,10 +176,10 @@ class Day03Test {
         )
 
         // act
-        val partNumber = Day03().scanPartNumber(engineSchematic, Point(0, 0))
+        val partNumber = Day03().scanPartNumber(engineSchematic, Point2D(0, 0))
 
         // assert
-        assertThat(partNumber).isEqualTo(PartNumber(Point(0, 0), 467))
+        assertThat(partNumber).isEqualTo(PartNumber(Point2D(0, 0), 467))
     }
 
     @Test
@@ -199,10 +199,10 @@ class Day03Test {
         )
 
         // act
-        val partNumber = Day03().scanPartNumber(engineSchematic, Point(1, 0))
+        val partNumber = Day03().scanPartNumber(engineSchematic, Point2D(1, 0))
 
         // assert
-        assertThat(partNumber).isEqualTo(PartNumber(Point(0, 0), 467))
+        assertThat(partNumber).isEqualTo(PartNumber(Point2D(0, 0), 467))
     }
 
     @Test
@@ -219,15 +219,15 @@ class Day03Test {
             "...$.*....",
             ".664.598..",
         )
-        val neighborNumbers = listOf(Point(2, 0), Point(2, 2), Point(3, 2))
+        val neighborNumbers = listOf(Point2D(2, 0), Point2D(2, 2), Point2D(3, 2))
 
         // act
         val partNumbers = Day03().scanPartNumbers(engineSchematic, neighborNumbers)
 
         // assert
         assertThat(partNumbers).contains(
-            PartNumber(Point(0, 0), 467),
-            PartNumber(Point(2, 2), 35)
+            PartNumber(Point2D(0, 0), 467),
+            PartNumber(Point2D(2, 2), 35)
         )
     }
 
@@ -245,14 +245,14 @@ class Day03Test {
             "...$.*....",
             ".664.598..",
         )
-        val neighborNumbers = listOf(Point(6, 2), Point(7, 2))
+        val neighborNumbers = listOf(Point2D(6, 2), Point2D(7, 2))
 
         // act
         val partNumbers = Day03().scanPartNumbers(engineSchematic, neighborNumbers)
 
         // assert
         assertThat(partNumbers).contains(
-            PartNumber(Point(6, 2), 633),
+            PartNumber(Point2D(6, 2), 633),
         )
     }
 
@@ -260,8 +260,8 @@ class Day03Test {
     fun should_sum_part_numbers() {
         // arrange
         val partNumbers = setOf(
-            PartNumber(Point(0, 0), 467),
-            PartNumber(Point(2, 2), 35)
+            PartNumber(Point2D(0, 0), 467),
+            PartNumber(Point2D(2, 2), 35)
         )
 
         // act
@@ -292,14 +292,14 @@ class Day03Test {
 
         // assert
         assertThat(result).contains(
-            PartNumber(Point(0, 0), 467),
-            PartNumber(Point(2, 2), 35),
-            PartNumber(Point(6, 2), 633),
-            PartNumber(Point(0, 4), 617),
-            PartNumber(Point(2, 6), 592),
-            PartNumber(Point(6, 7), 755),
-            PartNumber(Point(1, 9), 664),
-            PartNumber(Point(5, 9), 598),
+            PartNumber(Point2D(0, 0), 467),
+            PartNumber(Point2D(2, 2), 35),
+            PartNumber(Point2D(6, 2), 633),
+            PartNumber(Point2D(0, 4), 617),
+            PartNumber(Point2D(2, 6), 592),
+            PartNumber(Point2D(6, 7), 755),
+            PartNumber(Point2D(1, 9), 664),
+            PartNumber(Point2D(5, 9), 598),
         )
         // sum => 4.361
 

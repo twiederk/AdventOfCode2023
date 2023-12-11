@@ -71,7 +71,6 @@ data class Point2D(
         if (x - 1 >= 0) neighbors.add(this + WEST)
         // east
         if (x + 1 < grid[0].length) neighbors.add(this + EAST)
-
         return neighbors
     }
 

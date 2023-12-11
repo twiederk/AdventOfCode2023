@@ -31,7 +31,7 @@ class Day03 {
         return symbolList
     }
 
-    fun scanPartNumber(engineSchematic: EngineSchematic, pointOfNumber: Point): PartNumber {
+    fun scanPartNumber(engineSchematic: EngineSchematic, pointOfNumber: Point2D): PartNumber {
         val line = engineSchematic[pointOfNumber.y]
         var result = ""
         var x = pointOfNumber.x
@@ -52,10 +52,10 @@ class Day03 {
             }
             break
         }
-        return PartNumber(Point(x, pointOfNumber.y), result.toInt())
+        return PartNumber(Point2D(x, pointOfNumber.y), result.toInt())
     }
 
-    fun scanPartNumbers(engineSchematic: List<String>, neighborNumbers: List<Point>): Set<PartNumber> {
+    fun scanPartNumbers(engineSchematic: List<String>, neighborNumbers: List<Point2D>): Set<PartNumber> {
         return neighborNumbers.map { scanPartNumber(engineSchematic, it) }.toSet()
     }
 
@@ -110,26 +110,26 @@ data class Symbol(
     val row: Int,
     val symbol: Char
 ) {
-    fun neighborCoords(): List<Point> {
+    fun neighborCoords(): List<Point2D> {
         return listOf(
-            Point(column - 1, row - 1),
-            Point(column, row - 1),
-            Point(column + 1, row - 1),
+            Point2D(column - 1, row - 1),
+            Point2D(column, row - 1),
+            Point2D(column + 1, row - 1),
 
-            Point(column - 1, row),
-            Point(column + 1, row),
+            Point2D(column - 1, row),
+            Point2D(column + 1, row),
 
-            Point(column - 1, row + 1),
-            Point(column, row + 1),
-            Point(column + 1, row + 1),
+            Point2D(column - 1, row + 1),
+            Point2D(column, row + 1),
+            Point2D(column + 1, row + 1),
         )
     }
 
-    fun neighborNumbers(engineSchematic: List<String>): List<Point> {
-        val neighborNumbers = mutableListOf<Point>()
+    fun neighborNumbers(engineSchematic: List<String>): List<Point2D> {
+        val neighborNumbers = mutableListOf<Point2D>()
         for (neighbor in neighborCoords()) {
             if (engineSchematic[neighbor.y][neighbor.x].isDigit()) {
-                neighborNumbers.add(Point(neighbor.x, neighbor.y))
+                neighborNumbers.add(Point2D(neighbor.x, neighbor.y))
             }
         }
         return neighborNumbers
@@ -139,7 +139,7 @@ data class Symbol(
 
 
 data class PartNumber(
-    val coords: Point,
+    val coords: Point2D,
     val number: Int
 )
 
