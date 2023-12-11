@@ -71,5 +71,15 @@ class Day11 {
         return galaxies
     }
 
+    fun galaxyPairs(galaxies: List<Point2D>): List<Pair<Point2D, Point2D>> {
+        val galaxyPairs = mutableListOf<Pair<Point2D, Point2D>>()
+        for (src in galaxies.indices) {
+            for (dest in (src + 1)..<galaxies.size) {
+                galaxyPairs.add(Pair(galaxies[src], galaxies[dest]))
+            }
+        }
+        return galaxyPairs
+    }
+
 
 }

@@ -111,7 +111,6 @@ class Day11Test {
         )
     }
 
-
     @Test
     fun should_scan_for_galaxies() {
         // arrange
@@ -120,7 +119,30 @@ class Day11Test {
         val galaxies = Day11().galaxies(expandedGalaxyImage)
 
         // assert
+        galaxies.forEach { println(it) }
         assertThat(galaxies).hasSize(9)
     }
 
+    @Test
+    fun should_create_pairs() {
+        // arrange
+        val galaxies = listOf(
+            Point2D(x = 4, y = 0),
+            Point2D(x = 9, y = 1),
+            Point2D(x = 0, y = 2),
+            Point2D(x = 8, y = 5),
+            Point2D(x = 1, y = 6),
+            Point2D(x = 12, y = 7),
+            Point2D(x = 9, y = 10),
+            Point2D(x = 0, y = 11),
+            Point2D(x = 5, y = 11),
+        )
+
+        // act
+        val galaxyPairs = Day11().galaxyPairs(galaxies)
+
+        // assert
+        assertThat(galaxyPairs).hasSize(36)
+
+    }
 }
