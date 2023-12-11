@@ -55,7 +55,7 @@ class Day10Test {
     fun should_return_neighbors_of_north_west_corner() {
 
         // act
-        val neighbors = MazePoint(0, 0).neighbors(simpleMaze)
+        val neighbors = MazePoint(0, 0).cardinalNeighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
@@ -68,7 +68,7 @@ class Day10Test {
     fun should_return_neighbors_of_north_east_corner() {
 
         // act
-        val neighbors = MazePoint(4, 0).neighbors(simpleMaze)
+        val neighbors = MazePoint(4, 0).cardinalNeighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
@@ -81,7 +81,7 @@ class Day10Test {
     fun should_return_neighbors_of_south_west_corner() {
 
         // act
-        val neighbors = MazePoint(0, 4).neighbors(simpleMaze)
+        val neighbors = MazePoint(0, 4).cardinalNeighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
@@ -94,7 +94,7 @@ class Day10Test {
     fun should_return_neighbors_of_south_east_corner() {
 
         // act
-        val neighbors = MazePoint(4, 4).neighbors(simpleMaze)
+        val neighbors = MazePoint(4, 4).cardinalNeighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
@@ -107,7 +107,7 @@ class Day10Test {
     fun should_return_neighbors_of_center() {
 
         // act
-        val neighbors = MazePoint(1, 1).neighbors(simpleMaze)
+        val neighbors = MazePoint(1, 1).cardinalNeighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
@@ -122,7 +122,7 @@ class Day10Test {
     fun should_return_neighbors_of_north_wall() {
 
         // act
-        val neighbors = MazePoint(1, 0).neighbors(simpleMaze)
+        val neighbors = MazePoint(1, 0).cardinalNeighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
@@ -136,7 +136,7 @@ class Day10Test {
     fun should_return_neighbors_of_south_wall() {
 
         // act
-        val neighbors = MazePoint(1, 4).neighbors(simpleMaze)
+        val neighbors = MazePoint(1, 4).cardinalNeighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
@@ -150,7 +150,7 @@ class Day10Test {
     fun should_return_neighbors_of_east_wall() {
 
         // act
-        val neighbors = MazePoint(0, 1).neighbors(simpleMaze)
+        val neighbors = MazePoint(0, 1).cardinalNeighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
@@ -164,7 +164,7 @@ class Day10Test {
     fun should_return_neighbors_of_west_wall() {
 
         // act
-        val neighbors = MazePoint(4, 1).neighbors(simpleMaze)
+        val neighbors = MazePoint(4, 1).cardinalNeighbors(simpleMaze)
 
         // assert
         assertThat(neighbors).containsExactly(
@@ -174,4 +174,26 @@ class Day10Test {
         )
     }
 
+    @Test
+    fun `should return false when | -`() {
+
+        // act
+        val result = Day10().isConnected('|', '-')
+
+        // assert
+        assertThat(result).isFalse()
+    }
+
+    @Test
+    fun `should return false when - |`() {
+        // arrange
+
+        // act
+        val result = Day10().isConnected('-', '|')
+
+        // assert
+        assertThat(result).isFalse()
+    }
+
 }
+

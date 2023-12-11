@@ -18,6 +18,21 @@ class Day10 {
         }
         throw IllegalStateException("Can't find starting point")
     }
+
+    //    | is a vertical pipe connecting north and south.
+//    - is a horizontal pipe connecting east and west.
+//    L is a 90-degree bend connecting north and east.
+//    J is a 90-degree bend connecting north and west.
+//    7 is a 90-degree bend connecting south and west.
+//    F is a 90-degree bend connecting south and east.
+//    . is ground; there is no pipe in this tile.
+//  OK  S is the starting position of the animal; there is a pipe on this
+    fun isConnected(source: Char, pipe: Char): Boolean {
+        if (pipe == 'S') return true
+        if (pipe == '|') return true
+        return false
+    }
+
 }
 
 data class MazePoint(
@@ -25,7 +40,15 @@ data class MazePoint(
     val y: Int,
     val pipe: Char = '.'
 ) {
-    fun neighbors(maze: List<String>): List<MazePoint> {
+
+    companion object {
+        val NORTH = MazePoint(0, -1)
+        val EAST = MazePoint(1, 0)
+        val SOUTH = MazePoint(0, 1)
+        val WEST = MazePoint(-1, 0)
+    }
+
+    fun cardinalNeighbors(maze: List<String>): List<MazePoint> {
         val neighbors = mutableListOf<MazePoint>()
         // north
         if (y - 1 >= 0) neighbors.add(MazePoint(x, y - 1, maze[y - 1][x]))
@@ -39,3 +62,4 @@ data class MazePoint(
         return neighbors
     }
 }
+
