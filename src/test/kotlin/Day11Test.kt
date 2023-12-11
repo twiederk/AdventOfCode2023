@@ -15,7 +15,7 @@ class Day11Test {
     }
 
     @Test
-    fun should_return_rows_to_expand() {
+    fun should_return_indices_of_rows_to_expand() {
         // arrange
         val galaxyImage = listOf(
             "...#......",
@@ -35,6 +35,29 @@ class Day11Test {
 
         // assert
         assertThat(rowsToExpand).containsExactly(3, 7)
+    }
+
+    @Test
+    fun should_return_indices_of_columns_to_expand() {
+        // arrange
+        val galaxyImage = listOf(
+            "...#......",
+            ".......#..",
+            "#.........",
+            "..........",
+            "......#...",
+            ".#........",
+            ".........#",
+            "..........",
+            ".......#..",
+            "#...#.....",
+        )
+
+        // act
+        val colsToExpand = Day11().colsToExpand(galaxyImage)
+
+        // assert
+        assertThat(colsToExpand).containsExactly(2, 5, 8)
 
     }
 }

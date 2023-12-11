@@ -12,4 +12,18 @@ class Day11 {
         }
         return rowsToExpand
     }
+
+    fun colsToExpand(galaxyImage: List<String>): List<Int> {
+        val colsToExpand = mutableListOf<Int>()
+        for (index in galaxyImage[0].indices) {
+            var column = ""
+            for (line in galaxyImage) {
+                column += line[index]
+            }
+            if (column.all { it == '.' }) colsToExpand.add(index)
+        }
+        return colsToExpand
+    }
+
+
 }
