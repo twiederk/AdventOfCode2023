@@ -1,4 +1,5 @@
 import java.nio.file.Path
+import java.nio.file.Paths
 import kotlin.math.pow
 
 class Day12 {
@@ -37,10 +38,10 @@ class Day12 {
         for ((index, char) in springs.withIndex()) {
             if (char == '?') {
                 newSprings[index] = params[paramsIndex]
+                paramsIndex++
             } else {
                 newSprings[index] = springs[index]
             }
-            paramsIndex++
         }
         return String(newSprings)
     }
@@ -65,6 +66,7 @@ class Day12 {
 
     fun arrangements(conditionRecord: ConditionRecord): Int {
         val numberOfQuestionMarks = conditionRecord.springs.count { it == '?' }
+
         val power = 2.0.pow(numberOfQuestionMarks).toLong()
         var arrangements = 0
         for (value in 0..<power) {
@@ -85,9 +87,22 @@ class Day12 {
         return arrangements
     }
 
+    fun part1(conditionRecords: List<ConditionRecord>): Int {
+        return conditionRecords.sumOf { arrangements(it) }
+    }
+
 }
 
 data class ConditionRecord(
     val springs: String,
     val damagedGroups: List<Int>
 )
+
+
+fun main() {
+
+    val day12 = Day12()
+    val conditionRecords = day12.loadConditionRecords(Paths.get("src", "main", "resources", "Day12_InputData.txt"))
+    val part1 = day12.part1(conditionRecords)
+    println("part1 = $part1")
+}

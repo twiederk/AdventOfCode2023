@@ -175,11 +175,32 @@ class Day12Test {
 
     @Test
     fun should_find_arrangements() {
-        // arrange
 
         // act
         val arrangements = Day12().arrangements(ConditionRecord(".??..??...?##.", listOf(1, 1, 3)))
 
         // assert
+        assertThat(arrangements).isEqualTo(4)
+    }
+
+    @Test
+    fun should_solve_part1() {
+        // arrange
+        val conditionRecords = listOf(
+            ConditionRecord("???.###", listOf(1, 1, 3)),
+            ConditionRecord(".??..??...?##.", listOf(1, 1, 3)),
+            ConditionRecord("?#?#?#?#?#?#?#?", listOf(1, 3, 1, 6)),
+            ConditionRecord("????.#...#...", listOf(4, 1, 1)),
+            ConditionRecord("????.######..#####.", listOf(1, 6, 5)),
+            ConditionRecord("?###????????", listOf(3, 2, 1)),
+        )
+
+        // act
+        val part1 = Day12().part1(conditionRecords)
+
+        // assert
+        assertThat(part1).isEqualTo(21)
+
+
     }
 }
