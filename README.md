@@ -15,7 +15,7 @@
 |  [9] | Mirage Maintenance              | SOLVED | SOLVED | history.sum() is not the same as history.all { it == 0 }, because of [-1, 1 ]                                                        |
 | [10] | Mirage Maintenance              | SOLVED | SOLVED | Reviewed solution of from [Todd Ginsberg], in particular form movement. This comment about [vector graphics] helped a lot for part 2 |
 | [11] | Cosmic Expansion                | SOLVED | SOLVED |                                                                                                                                      |
-
+| [12] | Hot Springs                     | SOLVED |        | Solved part 1 with brute force. Don't think I will try part 2                                                                        |
 
 ## Resources
 
@@ -34,8 +34,9 @@
 [8]: src/main/kotlin/Day08.kt
 [9]: src/main/kotlin/Day09.kt
 [10]: src/main/kotlin/Day10.kt
-
 [11]: src/main/kotlin/Day11.kt
+
+[12]: src/main/kotlin/Day12.kt
 
 [Video]: https://www.youtube.com/watch?v=UFa236NO4TU
 [Todd Ginsberg]: https://todd.ginsberg.com/post/advent-of-code/2023/day10/
