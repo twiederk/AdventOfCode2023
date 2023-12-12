@@ -82,4 +82,49 @@ class Day12Test {
         // assert
         assertThat(damagedGroups).containsExactly(3, 2, 1)
     }
+
+    @Test
+    fun should_create_springs_with_0() {
+        // arrange
+
+        // act
+        val springs = Day12().springs("???.###", "...")
+
+        // assert
+        assertThat(springs).isEqualTo("....###")
+    }
+
+    @Test
+    fun should_create_springs_with_1() {
+        // arrange
+
+        // act
+        val springs = Day12().springs("???.###", "..#")
+
+        // assert
+        assertThat(springs).isEqualTo("..#.###")
+    }
+
+    @Test
+    fun should_create_springs_with_2() {
+        // arrange
+
+        // act
+        val springs = Day12().springs("???.###", ".#.")
+
+        // assert
+        assertThat(springs).isEqualTo(".#..###")
+    }
+
+    @Test
+    fun should_create_springs_with_3() {
+        // arrange
+
+        // act
+        val springs = Day12().springs("???.###", ".##")
+
+        // assert
+        assertThat(springs).isEqualTo(".##.###")
+    }
+
 }

@@ -30,6 +30,20 @@ class Day12 {
         return damagedGroups
     }
 
+    fun springs(springs: String, params: String): String {
+        val newSprings = springs.toCharArray()
+        var paramsIndex = 0
+        for ((index, char) in springs.withIndex()) {
+            if (char == '?') {
+                newSprings[index] = params[paramsIndex]
+            } else {
+                newSprings[index] = springs[index]
+            }
+            paramsIndex++
+        }
+        return String(newSprings)
+    }
+
 }
 
 data class ConditionRecord(
