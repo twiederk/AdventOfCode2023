@@ -12,6 +12,24 @@ class Day12 {
         }
     }
 
+    fun damagedGroup(springs: String): List<Int> {
+        var count = 0
+        val damagedGroups = mutableListOf<Int>()
+        for (char in springs) {
+            if (char == '.') {
+                if (count > 0) {
+                    damagedGroups.add(count)
+                }
+                count = 0
+            } else {
+              count++
+            }
+        }
+        if (count > 0)
+            damagedGroups.add(count)
+        return damagedGroups
+    }
+
 }
 
 data class ConditionRecord(

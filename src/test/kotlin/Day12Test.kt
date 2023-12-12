@@ -23,4 +23,63 @@ class Day12Test {
         )
     }
 
+    @Test
+    fun should_create_damaged_groups_for_1_1_111() {
+
+        // act
+        val damagedGroups = Day12().damagedGroup("#.#.###")
+
+        // assert
+        assertThat(damagedGroups).containsExactly(1, 1, 3)
+    }
+
+    @Test
+    fun should_create_damaged_groups_for__1___1____111_() {
+
+        // act
+        val damagedGroups = Day12().damagedGroup(".#...#....###.")
+
+        // assert
+        assertThat(damagedGroups).containsExactly(1, 1, 3)
+    }
+
+    @Test
+    fun should_create_damaged_groups_for__1_111_1_111111() {
+
+        // act
+        val damagedGroups = Day12().damagedGroup(".#.###.#.######")
+
+        // assert
+        assertThat(damagedGroups).containsExactly(1,3,1,6)
+    }
+
+    @Test
+    fun should_create_damaged_groups_for_1111_1___1___() {
+
+        // act
+        val damagedGroups = Day12().damagedGroup("####.#...#...")
+
+        // assert
+        assertThat(damagedGroups).containsExactly(4, 1, 1)
+    }
+
+    @Test
+    fun should_create_damaged_groups_for_1____111111__11111_() {
+
+        // act
+        val damagedGroups = Day12().damagedGroup("#....######..#####.")
+
+        // assert
+        assertThat(damagedGroups).containsExactly(1, 6, 5)
+    }
+
+    @Test
+    fun should_create_damaged_groups_for__111_11____1() {
+
+        // act
+        val damagedGroups = Day12().damagedGroup(".###.##....#")
+
+        // assert
+        assertThat(damagedGroups).containsExactly(3, 2, 1)
+    }
 }
