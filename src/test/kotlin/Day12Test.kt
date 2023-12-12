@@ -85,7 +85,6 @@ class Day12Test {
 
     @Test
     fun should_create_springs_with_0() {
-        // arrange
 
         // act
         val springs = Day12().springs("???.###", "...")
@@ -96,7 +95,6 @@ class Day12Test {
 
     @Test
     fun should_create_springs_with_1() {
-        // arrange
 
         // act
         val springs = Day12().springs("???.###", "..#")
@@ -107,7 +105,6 @@ class Day12Test {
 
     @Test
     fun should_create_springs_with_2() {
-        // arrange
 
         // act
         val springs = Day12().springs("???.###", ".#.")
@@ -118,7 +115,6 @@ class Day12Test {
 
     @Test
     fun should_create_springs_with_3() {
-        // arrange
 
         // act
         val springs = Day12().springs("???.###", ".##")
@@ -127,4 +123,63 @@ class Day12Test {
         assertThat(springs).isEqualTo(".##.###")
     }
 
+    @Test
+    fun should_create_for_question_marks_3_with_value_0() {
+
+        // act
+        val params = Day12().params(3, 0)
+
+        // assert
+        assertThat(params).isEqualTo("...")
+    }
+
+    @Test
+    fun should_create_for_question_marks_3_with_value_1() {
+
+        // act
+        val params = Day12().params(3, 1)
+
+        // assert
+        assertThat(params).isEqualTo("..#")
+    }
+
+    @Test
+    fun should_create_for_question_marks_3_with_value_2() {
+
+        // act
+        val params = Day12().params(3, 2)
+
+        // assert
+        assertThat(params).isEqualTo(".#.")
+    }
+
+    @Test
+    fun should_create_for_question_marks_3_with_value_3() {
+
+        // act
+        val params = Day12().params(3, 3)
+
+        // assert
+        assertThat(params).isEqualTo(".##")
+    }
+
+    @Test
+    fun should_create_for_question_marks_3_with_value_7() {
+
+        // act
+        val params = Day12().params(3, 7)
+
+        // assert
+        assertThat(params).isEqualTo("###")
+    }
+
+    @Test
+    fun should_find_arrangements() {
+        // arrange
+
+        // act
+        val arrangements = Day12().arrangements(ConditionRecord(".??..??...?##.", listOf(1, 1, 3)))
+
+        // assert
+    }
 }

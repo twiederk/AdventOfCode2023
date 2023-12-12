@@ -1,4 +1,5 @@
 import java.nio.file.Path
+import kotlin.math.pow
 
 class Day12 {
 
@@ -42,6 +43,46 @@ class Day12 {
             paramsIndex++
         }
         return String(newSprings)
+    }
+
+    fun params(numberOfQuestionMarks: Int, value: Long): String {
+        var binary = decimalToBinary(value)
+        while (binary.length < numberOfQuestionMarks)
+            binary = ".$binary"
+        return binary.replace('1', '#').replace('0', '.')
+    }
+
+    private fun decimalToBinary(n: Long): String {
+        val intList = mutableListOf<Long>()
+        var decimalNumber = n
+
+        while (decimalNumber > 0) {
+            intList.add(decimalNumber % 2)
+            decimalNumber /= 2
+        }
+        return intList.reversed().joinToString("")
+    }
+
+    fun arrangements(conditionRecord: ConditionRecord): Int {
+        val numberOfQuestionMarks = conditionRecord.springs.count { it == '?' }
+        val power = 2.0.pow(numberOfQuestionMarks).toLong()
+        var arrangements = 0
+        for (value in 0..<power) {
+            val params = params(numberOfQuestionMarks, value)
+            val springs = springs(conditionRecord.springs, params)
+            val damagedGroups = damagedGroup(springs)
+            if (damagedGroups.size == conditionRecord.damagedGroups.size) {
+                var same = true
+                for (index in damagedGroups.indices) {
+                    if (damagedGroups[index] != conditionRecord.damagedGroups[index]) {
+                        same = false
+                        break
+                    }
+                }
+                if (same) arrangements++
+            }
+        }
+        return arrangements
     }
 
 }
