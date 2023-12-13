@@ -58,9 +58,44 @@ data class Pattern(
         return column
     }
 
-    fun value(): Int {
+    fun mirror(): Int {
         val value = mirrorCol()
         if (value != NO_MIRROR) return value
         return mirrorRow() * 100
     }
+
+    fun print(): List<String> {
+        val mirrorLine = printMirrorLine()
+        val output = mutableListOf<String>()
+        val axis = printAxis()
+        output.add(axis)
+        output.add(mirrorLine)
+        data.forEach { output.add(it) }
+        output.add(mirrorLine)
+        output.add(axis)
+        return output
+    }
+
+    private fun printMirrorLine(): String {
+        val mirror = mirror() - 1
+        var mirrorLine = ""
+        for (index in data[0].indices) {
+            mirrorLine += when (index) {
+                mirror -> '>'
+                mirror + 1 -> '<'
+                else -> ' '
+            }
+        }
+        return mirrorLine
+    }
+
+    private fun printAxis(): String {
+        var axis = ""
+        for (number in 1..data[0].length) {
+            axis += "${number % 10}"
+        }
+        return axis
+    }
+
+
 }
