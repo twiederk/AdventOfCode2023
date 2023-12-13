@@ -64,7 +64,27 @@ data class Pattern(
         return mirrorRow() * 100
     }
 
+    private fun printMirrorRow(): List<String> {
+        val output = mutableListOf<String>()
+        val mirror = mirror()
+        for ((index, line) in data.withIndex()) {
+            when (index) {
+                mirror -> output.add("${index + 1}v${line}v${index + 1}")
+                mirror + 1 -> output.add("${index + 1}^${line}^${index + 1}")
+                else -> output.add("${index + 1} $line ${index + 1}")
+            }
+        }
+        return output
+    }
+
     fun print(): List<String> {
+        if (mirror() < 100) {
+            return printMirrorCol()
+        }
+        return printMirrorRow()
+    }
+
+    private fun printMirrorCol(): List<String> {
         val mirrorLine = printMirrorLine()
         val output = mutableListOf<String>()
         val axis = printAxis()

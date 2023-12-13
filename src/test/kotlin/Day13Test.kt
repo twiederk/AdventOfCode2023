@@ -60,7 +60,7 @@ class Day13Test {
     }
 
     @Test
-    fun should_return_value_of_mirror_horizontal() {
+    fun should_return_value_of_pattern2() {
 
         // act
         val value = pattern2.mirror()
@@ -70,7 +70,7 @@ class Day13Test {
     }
 
     @Test
-    fun should_return_value_of_mirror_vertical() {
+    fun should_return_value_of_pattern1() {
 
         // act
         val value = pattern1.mirror()
@@ -81,7 +81,7 @@ class Day13Test {
     }
 
     @Test
-    fun should_print_pattern_1() {
+    fun should_print_pattern1() {
 
         // act
         val output = pattern1.print()
@@ -100,7 +100,23 @@ class Day13Test {
             "    ><   ",
             "123456789"
         )
-
-
     }
+
+    @Test
+    fun should_print_pattern2() {
+        // act
+        val output = pattern2.print()
+
+        // assert
+        assertThat(output).containsExactly(
+            "1 #...##..# 1",
+            "2 #....#..# 2",
+            "3 ..##..### 3",
+            "4v#####.##.v4",
+            "5^#####.##.^5",
+            "6 ..##..### 6",
+            "7 #....#..# 7"
+        )
+    }
+
 }
