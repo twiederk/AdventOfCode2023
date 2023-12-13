@@ -58,4 +58,25 @@ class Day13Test {
         // assert
         assertThat(mirrorRow).isEqualTo(5)
     }
+
+    @Test
+    fun should_return_value_of_mirror_horizontal() {
+
+        // act
+        val value = pattern2.value()
+
+        // assert
+        assertThat(value).isEqualTo(400)
+    }
+
+    @Test
+    fun should_return_value_of_mirror_vertical() {
+
+        // act
+        val value = pattern1.value()
+
+        // assert
+        assertThat(value).isEqualTo(5)
+    }
+
 }

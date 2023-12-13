@@ -57,4 +57,10 @@ data class Pattern(
         }
         return column
     }
+
+    fun value(): Int {
+        val value = mirrorCol()
+        if (value != NO_MIRROR) return value
+        return mirrorRow() * 100
+    }
 }
