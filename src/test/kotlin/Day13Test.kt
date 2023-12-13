@@ -4,24 +4,28 @@ import java.nio.file.Paths
 
 class Day13Test {
 
-    private val pattern1 = listOf(
-        "#.##..##.",
-        "..#.##.#.",
-        "##......#",
-        "##......#",
-        "..#.##.#.",
-        "..##..##.",
-        "#.#.##.#.",
+    private val pattern1 = Pattern(
+        listOf(
+            "#.##..##.",
+            "..#.##.#.",
+            "##......#",
+            "##......#",
+            "..#.##.#.",
+            "..##..##.",
+            "#.#.##.#.",
+        )
     )
 
-    private val pattern2 = listOf(
-        "#...##..#",
-        "#....#..#",
-        "..##..###",
-        "#####.##.",
-        "#####.##.",
-        "..##..###",
-        "#....#..#",
+    private val pattern2 = Pattern(
+        listOf(
+            "#...##..#",
+            "#....#..#",
+            "..##..###",
+            "#####.##.",
+            "#####.##.",
+            "..##..###",
+            "#....#..#",
+        )
     )
 
     @Test
@@ -33,6 +37,17 @@ class Day13Test {
 
         // assert
         assertThat(patterns).hasSize(2)
+    }
+
+    @Test
+    fun should_find_horizontal_mirror() {
+        // arrange
+
+        // act
+        val mirrorRow = pattern2.mirrorRow()
+
+        // assert
+        assertThat(mirrorRow).isEqualTo(4)
     }
 
 }
