@@ -38,4 +38,23 @@ data class Pattern(
         }
         return NO_MIRROR
     }
+
+    fun mirrorCol(): Int {
+        for (index in 0..data[0].length - 2) {
+            val firstColumn = column(index)
+            val secondColumn = column(index + 1)
+            if (firstColumn == secondColumn) {
+                return index + 1
+            }
+        }
+        return NO_MIRROR
+    }
+
+    private fun column(index: Int): String {
+        var column = ""
+        for (line in data) {
+            column += line[index]
+        }
+        return column
+    }
 }

@@ -41,7 +41,6 @@ class Day13Test {
 
     @Test
     fun should_find_horizontal_mirror() {
-        // arrange
 
         // act
         val mirrorRow = pattern2.mirrorRow()
@@ -50,4 +49,13 @@ class Day13Test {
         assertThat(mirrorRow).isEqualTo(4)
     }
 
+    @Test
+    fun should_find_vertical_mirror() {
+
+        // act
+        val mirrorRow = pattern1.mirrorCol()
+
+        // assert
+        assertThat(mirrorRow).isEqualTo(5)
+    }
 }
