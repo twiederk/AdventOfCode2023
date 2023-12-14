@@ -68,5 +68,37 @@ data class Pattern(
         return NO_MIRROR
     }
 
+    fun mirrorTop(): Int {
+        var indexTop = 0
+        var firstRow = data[indexTop]
+        for (indexBottom in data.lastIndex downTo 1) {
+            val secondRow = data[indexBottom]
+            if (firstRow == secondRow) {
+                if (indexTop + 1 == indexBottom) {
+                    return indexTop
+                }
+                indexTop++
+                firstRow = data[indexTop]
+            }
+        }
+        return NO_MIRROR
+    }
+
+    fun mirrorBottom(): Int {
+        var indexBottom = data.lastIndex
+        var firstRow = data[indexBottom]
+        for (indexTop in 0..data.lastIndex) {
+            val secondRow = data[indexTop]
+            if (firstRow == secondRow) {
+                if (indexTop + 1 == indexBottom) {
+                    return indexTop
+                }
+                indexBottom--
+                firstRow = data[indexBottom]
+            }
+        }
+        return NO_MIRROR
+    }
+
 
 }

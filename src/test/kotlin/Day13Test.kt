@@ -54,13 +54,32 @@ class Day13Test {
 
     @Test
     fun should_check_for_mirror_col_from_right() {
-        // arrange
 
         // act
         val result = pattern1Col.mirrorRight()
 
         // assert
         assertThat(result).isEqualTo(4)
+    }
+
+    @Test
+    fun should_check_for_mirror_row_from_top() {
+
+        // act
+        val result = pattern2Row.mirrorTop()
+
+        // assert
+        assertThat(result).isEqualTo(Pattern.NO_MIRROR)
+    }
+
+    @Test
+    fun should_check_for_mirror_row_from_bottom() {
+
+        // act
+        val result = pattern2Row.mirrorBottom()
+
+        // assert
+        assertThat(result).isEqualTo(3)
     }
 
 }
