@@ -142,4 +142,39 @@ class Day13Test {
         assertThat(mirror).isEqualTo(Mirror(Face.ROW, 3))
     }
 
+    @Test
+    fun should_calculate_pattern1Col_mirror_value() {
+
+        // act
+        val mirrorValue = pattern1Col.mirror().value
+
+        // assert
+        assertThat(mirrorValue).isEqualTo(5)
+    }
+
+    @Test
+    fun should_calculate_mirror_value() {
+
+        // act
+        val mirrorValue = pattern2Row.mirror().value
+
+        // assert
+        assertThat(mirrorValue).isEqualTo(400)
+    }
+
+    @Test
+    fun should_sum_all_mirrors() {
+        // arrange
+        val patterns = listOf(
+            pattern1Col,
+            pattern2Row
+        )
+
+        // act
+        val part1 = Day13().part1(patterns)
+
+        // assert
+        assertThat(part1).isEqualTo(405)
+
+    }
 }

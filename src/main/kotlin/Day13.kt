@@ -18,6 +18,10 @@ class Day13 {
         return patterns
     }
 
+    fun part1(patterns: List<Pattern>): Int {
+        return patterns.sumOf { it.mirror().value }
+    }
+
 }
 
 data class Pattern(
@@ -118,7 +122,9 @@ data class Pattern(
 data class Mirror(
     val face: Face,
     val index: Int
-)
+) {
+    val value = if (face == Face.COL) index + 1 else (index + 1) * 100
+}
 
 enum class Face {
     COL, ROW
