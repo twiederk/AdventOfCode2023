@@ -1,4 +1,5 @@
 import java.nio.file.Path
+import java.nio.file.Paths
 
 class Day14 {
 
@@ -60,5 +61,16 @@ class Day14 {
         return weight
     }
 
+    fun part1(platform: List<CharArray>): Int {
+        val tiltedPlatform = tiltAll(platform)
+        return weight(tiltedPlatform)
+    }
 
+}
+
+fun main() {
+    val day14 = Day14()
+    val platform = day14.loadPlatform(Paths.get("src", "main", "resources", "Day14_InputData.txt"))
+    val part1 = day14.part1(platform)
+    println("part1 = $part1")
 }

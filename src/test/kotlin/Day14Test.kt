@@ -92,4 +92,15 @@ class Day14Test {
         assertThat(weight).isEqualTo(136)
     }
 
+    @Test
+    fun should_solve_part1_with_test_data() {
+        // arrange
+
+        // act
+        val weight = Day14().part1(platform)
+
+        // assert
+        assertThat(weight).isEqualTo(136)
+    }
+
 }
