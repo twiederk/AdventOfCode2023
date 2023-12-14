@@ -1,4 +1,5 @@
 import java.nio.file.Path
+import java.nio.file.Paths
 
 class Day13 {
     fun loadPatterns(path: Path): List<Pattern> {
@@ -128,4 +129,11 @@ data class Mirror(
 
 enum class Face {
     COL, ROW
+}
+
+fun main() {
+    val day13 = Day13()
+    val patterns = day13.loadPatterns(Paths.get("src", "main", "resources", "Day13_InputData.txt"))
+    val part1 = day13.part1(patterns)
+    println("part1 = $part1")
 }
