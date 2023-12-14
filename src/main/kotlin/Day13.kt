@@ -43,7 +43,7 @@ data class Pattern(
         for (index in 0..data[0].length - 2) {
             val firstColumn = column(index)
             val secondColumn = column(index + 1)
-            if (firstColumn == secondColumn) {
+            if (firstColumn == secondColumn && index == data[0].length / 2) {
                 return index + 1
             }
         }

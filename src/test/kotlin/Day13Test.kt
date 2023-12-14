@@ -4,7 +4,7 @@ import java.nio.file.Paths
 
 class Day13Test {
 
-    private val pattern1 = Pattern(
+    private val patternCol = Pattern(
         listOf(
             "#.##..##.",
             "..#.##.#.",
@@ -16,7 +16,7 @@ class Day13Test {
         )
     )
 
-    private val pattern2 = Pattern(
+    private val patternRow = Pattern(
         listOf(
             "#...##..#",
             "#....#..#",
@@ -43,7 +43,7 @@ class Day13Test {
     fun should_find_horizontal_mirror() {
 
         // act
-        val mirrorRow = pattern2.mirrorRow()
+        val mirrorRow = patternRow.mirrorRow()
 
         // assert
         assertThat(mirrorRow).isEqualTo(4)
@@ -53,38 +53,39 @@ class Day13Test {
     fun should_find_vertical_mirror() {
 
         // act
-        val mirrorRow = pattern1.mirrorCol()
+        val mirrorRow = patternCol.mirrorCol()
 
         // assert
         assertThat(mirrorRow).isEqualTo(5)
     }
 
     @Test
-    fun should_return_value_of_pattern2() {
+    fun should_return_value_of_patternRow() {
 
         // act
-        val value = pattern2.mirror()
+        val value = patternRow.mirror()
 
         // assert
+        patternRow.print().forEach { println(it) }
         assertThat(value).isEqualTo(400)
     }
 
     @Test
-    fun should_return_value_of_pattern1() {
+    fun should_return_value_of_patternCol() {
 
         // act
-        val value = pattern1.mirror()
+        val value = patternCol.mirror()
 
         // assert
         assertThat(value).isEqualTo(5)
-        pattern1.print().forEach { println(it) }
+        patternCol.print().forEach { println(it) }
     }
 
     @Test
-    fun should_print_pattern1() {
+    fun should_print_patternCol() {
 
         // act
-        val output = pattern1.print()
+        val output = patternCol.print()
 
         // assert
         assertThat(output).containsExactly(
@@ -103,9 +104,10 @@ class Day13Test {
     }
 
     @Test
-    fun should_print_pattern2() {
+    fun should_print_patternRow() {
         // act
-        val output = pattern2.print()
+        val output = patternRow.print()
+        patternRow.print().forEach { println(it) }
 
         // assert
         assertThat(output).containsExactly(
