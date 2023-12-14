@@ -41,6 +41,15 @@ class Day13Test {
         )
     }
 
+    @Test
+    fun should_check_for_mirror_col_from_left() {
+        // arrange
 
+        // act
+        val result = pattern1Col.mirrorLeft()
+
+        // assert
+        assertThat(result).isEqualTo(Pattern.NO_MIRROR)
+    }
 
 }

@@ -36,7 +36,20 @@ data class Pattern(
         return column
     }
 
-
+    fun mirrorLeft(): Int {
+        var indexLeft = 0
+        val firstColumn = column(indexLeft)
+        for (indexRight in data.lastIndex downTo 1) {
+            val secondColumn = column(indexRight)
+            if (firstColumn == secondColumn) {
+                if (indexLeft + 1 == indexRight) {
+                    return indexLeft
+                }
+                indexLeft++
+            }
+        }
+        return NO_MIRROR
+    }
 
 
 }
