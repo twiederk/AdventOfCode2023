@@ -70,10 +70,6 @@ class Day10 {
             }
             cleanMaze.add(String(newLine))
         }
-//        println(mainPipe.size)
-//        println(mainPipe)
-//        maze.forEach { println(it) }
-//        println("**********")
         cleanMaze.forEach { println(it) }
 
         return count

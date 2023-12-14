@@ -4,7 +4,7 @@ import java.nio.file.Paths
 
 class Day14Test {
 
-    val platform = listOf(
+    private val platform = listOf(
         "O....#....".toCharArray(),
         "O.OO#....#".toCharArray(),
         ".....##...".toCharArray(),
@@ -28,7 +28,7 @@ class Day14Test {
     }
 
     @Test
-    fun should_tilt_platform_to_north() {
+    fun should_tilt_platform_one_step_to_north() {
 
         // act
         val nextPlatform = Day14().tilt(platform)
@@ -46,6 +46,27 @@ class Day14Test {
             "#OO..###..".toCharArray(),
             "#....#....".toCharArray(),
         )
-
     }
+
+    @Test
+    fun should_tilt_platform_all_steps_to_north() {
+
+        // act
+        val nextPlatform = Day14().tiltAll(platform)
+
+        // assert
+        assertThat(nextPlatform).containsExactly(
+            "OOOO.#.O..".toCharArray(),
+            "OO..#....#".toCharArray(),
+            "OO..O##..O".toCharArray(),
+            "O..#.OO...".toCharArray(),
+            "........#.".toCharArray(),
+            "..#....#.#".toCharArray(),
+            "..O..#.O.O".toCharArray(),
+            "..O.......".toCharArray(),
+            "#....###..".toCharArray(),
+            "#....#....".toCharArray(),
+        )
+    }
+
 }
