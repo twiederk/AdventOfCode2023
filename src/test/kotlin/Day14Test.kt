@@ -4,6 +4,19 @@ import java.nio.file.Paths
 
 class Day14Test {
 
+    val platform = listOf(
+        "O....#....".toCharArray(),
+        "O.OO#....#".toCharArray(),
+        ".....##...".toCharArray(),
+        "OO.#O....O".toCharArray(),
+        ".O.....O#.".toCharArray(),
+        "O.#..O.#.#".toCharArray(),
+        "..O..#O..O".toCharArray(),
+        ".......O..".toCharArray(),
+        "#....###..".toCharArray(),
+        "#OO..#....".toCharArray(),
+    )
+
     @Test
     fun should_load_platform() {
 
@@ -12,5 +25,27 @@ class Day14Test {
 
         // assert
         assertThat(platform).hasSize(10)
+    }
+
+    @Test
+    fun should_tilt_platform_to_north() {
+
+        // act
+        val nextPlatform = Day14().tilt(platform)
+
+        // assert
+        assertThat(nextPlatform).containsExactly(
+            "O.OO.#....".toCharArray(),
+            "O...#....#".toCharArray(),
+            "OO..O##..O".toCharArray(),
+            ".O.#...O..".toCharArray(),
+            "O....O..#.".toCharArray(),
+            "..#...O#.#".toCharArray(),
+            "..O..#.O.O".toCharArray(),
+            "..........".toCharArray(),
+            "#OO..###..".toCharArray(),
+            "#....#....".toCharArray(),
+        )
+
     }
 }
