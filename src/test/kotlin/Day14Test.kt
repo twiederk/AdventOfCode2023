@@ -94,7 +94,6 @@ class Day14Test {
 
     @Test
     fun should_solve_part1_with_test_data() {
-        // arrange
 
         // act
         val weight = Day14().part1(platform)
@@ -103,4 +102,27 @@ class Day14Test {
         assertThat(weight).isEqualTo(136)
     }
 
+    @Test
+    fun should_rotate_platform_90_degrees_to_the_right() {
+        // arrange
+        // cycle north, then west, then south, then east.
+
+        // act
+        val rotatedPlatform = Day14().rotate(platform)
+
+        // assert
+        assertThat(rotatedPlatform).containsExactly(
+            "##..O.O.OO".toCharArray(),
+            "O....OO...".toCharArray(),
+            "O..O#...O.".toCharArray(),
+            "......#.O.".toCharArray(),
+            "......O.#.".toCharArray(),
+            "##.#O..#.#".toCharArray(),
+            ".#.O...#..".toCharArray(),
+            ".#O.#O....".toCharArray(),
+            ".....#....".toCharArray(),
+            "...O#.O.#.".toCharArray(),
+        )
+
+    }
 }

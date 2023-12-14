@@ -66,6 +66,18 @@ class Day14 {
         return weight(tiltedPlatform)
     }
 
+    fun rotate(platform: List<CharArray>): List<CharArray> {
+        val rotatedPlatform = mutableListOf<CharArray>()
+        for (col in platform[0].indices) {
+            var line = ""
+            for (row in platform.lastIndex downTo 0) {
+                line += "${platform[row][col]}"
+            }
+            rotatedPlatform.add(line.toCharArray())
+        }
+        return rotatedPlatform
+    }
+
 }
 
 fun main() {
