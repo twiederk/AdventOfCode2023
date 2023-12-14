@@ -100,5 +100,26 @@ data class Pattern(
         return NO_MIRROR
     }
 
+    fun mirror(): Mirror {
+        var index = mirrorLeft()
+        if (index != NO_MIRROR) return Mirror(Face.COL, index)
+        index = mirrorRight()
+        if (index != NO_MIRROR) return Mirror(Face.COL, index)
+        index = mirrorTop()
+        if (index != NO_MIRROR) return Mirror(Face.ROW, index)
+        index = mirrorBottom()
+        if (index != NO_MIRROR) return Mirror(Face.ROW, index)
+        throw IllegalStateException("No mirror found for $this")
+    }
 
+
+}
+
+data class Mirror(
+    val face: Face,
+    val index: Int
+)
+
+enum class Face {
+    COL, ROW
 }
