@@ -114,6 +114,7 @@ data class Pattern(
         if (index != NO_MIRROR) return Mirror(Face.ROW, index)
         index = mirrorBottom()
         if (index != NO_MIRROR) return Mirror(Face.ROW, index)
+        data.forEach { println(it) }
         throw IllegalStateException("No mirror found for $this")
     }
 

@@ -69,4 +69,27 @@ class Day14Test {
         )
     }
 
+    @Test
+    fun should_calculate_weight_of_platform() {
+        // arrange
+        val platform = listOf(
+            "OOOO.#.O..".toCharArray(),
+            "OO..#....#".toCharArray(),
+            "OO..O##..O".toCharArray(),
+            "O..#.OO...".toCharArray(),
+            "........#.".toCharArray(),
+            "..#....#.#".toCharArray(),
+            "..O..#.O.O".toCharArray(),
+            "..O.......".toCharArray(),
+            "#....###..".toCharArray(),
+            "#....#....".toCharArray(),
+        )
+
+        // act
+        val weight = Day14().weight(platform)
+
+        // assert
+        assertThat(weight).isEqualTo(136)
+    }
+
 }

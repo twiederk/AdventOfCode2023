@@ -175,6 +175,26 @@ class Day13Test {
 
         // assert
         assertThat(part1).isEqualTo(405)
+    }
+
+    @Test
+    fun should_find_mirror_for_bug_1() {
+        // arrange
+        val pattern = Pattern(
+            listOf(
+                "###...#...#.#..",
+                ".#.##.#.....#..",
+                "..###..#..#....",
+                "..###..#..#....",
+                ".#.##.#........",
+                "###...#...#.#..",
+                "###..#..##.#.##",
+            )
+        )
+
+        // act
+
+        // assert
 
     }
 }

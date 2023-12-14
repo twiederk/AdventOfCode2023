@@ -50,5 +50,15 @@ class Day14 {
         return true
     }
 
+    fun weight(platform: List<CharArray>): Int {
+        var weight = 0
+        for (index in platform.lastIndex downTo 0) {
+            val line = platform[index]
+            val value = platform.size - index
+            weight += line.count { it == 'O' } * value
+        }
+        return weight
+    }
+
 
 }
