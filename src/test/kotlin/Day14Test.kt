@@ -104,8 +104,6 @@ class Day14Test {
 
     @Test
     fun should_rotate_platform_90_degrees_to_the_right() {
-        // arrange
-        // cycle north, then west, then south, then east.
 
         // act
         val rotatedPlatform = Day14().rotate(platform)
@@ -123,6 +121,27 @@ class Day14Test {
             ".....#....".toCharArray(),
             "...O#.O.#.".toCharArray(),
         )
-
     }
+
+    @Test
+    fun should_run_cycle_1() {
+
+        // act
+        val cycledPlatform = Day14().cycle(platform, 1)
+
+        // assert
+        assertThat(cycledPlatform).containsExactly(
+            ".....#....".toCharArray(),
+            "....#...O#".toCharArray(),
+            "...OO##...".toCharArray(),
+            ".OO#......".toCharArray(),
+            ".....OOO#.".toCharArray(),
+            ".O#...O#.#".toCharArray(),
+            "....O#....".toCharArray(),
+            "......OOOO".toCharArray(),
+            "#...O###..".toCharArray(),
+            "#..OO#....".toCharArray(),
+        )
+    }
+
 }
