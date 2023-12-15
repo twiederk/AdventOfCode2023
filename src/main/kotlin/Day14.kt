@@ -94,6 +94,26 @@ class Day14 {
         return rotate(tiltedPlatform)
     }
 
+    fun part2(platform: List<CharArray>, goal: Int): Int {
+        val seen = mutableMapOf<Int, Int>()
+        var cycleNumber = 1
+        var nextPlatform = platform
+        while (cycleNumber <= goal) {
+            nextPlatform = cycle(nextPlatform)
+            val key = nextPlatform.sumOf { it.joinToString("").hashCode() }
+            if (!seen.contains(key)) {
+                seen[key] = cycleNumber++
+            } else {
+                val cycleLength = cycleNumber - seen.getValue(key)
+                val cyclesRemaining = (goal - cycleNumber) % cycleLength
+                repeat(cyclesRemaining) {
+                    nextPlatform = cycle(nextPlatform)
+                }
+                return weight(nextPlatform)
+            }
+        }
+        return weight(nextPlatform)
+    }
 
 }
 
@@ -102,4 +122,7 @@ fun main() {
     val platform = day14.loadPlatform(Paths.get("src", "main", "resources", "Day14_InputData.txt"))
     val part1 = day14.part1(platform)
     println("part1 = $part1")
+
+    val part2 = day14.part2(platform, 1_000_000_000)
+    println("part2 = $part2")
 }

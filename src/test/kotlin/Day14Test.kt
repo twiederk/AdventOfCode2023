@@ -1,4 +1,5 @@
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.nio.file.Paths
 
@@ -196,6 +197,7 @@ class Day14Test {
     }
 
     @Test
+    @Disabled
     fun find_loop() {
 
         val day14 = Day14()
@@ -210,6 +212,16 @@ class Day14Test {
             }
             loops[key] = loop
         }
+    }
+
+    @Test
+    fun should_solve_part2_with_test_data() {
+
+        // act
+        val part2 = Day14().part2(platform, 1_000_000_000)
+
+        // assert
+        assertThat(part2).isEqualTo(64)
 
     }
 }
