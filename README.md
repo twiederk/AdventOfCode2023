@@ -25,7 +25,6 @@
 * Replace for-loop with streams everywhere
 * Day05 optimize performance of part 2
 * Day07 refactor strengthWithJoker
-* Day14 implement visualisation
 
 
 [1]: src/main/kotlin/Day01.kt
