@@ -33,7 +33,7 @@ class Day14Test {
     fun should_tilt_platform_one_step_to_north() {
 
         // act
-        val nextPlatform = platform.tilt()
+        val nextPlatform = platform.tiltSingleStep()
 
         // assert
         assertThat(nextPlatform.data).containsExactly(
@@ -54,7 +54,7 @@ class Day14Test {
     fun should_tilt_platform_all_steps_to_north() {
 
         // act
-        val nextPlatform = platform.tiltAll()
+        val nextPlatform = platform.tilt()
 
         // assert
         assertThat(nextPlatform.data).containsExactly(

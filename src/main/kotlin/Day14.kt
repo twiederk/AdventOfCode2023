@@ -9,7 +9,7 @@ class Day14 {
 
 
     fun part1(platform: Platform): Int {
-        val tiltedPlatform = platform.tiltAll()
+        val tiltedPlatform = platform.tilt()
         return tiltedPlatform.weight()
     }
 
@@ -49,7 +49,7 @@ data class Platform(
         return weight
     }
 
-    fun tilt(): Platform {
+    fun tiltSingleStep(): Platform {
         val nextPlatform = mutableListOf<CharArray>()
         nextPlatform.add(data[0].copyOf())
         for (lineIndex in 1..data.lastIndex) {
@@ -71,10 +71,10 @@ data class Platform(
         return Platform(nextPlatform)
     }
 
-    fun tiltAll(): Platform {
+    fun tilt(): Platform {
         var backupPlatform = copy()
         while (true) {
-            val nextPlatform = backupPlatform.tilt()
+            val nextPlatform = backupPlatform.tiltSingleStep()
             if (isEqual(backupPlatform, nextPlatform)) {
                 return nextPlatform
             }
@@ -107,16 +107,16 @@ data class Platform(
 
     fun cycle(): Platform {
         // NORTH
-        var tiltedPlatform = tiltAll()
+        var tiltedPlatform = tilt()
         // WEST
         var rotatedPlatform = tiltedPlatform.rotate()
-        tiltedPlatform = rotatedPlatform.tiltAll()
+        tiltedPlatform = rotatedPlatform.tilt()
         // SOUTH
         rotatedPlatform = tiltedPlatform.rotate()
-        tiltedPlatform = rotatedPlatform.tiltAll()
+        tiltedPlatform = rotatedPlatform.tilt()
         // EAST
         rotatedPlatform = tiltedPlatform.rotate()
-        tiltedPlatform = rotatedPlatform.tiltAll()
+        tiltedPlatform = rotatedPlatform.tilt()
 
         return tiltedPlatform.rotate()
     }
