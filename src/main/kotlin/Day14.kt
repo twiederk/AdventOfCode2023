@@ -3,15 +3,15 @@ import java.nio.file.Paths
 
 class Day14 {
 
-    fun loadPlatform(path: Path): List<CharArray> {
-        return Resources.resourceAsListOfString(path.toFile().name).map { it.toCharArray() }
+    fun loadParabolicReflector(path: Path): Platform {
+        return Platform(Resources.resourceAsListOfString(path.toFile().name).map { it.toCharArray() })
     }
 
-    fun tilt(platform: List<CharArray>): List<CharArray> {
+    fun tilt(platform: Platform): Platform {
         val nextPlatform = mutableListOf<CharArray>()
-        nextPlatform.add(platform[0].copyOf())
-        for (lineIndex in 1..platform.lastIndex) {
-            val line = platform[lineIndex].copyOf()
+        nextPlatform.add(platform.data[0].copyOf())
+        for (lineIndex in 1..platform.data.lastIndex) {
+            val line = platform.data[lineIndex].copyOf()
             for ((colIndex, char) in line.withIndex()) {
                 when (char) {
                     '#', '.' -> continue
@@ -26,24 +26,24 @@ class Day14 {
             }
             nextPlatform.add(line)
         }
-        return nextPlatform
+        return Platform(nextPlatform)
     }
 
-    fun tiltAll(platform: List<CharArray>): List<CharArray> {
-        var backupPlatform = platform.map { it.copyOf() }
+    fun tiltAll(platform: Platform): Platform {
+        var backupPlatform = platform.copy()
         while (true) {
             val nextPlatform = tilt(backupPlatform)
             if (isEqual(backupPlatform, nextPlatform)) {
                 return nextPlatform
             }
-            backupPlatform = nextPlatform.map { it.copyOf() }
+            backupPlatform = nextPlatform.copy()
         }
     }
 
-    private fun isEqual(platform1: List<CharArray>, platform2: List<CharArray>): Boolean {
-        for (index in platform1.indices) {
-            val line1 = platform1[index]
-            val line2 = platform2[index]
+    private fun isEqual(platform1: Platform, platform2: Platform): Boolean {
+        for (index in platform1.data.indices) {
+            val line1 = platform1.data[index]
+            val line2 = platform2.data[index]
             if (!(line1 contentEquals line2)) {
                 return false
             }
@@ -51,34 +51,34 @@ class Day14 {
         return true
     }
 
-    fun weight(platform: List<CharArray>): Int {
+    fun weight(platform: Platform): Int {
         var weight = 0
-        for (index in platform.lastIndex downTo 0) {
-            val line = platform[index]
-            val value = platform.size - index
+        for (index in platform.data.lastIndex downTo 0) {
+            val line = platform.data[index]
+            val value = platform.data.size - index
             weight += line.count { it == 'O' } * value
         }
         return weight
     }
 
-    fun part1(platform: List<CharArray>): Int {
+    fun part1(platform: Platform): Int {
         val tiltedPlatform = tiltAll(platform)
         return weight(tiltedPlatform)
     }
 
-    fun rotate(platform: List<CharArray>): List<CharArray> {
+    fun rotate(platform: Platform): Platform {
         val rotatedPlatform = mutableListOf<CharArray>()
-        for (col in platform[0].indices) {
+        for (col in platform.data[0].indices) {
             var line = ""
-            for (row in platform.lastIndex downTo 0) {
-                line += "${platform[row][col]}"
+            for (row in platform.data.lastIndex downTo 0) {
+                line += "${platform.data[row][col]}"
             }
             rotatedPlatform.add(line.toCharArray())
         }
-        return rotatedPlatform
+        return Platform(rotatedPlatform)
     }
 
-    fun cycle(platform: List<CharArray>): List<CharArray> {
+    fun cycle(platform: Platform): Platform {
         // NORTH
         var tiltedPlatform = tiltAll(platform)
         // WEST
@@ -94,13 +94,13 @@ class Day14 {
         return rotate(tiltedPlatform)
     }
 
-    fun part2(platform: List<CharArray>, goal: Int): Int {
+    fun part2(platform: Platform, goal: Int): Int {
         val seen = mutableMapOf<Int, Int>()
         var cycleNumber = 1
         var nextPlatform = platform
         while (cycleNumber <= goal) {
             nextPlatform = cycle(nextPlatform)
-            val key = nextPlatform.sumOf { it.joinToString("").hashCode() }
+            val key = nextPlatform.data.sumOf { it.joinToString("").hashCode() }
             if (!seen.contains(key)) {
                 seen[key] = cycleNumber++
             } else {
@@ -117,12 +117,16 @@ class Day14 {
 
 }
 
+data class Platform(
+    val data: List<CharArray>
+)
+
 fun main() {
     val day14 = Day14()
-    val platform = day14.loadPlatform(Paths.get("src", "main", "resources", "Day14_InputData.txt"))
-    val part1 = day14.part1(platform)
+    val parabolicReflector = day14.loadParabolicReflector(Paths.get("src", "main", "resources", "Day14_InputData.txt"))
+    val part1 = day14.part1(parabolicReflector)
     println("part1 = $part1")
 
-    val part2 = day14.part2(platform, 1_000_000_000)
+    val part2 = day14.part2(parabolicReflector, 1_000_000_000)
     println("part2 = $part2")
 }

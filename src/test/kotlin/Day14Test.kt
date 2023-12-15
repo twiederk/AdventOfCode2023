@@ -1,31 +1,32 @@
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.nio.file.Paths
 
 class Day14Test {
 
-    private val platform = listOf(
-        "O....#....".toCharArray(),
-        "O.OO#....#".toCharArray(),
-        ".....##...".toCharArray(),
-        "OO.#O....O".toCharArray(),
-        ".O.....O#.".toCharArray(),
-        "O.#..O.#.#".toCharArray(),
-        "..O..#O..O".toCharArray(),
-        ".......O..".toCharArray(),
-        "#....###..".toCharArray(),
-        "#OO..#....".toCharArray(),
+    private val platform = Platform(
+        listOf(
+            "O....#....".toCharArray(),
+            "O.OO#....#".toCharArray(),
+            ".....##...".toCharArray(),
+            "OO.#O....O".toCharArray(),
+            ".O.....O#.".toCharArray(),
+            "O.#..O.#.#".toCharArray(),
+            "..O..#O..O".toCharArray(),
+            ".......O..".toCharArray(),
+            "#....###..".toCharArray(),
+            "#OO..#....".toCharArray(),
+        )
     )
 
     @Test
     fun should_load_platform() {
 
         // act
-        val platform = Day14().loadPlatform(Paths.get("src", "test", "resources", "Day14_TestData.txt"))
+        val platform = Day14().loadParabolicReflector(Paths.get("src", "test", "resources", "Day14_TestData.txt"))
 
         // assert
-        assertThat(platform).hasSize(10)
+        assertThat(platform.data).hasSize(10)
     }
 
     @Test
@@ -35,7 +36,7 @@ class Day14Test {
         val nextPlatform = Day14().tilt(platform)
 
         // assert
-        assertThat(nextPlatform).containsExactly(
+        assertThat(nextPlatform.data).containsExactly(
             "O.OO.#....".toCharArray(),
             "O...#....#".toCharArray(),
             "OO..O##..O".toCharArray(),
@@ -56,7 +57,7 @@ class Day14Test {
         val nextPlatform = Day14().tiltAll(platform)
 
         // assert
-        assertThat(nextPlatform).containsExactly(
+        assertThat(nextPlatform.data).containsExactly(
             "OOOO.#.O..".toCharArray(),
             "OO..#....#".toCharArray(),
             "OO..O##..O".toCharArray(),
@@ -73,17 +74,19 @@ class Day14Test {
     @Test
     fun should_calculate_weight_of_platform() {
         // arrange
-        val platform = listOf(
-            "OOOO.#.O..".toCharArray(),
-            "OO..#....#".toCharArray(),
-            "OO..O##..O".toCharArray(),
-            "O..#.OO...".toCharArray(),
-            "........#.".toCharArray(),
-            "..#....#.#".toCharArray(),
-            "..O..#.O.O".toCharArray(),
-            "..O.......".toCharArray(),
-            "#....###..".toCharArray(),
-            "#....#....".toCharArray(),
+        val platform = Platform(
+            listOf(
+                "OOOO.#.O..".toCharArray(),
+                "OO..#....#".toCharArray(),
+                "OO..O##..O".toCharArray(),
+                "O..#.OO...".toCharArray(),
+                "........#.".toCharArray(),
+                "..#....#.#".toCharArray(),
+                "..O..#.O.O".toCharArray(),
+                "..O.......".toCharArray(),
+                "#....###..".toCharArray(),
+                "#....#....".toCharArray(),
+            )
         )
 
         // act
@@ -110,7 +113,7 @@ class Day14Test {
         val rotatedPlatform = Day14().rotate(platform)
 
         // assert
-        assertThat(rotatedPlatform).containsExactly(
+        assertThat(rotatedPlatform.data).containsExactly(
             "##..O.O.OO".toCharArray(),
             "O....OO...".toCharArray(),
             "O..O#...O.".toCharArray(),
@@ -131,7 +134,7 @@ class Day14Test {
         val cycle1 = Day14().cycle(platform)
 
         // assert
-        assertThat(cycle1).containsExactly(
+        assertThat(cycle1.data).containsExactly(
             ".....#....".toCharArray(),
             "....#...O#".toCharArray(),
             "...OO##...".toCharArray(),
@@ -156,7 +159,7 @@ class Day14Test {
         val cycle2 = day14.cycle(cycle1)
 
         // assert
-        assertThat(cycle2).containsExactly(
+        assertThat(cycle2.data).containsExactly(
             ".....#....".toCharArray(),
             "....#...O#".toCharArray(),
             ".....##...".toCharArray(),
@@ -182,7 +185,7 @@ class Day14Test {
         val cycle3 = Day14().cycle(cycle2)
 
         // assert
-        assertThat(cycle3).containsExactly(
+        assertThat(cycle3.data).containsExactly(
             ".....#....".toCharArray(),
             "....#...O#".toCharArray(),
             ".....##...".toCharArray(),
@@ -194,24 +197,6 @@ class Day14Test {
             "#...O###.O".toCharArray(),
             "#.OOO#...O".toCharArray(),
         )
-    }
-
-    @Test
-    @Disabled
-    fun find_loop() {
-
-        val day14 = Day14()
-        val loops = mutableMapOf<Int, Int>()
-        var cycle = platform
-
-        for (loop in 0..200) {
-            cycle = day14.cycle(cycle)
-            val key = cycle.sumOf { it.joinToString("").hashCode() }
-            if (loops.contains(key)) {
-                println("found loop: loop=$loop, key=$key")
-            }
-            loops[key] = loop
-        }
     }
 
     @Test
