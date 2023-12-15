@@ -22,13 +22,10 @@
 ## Resources
 
 ## To Do
-
 * Replace for-loop with streams everywhere
-* Optimize performance of Day05 part 2
-* Refactor Day07 strengthWithJoker
-* Day14
-  * Extract class Platform
-  * Implement visualisation
+* Day05 optimize performance of part 2
+* Day07 refactor strengthWithJoker
+* Day14 implement visualisation
 
 
 [1]: src/main/kotlin/Day01.kt
@@ -44,14 +41,10 @@
 [11]: src/main/kotlin/Day11.kt
 [12]: src/main/kotlin/Day12.kt
 [13]: src/main/kotlin/Day13.kt
-
 [14]: src/main/kotlin/Day14.kt
 
 [Video]: https://www.youtube.com/watch?v=UFa236NO4TU
 [vector graphics]: https://www.reddit.com/r/adventofcode/comments/18fgddy/2023_day_10_part_2_using_a_rendering_algorithm_to/
-
 [Day 10 of Todd Ginsberg]: https://todd.ginsberg.com/post/advent-of-code/2023/day10/
-
 [Day 14 of Todd Ginsberg]: https://todd.ginsberg.com/post/advent-of-code/2023/day14/
-
 [Video from GODdev]: https://www.youtube.com/watch?v=hxC3MmhyUDM
