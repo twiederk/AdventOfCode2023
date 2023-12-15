@@ -23,7 +23,7 @@ class Day14Test {
     fun should_load_platform() {
 
         // act
-        val platform = Day14().loadParabolicReflector(Paths.get("src", "test", "resources", "Day14_TestData.txt"))
+        val platform = Day14().loadPlatform(Paths.get("src", "test", "resources", "Day14_TestData.txt"))
 
         // assert
         assertThat(platform.data).hasSize(10)
@@ -131,7 +131,7 @@ class Day14Test {
     fun should_run_cycle_1() {
 
         // act
-        val cycle1 = Day14().cycle(platform)
+        val cycle1 = platform.cycle()
 
         // assert
         assertThat(cycle1.data).containsExactly(
@@ -152,11 +152,10 @@ class Day14Test {
     fun should_run_cycle_2() {
 
         // arrange
-        val day14 = Day14()
-        val cycle1 = day14.cycle(platform)
+        val cycle1 = platform.cycle()
 
         // act
-        val cycle2 = day14.cycle(cycle1)
+        val cycle2 = cycle1.cycle()
 
         // assert
         assertThat(cycle2.data).containsExactly(
@@ -177,12 +176,11 @@ class Day14Test {
     fun should_run_cycle_3() {
 
         // arrange
-        val day14 = Day14()
-        val cycle1 = day14.cycle(platform)
-        val cycle2 = day14.cycle(cycle1)
+        val cycle1 = platform.cycle()
+        val cycle2 = cycle1.cycle()
 
         // act
-        val cycle3 = Day14().cycle(cycle2)
+        val cycle3 = cycle2.cycle()
 
         // assert
         assertThat(cycle3.data).containsExactly(

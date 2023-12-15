@@ -3,7 +3,7 @@ import java.nio.file.Paths
 
 class Day14 {
 
-    fun loadParabolicReflector(path: Path): Platform {
+    fun loadPlatform(path: Path): Platform {
         return Platform(Resources.resourceAsListOfString(path.toFile().name).map { it.toCharArray() })
     }
 
@@ -13,29 +13,12 @@ class Day14 {
         return tiltedPlatform.weight()
     }
 
-
-    fun cycle(platform: Platform): Platform {
-        // NORTH
-        var tiltedPlatform = platform.tiltAll()
-        // WEST
-        var rotatedPlatform = tiltedPlatform.rotate()
-        tiltedPlatform = rotatedPlatform.tiltAll()
-        // SOUTH
-        rotatedPlatform = tiltedPlatform.rotate()
-        tiltedPlatform = rotatedPlatform.tiltAll()
-        // EAST
-        rotatedPlatform = tiltedPlatform.rotate()
-        tiltedPlatform = rotatedPlatform.tiltAll()
-
-        return tiltedPlatform.rotate()
-    }
-
     fun part2(platform: Platform, goal: Int): Int {
         val seen = mutableMapOf<Int, Int>()
         var cycleNumber = 1
         var nextPlatform = platform
         while (cycleNumber <= goal) {
-            nextPlatform = cycle(nextPlatform)
+            nextPlatform = nextPlatform.cycle()
             val key = nextPlatform.data.sumOf { it.joinToString("").hashCode() }
             if (!seen.contains(key)) {
                 seen[key] = cycleNumber++
@@ -43,7 +26,7 @@ class Day14 {
                 val cycleLength = cycleNumber - seen.getValue(key)
                 val cyclesRemaining = (goal - cycleNumber) % cycleLength
                 repeat(cyclesRemaining) {
-                    nextPlatform = cycle(nextPlatform)
+                    nextPlatform = nextPlatform.cycle()
                 }
                 return nextPlatform.weight()
             }
@@ -122,12 +105,28 @@ data class Platform(
         return Platform(rotatedPlatform)
     }
 
+    fun cycle(): Platform {
+        // NORTH
+        var tiltedPlatform = tiltAll()
+        // WEST
+        var rotatedPlatform = tiltedPlatform.rotate()
+        tiltedPlatform = rotatedPlatform.tiltAll()
+        // SOUTH
+        rotatedPlatform = tiltedPlatform.rotate()
+        tiltedPlatform = rotatedPlatform.tiltAll()
+        // EAST
+        rotatedPlatform = tiltedPlatform.rotate()
+        tiltedPlatform = rotatedPlatform.tiltAll()
+
+        return tiltedPlatform.rotate()
+    }
+
 
 }
 
 fun main() {
     val day14 = Day14()
-    val parabolicReflector = day14.loadParabolicReflector(Paths.get("src", "main", "resources", "Day14_InputData.txt"))
+    val parabolicReflector = day14.loadPlatform(Paths.get("src", "main", "resources", "Day14_InputData.txt"))
     val part1 = day14.part1(parabolicReflector)
     println("part1 = $part1")
 
