@@ -90,7 +90,7 @@ class Day14Test {
         )
 
         // act
-        val weight = Day14().weight(platform)
+        val weight = platform.weight()
 
         // assert
         assertThat(weight).isEqualTo(136)

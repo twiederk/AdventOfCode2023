@@ -51,19 +51,10 @@ class Day14 {
         return true
     }
 
-    fun weight(platform: Platform): Int {
-        var weight = 0
-        for (index in platform.data.lastIndex downTo 0) {
-            val line = platform.data[index]
-            val value = platform.data.size - index
-            weight += line.count { it == 'O' } * value
-        }
-        return weight
-    }
 
     fun part1(platform: Platform): Int {
         val tiltedPlatform = tiltAll(platform)
-        return weight(tiltedPlatform)
+        return tiltedPlatform.weight()
     }
 
     fun rotate(platform: Platform): Platform {
@@ -109,17 +100,28 @@ class Day14 {
                 repeat(cyclesRemaining) {
                     nextPlatform = cycle(nextPlatform)
                 }
-                return weight(nextPlatform)
+                return nextPlatform.weight()
             }
         }
-        return weight(nextPlatform)
+        return nextPlatform.weight()
     }
 
 }
 
 data class Platform(
     val data: List<CharArray>
-)
+) {
+    fun weight(): Int {
+        var weight = 0
+        for (index in data.lastIndex downTo 0) {
+            val line = data[index]
+            val value = data.size - index
+            weight += line.count { it == 'O' } * value
+        }
+        return weight
+    }
+
+}
 
 fun main() {
     val day14 = Day14()
