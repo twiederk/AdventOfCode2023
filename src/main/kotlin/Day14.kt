@@ -13,32 +13,21 @@ class Day14 {
         return tiltedPlatform.weight()
     }
 
-    fun rotate(platform: Platform): Platform {
-        val rotatedPlatform = mutableListOf<CharArray>()
-        for (col in platform.data[0].indices) {
-            var line = ""
-            for (row in platform.data.lastIndex downTo 0) {
-                line += "${platform.data[row][col]}"
-            }
-            rotatedPlatform.add(line.toCharArray())
-        }
-        return Platform(rotatedPlatform)
-    }
 
     fun cycle(platform: Platform): Platform {
         // NORTH
         var tiltedPlatform = platform.tiltAll()
         // WEST
-        var rotatedPlatform = rotate(tiltedPlatform)
+        var rotatedPlatform = tiltedPlatform.rotate()
         tiltedPlatform = rotatedPlatform.tiltAll()
         // SOUTH
-        rotatedPlatform = rotate(tiltedPlatform)
+        rotatedPlatform = tiltedPlatform.rotate()
         tiltedPlatform = rotatedPlatform.tiltAll()
         // EAST
-        rotatedPlatform = rotate(tiltedPlatform)
+        rotatedPlatform = tiltedPlatform.rotate()
         tiltedPlatform = rotatedPlatform.tiltAll()
 
-        return rotate(tiltedPlatform)
+        return tiltedPlatform.rotate()
     }
 
     fun part2(platform: Platform, goal: Int): Int {
@@ -120,6 +109,19 @@ data class Platform(
         }
         return true
     }
+
+    fun rotate(): Platform {
+        val rotatedPlatform = mutableListOf<CharArray>()
+        for (col in data[0].indices) {
+            var line = ""
+            for (row in data.lastIndex downTo 0) {
+                line += "${data[row][col]}"
+            }
+            rotatedPlatform.add(line.toCharArray())
+        }
+        return Platform(rotatedPlatform)
+    }
+
 
 }
 

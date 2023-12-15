@@ -110,7 +110,7 @@ class Day14Test {
     fun should_rotate_platform_90_degrees_to_the_right() {
 
         // act
-        val rotatedPlatform = Day14().rotate(platform)
+        val rotatedPlatform = platform.rotate()
 
         // assert
         assertThat(rotatedPlatform.data).containsExactly(
