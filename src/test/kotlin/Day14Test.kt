@@ -127,10 +127,10 @@ class Day14Test {
     fun should_run_cycle_1() {
 
         // act
-        val cycledPlatform = Day14().cycle(platform, 1)
+        val cycle1 = Day14().cycle(platform)
 
         // assert
-        assertThat(cycledPlatform).containsExactly(
+        assertThat(cycle1).containsExactly(
             ".....#....".toCharArray(),
             "....#...O#".toCharArray(),
             "...OO##...".toCharArray(),
@@ -147,11 +147,15 @@ class Day14Test {
     @Test
     fun should_run_cycle_2() {
 
+        // arrange
+        val day14 = Day14()
+        val cycle1 = day14.cycle(platform)
+
         // act
-        val cycledPlatform = Day14().cycle(platform, 2)
+        val cycle2 = day14.cycle(cycle1)
 
         // assert
-        assertThat(cycledPlatform).containsExactly(
+        assertThat(cycle2).containsExactly(
             ".....#....".toCharArray(),
             "....#...O#".toCharArray(),
             ".....##...".toCharArray(),
@@ -168,11 +172,16 @@ class Day14Test {
     @Test
     fun should_run_cycle_3() {
 
+        // arrange
+        val day14 = Day14()
+        val cycle1 = day14.cycle(platform)
+        val cycle2 = day14.cycle(cycle1)
+
         // act
-        val cycledPlatform = Day14().cycle(platform, 3)
+        val cycle3 = Day14().cycle(cycle2)
 
         // assert
-        assertThat(cycledPlatform).containsExactly(
+        assertThat(cycle3).containsExactly(
             ".....#....".toCharArray(),
             "....#...O#".toCharArray(),
             ".....##...".toCharArray(),
@@ -186,4 +195,21 @@ class Day14Test {
         )
     }
 
+    @Test
+    fun find_loop() {
+
+        val day14 = Day14()
+        val loops = mutableMapOf<Int, Int>()
+        var cycle = platform
+
+        for (loop in 0..200) {
+            cycle = day14.cycle(cycle)
+            val key = cycle.sumOf { it.joinToString("").hashCode() }
+            if (loops.contains(key)) {
+                println("found loop: loop=$loop, key=$key")
+            }
+            loops[key] = loop
+        }
+
+    }
 }

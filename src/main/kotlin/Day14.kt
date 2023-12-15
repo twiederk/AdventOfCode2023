@@ -78,24 +78,20 @@ class Day14 {
         return rotatedPlatform
     }
 
-    fun cycle(platform: List<CharArray>, numberOfCycles: Int): List<CharArray> {
-        var rotatedPlatform = platform
-        for (loop in 1..numberOfCycles) {
-            // NORTH
-            var tiltedPlatform = tiltAll(rotatedPlatform)
-            // WEST
-            rotatedPlatform = rotate(tiltedPlatform)
-            tiltedPlatform = tiltAll(rotatedPlatform)
-            // SOUTH
-            rotatedPlatform = rotate(tiltedPlatform)
-            tiltedPlatform = tiltAll(rotatedPlatform)
-            // EAST
-            rotatedPlatform = rotate(tiltedPlatform)
-            tiltedPlatform = tiltAll(rotatedPlatform)
+    fun cycle(platform: List<CharArray>): List<CharArray> {
+        // NORTH
+        var tiltedPlatform = tiltAll(platform)
+        // WEST
+        var rotatedPlatform = rotate(tiltedPlatform)
+        tiltedPlatform = tiltAll(rotatedPlatform)
+        // SOUTH
+        rotatedPlatform = rotate(tiltedPlatform)
+        tiltedPlatform = tiltAll(rotatedPlatform)
+        // EAST
+        rotatedPlatform = rotate(tiltedPlatform)
+        tiltedPlatform = tiltAll(rotatedPlatform)
 
-            rotatedPlatform = rotate(tiltedPlatform)
-        }
-        return rotatedPlatform
+        return rotate(tiltedPlatform)
     }
 
 
