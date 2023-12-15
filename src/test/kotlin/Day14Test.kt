@@ -33,7 +33,7 @@ class Day14Test {
     fun should_tilt_platform_one_step_to_north() {
 
         // act
-        val nextPlatform = Day14().tilt(platform)
+        val nextPlatform = platform.tilt()
 
         // assert
         assertThat(nextPlatform.data).containsExactly(

@@ -7,32 +7,11 @@ class Day14 {
         return Platform(Resources.resourceAsListOfString(path.toFile().name).map { it.toCharArray() })
     }
 
-    fun tilt(platform: Platform): Platform {
-        val nextPlatform = mutableListOf<CharArray>()
-        nextPlatform.add(platform.data[0].copyOf())
-        for (lineIndex in 1..platform.data.lastIndex) {
-            val line = platform.data[lineIndex].copyOf()
-            for ((colIndex, char) in line.withIndex()) {
-                when (char) {
-                    '#', '.' -> continue
-                    else -> {
-                        val aboveChar = nextPlatform[lineIndex - 1][colIndex]
-                        if (aboveChar == '.') {
-                            nextPlatform[lineIndex - 1][colIndex] = 'O'
-                            line[colIndex] = '.'
-                        }
-                    }
-                }
-            }
-            nextPlatform.add(line)
-        }
-        return Platform(nextPlatform)
-    }
 
     fun tiltAll(platform: Platform): Platform {
         var backupPlatform = platform.copy()
         while (true) {
-            val nextPlatform = tilt(backupPlatform)
+            val nextPlatform = backupPlatform.tilt()
             if (isEqual(backupPlatform, nextPlatform)) {
                 return nextPlatform
             }
@@ -119,6 +98,28 @@ data class Platform(
             weight += line.count { it == 'O' } * value
         }
         return weight
+    }
+
+    fun tilt(): Platform {
+        val nextPlatform = mutableListOf<CharArray>()
+        nextPlatform.add(data[0].copyOf())
+        for (lineIndex in 1..data.lastIndex) {
+            val line = data[lineIndex].copyOf()
+            for ((colIndex, char) in line.withIndex()) {
+                when (char) {
+                    '#', '.' -> continue
+                    else -> {
+                        val aboveChar = nextPlatform[lineIndex - 1][colIndex]
+                        if (aboveChar == '.') {
+                            nextPlatform[lineIndex - 1][colIndex] = 'O'
+                            line[colIndex] = '.'
+                        }
+                    }
+                }
+            }
+            nextPlatform.add(line)
+        }
+        return Platform(nextPlatform)
     }
 
 }
