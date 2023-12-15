@@ -8,31 +8,8 @@ class Day14 {
     }
 
 
-    fun tiltAll(platform: Platform): Platform {
-        var backupPlatform = platform.copy()
-        while (true) {
-            val nextPlatform = backupPlatform.tilt()
-            if (isEqual(backupPlatform, nextPlatform)) {
-                return nextPlatform
-            }
-            backupPlatform = nextPlatform.copy()
-        }
-    }
-
-    private fun isEqual(platform1: Platform, platform2: Platform): Boolean {
-        for (index in platform1.data.indices) {
-            val line1 = platform1.data[index]
-            val line2 = platform2.data[index]
-            if (!(line1 contentEquals line2)) {
-                return false
-            }
-        }
-        return true
-    }
-
-
     fun part1(platform: Platform): Int {
-        val tiltedPlatform = tiltAll(platform)
+        val tiltedPlatform = platform.tiltAll()
         return tiltedPlatform.weight()
     }
 
@@ -50,16 +27,16 @@ class Day14 {
 
     fun cycle(platform: Platform): Platform {
         // NORTH
-        var tiltedPlatform = tiltAll(platform)
+        var tiltedPlatform = platform.tiltAll()
         // WEST
         var rotatedPlatform = rotate(tiltedPlatform)
-        tiltedPlatform = tiltAll(rotatedPlatform)
+        tiltedPlatform = rotatedPlatform.tiltAll()
         // SOUTH
         rotatedPlatform = rotate(tiltedPlatform)
-        tiltedPlatform = tiltAll(rotatedPlatform)
+        tiltedPlatform = rotatedPlatform.tiltAll()
         // EAST
         rotatedPlatform = rotate(tiltedPlatform)
-        tiltedPlatform = tiltAll(rotatedPlatform)
+        tiltedPlatform = rotatedPlatform.tiltAll()
 
         return rotate(tiltedPlatform)
     }
@@ -120,6 +97,28 @@ data class Platform(
             nextPlatform.add(line)
         }
         return Platform(nextPlatform)
+    }
+
+    fun tiltAll(): Platform {
+        var backupPlatform = copy()
+        while (true) {
+            val nextPlatform = backupPlatform.tilt()
+            if (isEqual(backupPlatform, nextPlatform)) {
+                return nextPlatform
+            }
+            backupPlatform = nextPlatform.copy()
+        }
+    }
+
+    private fun isEqual(platform1: Platform, platform2: Platform): Boolean {
+        for (index in platform1.data.indices) {
+            val line1 = platform1.data[index]
+            val line2 = platform2.data[index]
+            if (!(line1 contentEquals line2)) {
+                return false
+            }
+        }
+        return true
     }
 
 }
