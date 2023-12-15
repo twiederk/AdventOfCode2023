@@ -75,22 +75,28 @@ data class Platform(
         var backupPlatform = copy()
         while (true) {
             val nextPlatform = backupPlatform.tiltSingleStep()
-            if (isEqual(backupPlatform, nextPlatform)) {
+            if (backupPlatform == nextPlatform) {
                 return nextPlatform
             }
             backupPlatform = nextPlatform.copy()
         }
     }
 
-    private fun isEqual(platform1: Platform, platform2: Platform): Boolean {
-        for (index in platform1.data.indices) {
-            val line1 = platform1.data[index]
-            val line2 = platform2.data[index]
+    override fun equals(other: Any?): Boolean {
+        if (other == null) return false
+        if (other !is Platform) return false
+        for (index in data.indices) {
+            val line1 = data[index]
+            val line2 = other.data[index]
             if (!(line1 contentEquals line2)) {
                 return false
             }
         }
         return true
+    }
+
+    override fun hashCode(): Int {
+        return super.hashCode()
     }
 
     fun rotate(): Platform {
