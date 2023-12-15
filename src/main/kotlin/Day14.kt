@@ -89,7 +89,8 @@ class Day14 {
         tiltedPlatform = tiltAll(rotatedPlatform)
         // EAST
         rotatedPlatform = rotate(tiltedPlatform)
-        return tiltAll(rotatedPlatform)
+        tiltedPlatform = tiltAll(rotatedPlatform)
+        return rotate(tiltedPlatform)
     }
 
 
