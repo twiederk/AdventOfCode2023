@@ -165,4 +165,25 @@ class Day14Test {
         )
     }
 
+    @Test
+    fun should_run_cycle_3() {
+
+        // act
+        val cycledPlatform = Day14().cycle(platform, 3)
+
+        // assert
+        assertThat(cycledPlatform).containsExactly(
+            ".....#....".toCharArray(),
+            "....#...O#".toCharArray(),
+            ".....##...".toCharArray(),
+            "..O#......".toCharArray(),
+            ".....OOO#.".toCharArray(),
+            ".O#...O#.#".toCharArray(),
+            "....O#...O".toCharArray(),
+            ".......OOO".toCharArray(),
+            "#...O###.O".toCharArray(),
+            "#.OOO#...O".toCharArray(),
+        )
+    }
+
 }
