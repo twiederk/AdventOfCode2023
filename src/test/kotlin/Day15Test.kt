@@ -6,7 +6,6 @@ class Day15Test {
 
     @Test
     fun should_load_initialization_sequence() {
-        // arrange
 
         // act
         val initializationSequence =
@@ -92,6 +91,7 @@ class Day15Test {
 
         // assert
         assertThat(boxes).hasSize(256)
+        assertThat(boxes[0].number).isEqualTo(1)
     }
 
     @Test
@@ -204,8 +204,36 @@ class Day15Test {
         assertThat(boxes[0].lenses.map { it.focalLength }).containsExactly(1, 2)
         assertThat(boxes[3].lenses).containsExactly(Lens("ot"), Lens("ab"), Lens("pc"))
         assertThat(boxes[3].lenses.map { it.focalLength }).containsExactly(7, 5, 6)
-        assertThat(boxes.filter { it.number != 0 && it.number != 3 }).allMatch { it.lenses.isEmpty() }
-
-
+        assertThat(boxes.filter { it.number != 1 && it.number != 4 }).allMatch { it.lenses.isEmpty() }
     }
+
+    @Test
+    fun should_calculate_focusing_power_of_box1() {
+        // arrange
+        val box = Box(1)
+        box.addOrUpdate(Lens("rn", 1))
+        box.addOrUpdate(Lens("cm", 2))
+
+        // act
+        val focusingPower = box.focusingPower()
+
+        // assert
+        assertThat(focusingPower).isEqualTo(5)
+    }
+
+    @Test
+    fun should_calculate_focusing_power_of_box3() {
+        // arrange
+        val box = Box(4)
+        box.addOrUpdate(Lens("ot", 7))
+        box.addOrUpdate(Lens("ab", 5))
+        box.addOrUpdate(Lens("pc", 6))
+
+        // act
+        val focusingPower = box.focusingPower()
+
+        // assert
+        assertThat(focusingPower).isEqualTo(140)
+    }
+
 }

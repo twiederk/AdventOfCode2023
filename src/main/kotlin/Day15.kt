@@ -3,7 +3,7 @@ import java.nio.file.Paths
 
 class Day15 {
 
-    val boxes = Array(256) { Box(it) }
+    val boxes = Array(256) { Box(it + 1) }
 
     fun loadInitializationSequence(path: Path): List<String> {
         return Resources.resourceAsText(path.toFile().name).split(',')
@@ -71,6 +71,14 @@ data class Box(
 
     fun remove(lens: Lens) {
         lenses.remove(lens)
+    }
+
+    fun focusingPower(): Int {
+        var focusingPower = 0
+        for ((index, lens) in lenses.withIndex()) {
+            focusingPower += number * (index + 1) * lens.focalLength
+        }
+        return focusingPower
     }
 
 }
