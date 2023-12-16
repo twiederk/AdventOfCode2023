@@ -87,13 +87,41 @@ class Day15Test {
 
     @Test
     fun should_instantiate_boxes() {
-        // arrange
 
         // act
         val boxes = Day15().boxes
 
         // assert
         assertThat(boxes).hasSize(256)
+    }
+
+    @Test
+    fun should_execute_add_instruction() {
+        // arrange
+        val day15 = Day15()
+
+        // act
+        day15.execute(Instruction("rn", '=', 1))
+
+        // assert
+        assertThat(day15.boxes[0].lenses).containsExactly(
+            Lens("rn", 1)
+        )
+
+    }
+
+    @Test
+    fun should_add_lens_to_box() {
+        // arrange
+        val box = Box(0)
+
+        // act
+        box.add(Lens("rn", 1))
+
+        // assert
+        assertThat(box.lenses).containsExactly(
+            Lens("rn", 1)
+        )
     }
 
 }

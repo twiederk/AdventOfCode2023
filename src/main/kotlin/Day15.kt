@@ -34,6 +34,11 @@ class Day15 {
         }
     }
 
+    fun execute(instruction: Instruction) {
+        val boxIndex = calculateHashCode(instruction.label)
+        boxes[boxIndex].add(Lens(instruction.label, instruction.focalLength))
+    }
+
 }
 
 data class Instruction(
@@ -44,6 +49,17 @@ data class Instruction(
 
 data class Box(
     val number: Int
+) {
+    fun add(lens: Lens) {
+        lenses.add(lens)
+    }
+
+    val lenses = mutableListOf<Lens>()
+}
+
+data class Lens(
+    val label: String,
+    val focalLength: Int
 )
 
 
