@@ -47,6 +47,15 @@ class Day15 {
         instructions.forEach { execute(it) }
     }
 
+    fun sumFocusingPower(): Int {
+        return boxes.sumOf { it.focusingPower() }
+    }
+
+    fun part2(instructions: List<Instruction>): Int {
+        instructions.forEach { execute(it) }
+        return sumFocusingPower()
+    }
+
 }
 
 data class Instruction(

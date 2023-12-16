@@ -236,4 +236,37 @@ class Day15Test {
         assertThat(focusingPower).isEqualTo(140)
     }
 
+    @Test
+    fun should_sum_focusing_power() {
+
+        // arrange
+        val day15 = Day15()
+        day15.boxes[0].addOrUpdate(Lens("rn", 1))
+        day15.boxes[0].addOrUpdate(Lens("cm", 2))
+
+        day15.boxes[3].addOrUpdate(Lens("ot", 7))
+        day15.boxes[3].addOrUpdate(Lens("ab", 5))
+        day15.boxes[3].addOrUpdate(Lens("pc", 6))
+
+
+        // act
+        val focusingPower = day15.sumFocusingPower()
+
+        // assert
+        assertThat(focusingPower).isEqualTo(145)
+    }
+
+    @Test
+    fun should_solve_part2_with_test_data() {
+        // arrange
+        val day15 = Day15()
+        val instructions = day15.loadInstructions(Paths.get("src", "test", "resources", "Day15_TestData.txt"))
+
+        // act
+        val part2 = day15.part2(instructions)
+
+        // assert
+        assertThat(part2).isEqualTo(145)
+
+    }
 }
