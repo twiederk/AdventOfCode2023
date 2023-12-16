@@ -36,7 +36,11 @@ class Day15 {
 
     fun execute(instruction: Instruction) {
         val boxIndex = calculateHashCode(instruction.label)
-        boxes[boxIndex].addOrUpdate(Lens(instruction.label, instruction.focalLength))
+        if (instruction.operation == '=') {
+            boxes[boxIndex].addOrUpdate(Lens(instruction.label, instruction.focalLength))
+        } else {
+            boxes[boxIndex].remove(Lens(instruction.label))
+        }
     }
 
 }

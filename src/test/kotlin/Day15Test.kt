@@ -124,6 +124,19 @@ class Day15Test {
         )
     }
 
+    @Test
+    fun should_execute_instruction_and_remove_lens() {
+        // arrange
+        val day15 = Day15()
+        day15.execute(Instruction("rn", '=', 1))
+
+        // act
+        day15.execute(Instruction("rn", '-'))
+
+        // assert
+        assertThat(day15.boxes[0].lenses).isEmpty()
+    }
+
 
     @Test
     fun should_add_lens_to_box() {
