@@ -25,14 +25,18 @@ class Day15 {
 
     fun loadInstructions(path: Path): List<Instruction> {
         val input = loadInitializationSequence(path)
-        return input.map {
-            if (it.length == 3) {
-                Instruction(it.substring(0..1), it[2])
-            } else {
-                Instruction(it.substring(0..1), it[2], it.substring(3).toInt())
-            }
-        }
+        return input.map { parseInstruction(it) }
     }
+
+    fun parseInstruction(data: String): Instruction =
+        if (data.contains("-")) {
+            val label = data.substringBefore('-')
+            Instruction(label, '-')
+        } else {
+            val label = data.substringBefore('=')
+            val focalLength = data.substringAfter('=').toInt()
+            Instruction(label, '=', focalLength)
+        }
 
     fun execute(instruction: Instruction) {
         val boxIndex = calculateHashCode(instruction.label)
@@ -110,4 +114,8 @@ fun main() {
         day15.loadInitializationSequence(Paths.get("src", "main", "resources", "Day15_InputData.txt"))
     val part1 = day15.part1(initializationSequence)
     println("part1 = $part1")
+
+    val instructions = day15.loadInstructions(Paths.get("src", "main", "resources", "Day15_InputData.txt"))
+    val part2 = day15.part2(instructions)
+    println("part2 = $part2")
 }

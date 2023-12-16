@@ -18,7 +18,7 @@
 | [12] | Hot Springs                     | SOLVED | NO IDEA     | Solved part 1 with brute force. Don't think I will try part 2          .                                                                       |
 | [13] | Point of Incidence              | FAILED | NOT STARTED | Tried solving of part 1 two times. Don't think I will try it once more                                                                         |
 | [14] | Parabolic Reflector Dish        | SOLVED | SOLVED      | Solved part 1 by myself. Needed research for part two. Found help in this [Video from GODdev] and as always from [Day 14 of Todd Ginsberg].    |
-| [15] | Lens Library                    | SOLVED |             |                                                                                                                                                |   
+| [15] | Lens Library                    | SOLVED | SOLVED      |                                                                                                                                                |   
 
 ## Resources
 
@@ -42,6 +42,8 @@
 [12]: src/main/kotlin/Day12.kt
 [13]: src/main/kotlin/Day13.kt
 [14]: src/main/kotlin/Day14.kt
+
+[15]: src/main/kotlin/Day15.kt
 
 [Video]: https://www.youtube.com/watch?v=UFa236NO4TU
 [vector graphics]: https://www.reddit.com/r/adventofcode/comments/18fgddy/2023_day_10_part_2_using_a_rendering_algorithm_to/

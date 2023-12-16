@@ -269,4 +269,16 @@ class Day15Test {
         assertThat(part2).isEqualTo(145)
 
     }
+
+    @Test
+    fun should_parse_instruction() {
+        // arrange
+
+        // act
+        val instruction = Day15().parseInstruction("lkpn-")
+
+        // assert
+        assertThat(instruction).isEqualTo(Instruction("lkpn", '-'))
+    }
+
 }
