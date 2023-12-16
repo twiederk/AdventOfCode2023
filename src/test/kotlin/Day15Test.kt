@@ -124,6 +124,7 @@ class Day15Test {
         )
     }
 
+
     @Test
     fun should_add_lens_to_box() {
         // arrange
@@ -136,6 +137,32 @@ class Day15Test {
         assertThat(box.lenses).containsExactly(
             Lens("rn", 1)
         )
+    }
+
+    @Test
+    fun should_remove_lens_from_box() {
+        // arrange
+        val lens = Lens("rn", 1)
+        val box = Box(0)
+        box.addOrUpdate(lens)
+
+        // act
+        box.remove(lens)
+
+        // assert
+        assertThat(box.lenses).isEmpty()
+    }
+
+    @Test
+    fun should_remove_lens_from_empty_box() {
+        // arrange
+        val box = Box(0)
+
+        // act
+        box.remove(Lens("rn", 1))
+
+        // assert
+        assertThat(box.lenses).isEmpty()
     }
 
 }

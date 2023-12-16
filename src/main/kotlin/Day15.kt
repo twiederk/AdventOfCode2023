@@ -61,6 +61,10 @@ data class Box(
         }
     }
 
+    fun remove(lens: Lens) {
+        lenses.remove(lens)
+    }
+
 }
 
 data class Lens(
