@@ -36,7 +36,7 @@ class Day15 {
 
     fun execute(instruction: Instruction) {
         val boxIndex = calculateHashCode(instruction.label)
-        boxes[boxIndex].add(Lens(instruction.label, instruction.focalLength))
+        boxes[boxIndex].addOrUpdate(Lens(instruction.label, instruction.focalLength))
     }
 
 }
@@ -50,17 +50,29 @@ data class Instruction(
 data class Box(
     val number: Int
 ) {
-    fun add(lens: Lens) {
-        lenses.add(lens)
+    val lenses = mutableListOf<Lens>()
+
+    fun addOrUpdate(lens: Lens) {
+        val existingLens = lenses.find { it.label == lens.label }
+        if (existingLens == null) {
+            lenses.add(lens)
+        } else {
+            existingLens.focalLength = lens.focalLength
+        }
     }
 
-    val lenses = mutableListOf<Lens>()
 }
 
 data class Lens(
     val label: String,
-    val focalLength: Int
-)
+) {
+    var focalLength: Int = 0
+
+    constructor(label: String, focalLength: Int) : this(label) {
+        this.focalLength = focalLength
+    }
+
+}
 
 
 fun main() {

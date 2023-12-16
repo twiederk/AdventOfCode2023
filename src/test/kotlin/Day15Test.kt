@@ -96,7 +96,7 @@ class Day15Test {
     }
 
     @Test
-    fun should_execute_add_instruction() {
+    fun should_execute_instruction_and_add_lens() {
         // arrange
         val day15 = Day15()
 
@@ -107,7 +107,21 @@ class Day15Test {
         assertThat(day15.boxes[0].lenses).containsExactly(
             Lens("rn", 1)
         )
+    }
 
+    @Test
+    fun should_execute_instruction_and_update_lens() {
+        // arrange
+        val day15 = Day15()
+        day15.execute(Instruction("rn", '=', 1))
+
+        // act
+        day15.execute(Instruction("rn", '=', 5))
+
+        // assert
+        assertThat(day15.boxes[0].lenses).containsExactly(
+            Lens("rn", 5)
+        )
     }
 
     @Test
@@ -116,7 +130,7 @@ class Day15Test {
         val box = Box(0)
 
         // act
-        box.add(Lens("rn", 1))
+        box.addOrUpdate(Lens("rn", 1))
 
         // assert
         assertThat(box.lenses).containsExactly(
