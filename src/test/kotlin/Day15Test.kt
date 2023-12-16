@@ -81,8 +81,7 @@ class Day15Test {
             Instruction("pc", '-'),
             Instruction("pc", '=', 6),
             Instruction("ot", '=', 7),
-
-            )
+        )
     }
 
     @Test
@@ -178,4 +177,35 @@ class Day15Test {
         assertThat(box.lenses).isEmpty()
     }
 
+    @Test
+    fun should_execute_all_instructions() {
+        // arrange
+        val instructions = listOf(
+            Instruction("rn", '=', 1),
+            Instruction("cm", '-'),
+            Instruction("qp", '=', 3),
+            Instruction("cm", '=', 2),
+            Instruction("qp", '-'),
+            Instruction("pc", '=', 4),
+            Instruction("ot", '=', 9),
+            Instruction("ab", '=', 5),
+            Instruction("pc", '-'),
+            Instruction("pc", '=', 6),
+            Instruction("ot", '=', 7),
+        )
+        val day15 = Day15()
+
+        // act
+        day15.executeAll(instructions)
+
+        // assert
+        val boxes = day15.boxes
+        assertThat(boxes[0].lenses).containsExactly(Lens("rn"), Lens("cm"))
+        assertThat(boxes[0].lenses.map { it.focalLength }).containsExactly(1, 2)
+        assertThat(boxes[3].lenses).containsExactly(Lens("ot"), Lens("ab"), Lens("pc"))
+        assertThat(boxes[3].lenses.map { it.focalLength }).containsExactly(7, 5, 6)
+        assertThat(boxes.filter { it.number != 0 && it.number != 3 }).allMatch { it.lenses.isEmpty() }
+
+
+    }
 }

@@ -43,6 +43,10 @@ class Day15 {
         }
     }
 
+    fun executeAll(instructions: List<Instruction>) {
+        instructions.forEach { execute(it) }
+    }
+
 }
 
 data class Instruction(
