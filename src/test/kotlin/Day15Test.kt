@@ -83,6 +83,17 @@ class Day15Test {
             Instruction("ot", '=', 7),
 
             )
-
     }
+
+    @Test
+    fun should_instantiate_boxes() {
+        // arrange
+
+        // act
+        val boxes = Day15().boxes
+
+        // assert
+        assertThat(boxes).hasSize(256)
+    }
+
 }

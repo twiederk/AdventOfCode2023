@@ -3,6 +3,8 @@ import java.nio.file.Paths
 
 class Day15 {
 
+    val boxes = Array(256) { Box(it) }
+
     fun loadInitializationSequence(path: Path): List<String> {
         return Resources.resourceAsText(path.toFile().name).split(',')
     }
@@ -39,6 +41,11 @@ data class Instruction(
     val operation: Char,
     val focalLength: Int = 0
 )
+
+data class Box(
+    val number: Int
+)
+
 
 fun main() {
     val day15 = Day15()
