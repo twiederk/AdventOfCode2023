@@ -21,7 +21,24 @@ class Day15 {
         return initializationSequence.sumOf { calculateHashCode(it) }
     }
 
+    fun loadInstructions(path: Path): List<Instruction> {
+        val input = loadInitializationSequence(path)
+        return input.map {
+            if (it.length == 3) {
+                Instruction(it.substring(0..1), it[2])
+            } else {
+                Instruction(it.substring(0..1), it[2], it.substring(3).toInt())
+            }
+        }
+    }
+
 }
+
+data class Instruction(
+    val label: String,
+    val operation: Char,
+    val focalLength: Int = 0
+)
 
 fun main() {
     val day15 = Day15()

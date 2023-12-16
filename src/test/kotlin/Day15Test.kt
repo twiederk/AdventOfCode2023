@@ -60,6 +60,29 @@ class Day15Test {
 
         // assert
         assertThat(part1).isEqualTo(1320)
+    }
+
+    @Test
+    fun should_load_instructions() {
+
+        // act
+        val instructions = Day15().loadInstructions(Paths.get("src", "test", "resources", "Day15_TestData.txt"))
+
+        // assert
+        assertThat(instructions).containsExactly(
+            Instruction("rn", '=', 1),
+            Instruction("cm", '-'),
+            Instruction("qp", '=', 3),
+            Instruction("cm", '=', 2),
+            Instruction("qp", '-'),
+            Instruction("pc", '=', 4),
+            Instruction("ot", '=', 9),
+            Instruction("ab", '=', 5),
+            Instruction("pc", '-'),
+            Instruction("pc", '=', 6),
+            Instruction("ot", '=', 7),
+
+            )
 
     }
 }
