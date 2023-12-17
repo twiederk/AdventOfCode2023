@@ -18,7 +18,7 @@ data class Contraption(
     val data: List<String>
 ) {
 
-    val visitedTiles = mutableSetOf(Beam(Point2D(0, 0), Point2D.EAST))
+    var visitedTiles = mutableSetOf(Beam(Point2D(0, 0), Point2D.EAST))
 
     private val movements: Map<Pair<Char, Point2D>, List<Point2D>> =
         mapOf(
@@ -69,8 +69,9 @@ data class Contraption(
         return nextBeams
     }
 
-    fun energize(): Int {
-        var beams = mutableListOf(visitedTiles.first())
+    fun energize(startingBeam: Beam): Int {
+        visitedTiles = mutableSetOf(startingBeam)
+        var beams = mutableListOf(startingBeam)
         var backupVisitedTileSize = visitedTiles.size
         while (beams.isNotEmpty()) {
             beams = nextMultiple(beams).toMutableList()
@@ -82,11 +83,22 @@ data class Contraption(
         }
         return visitedTiles.map { it.position }.toSet().size
     }
+
+    fun energizeTop(): Int {
+        var maxEnergizedTiles = 0
+        for (x in data[0].indices) {
+            val energizedTiles = energize(Beam(Point2D(x, 0), Point2D.SOUTH))
+            if (energizedTiles > maxEnergizedTiles) {
+                maxEnergizedTiles = energizedTiles
+            }
+        }
+        return maxEnergizedTiles
+    }
 }
 
 fun main() {
     val day16 = Day16()
     val contraption = day16.loadContraption(Paths.get("src", "main", "resources", "Day16_InputData.txt"))
-    val part1 = contraption.energize()
+    val part1 = contraption.energize(Beam(Point2D(0, 0), Point2D.EAST))
     println("part1 = $part1")
 }

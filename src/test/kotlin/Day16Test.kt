@@ -134,12 +134,20 @@ class Day16Test {
     fun should_run_beam_through_contraption() {
 
         // act
-        val energizedTiles = contraption.energize()
+        val energizedTiles = contraption.energize(Beam(Point2D(0, 0), Point2D.EAST))
 
         // assert
-        println(contraption.visitedTiles)
         assertThat(energizedTiles).isEqualTo(46)
     }
 
+    @Test
+    fun should_run_all_starting_points_from_top_row() {
 
+        // act
+        val energizedTiles = contraption.energizeTop()
+
+        // assert
+        assertThat(energizedTiles).isEqualTo(51)
+
+    }
 }
