@@ -79,6 +79,6 @@ data class Contraption(
             backupVisitedTileSize = visitedTiles.size
 
         }
-        return visitedTiles.size
+        return visitedTiles.map { it.position }.toSet().size
     }
 }
