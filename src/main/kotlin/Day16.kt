@@ -17,9 +17,9 @@ data class Contraption(
     val data: List<String>
 ) {
 
-    val visitedTiles = mutableSetOf(Point2D(0, 0))
+    val visitedTiles = mutableSetOf(Beam(Point2D(0, 0), Point2D.EAST))
 
-    val movements: Map<Pair<Char, Point2D>, List<Point2D>> =
+    private val movements: Map<Pair<Char, Point2D>, List<Point2D>> =
         mapOf(
             // NORTH = ^
             // SOUTH = v
@@ -64,14 +64,20 @@ data class Contraption(
     fun nextMultiple(beams: List<Beam>): List<Beam> {
         val nextBeams = mutableListOf<Beam>()
         beams.forEach { beam -> nextBeams.addAll(nextSingle(beam)) }
-        visitedTiles.addAll(nextBeams.map { it.position })
+        visitedTiles.addAll(nextBeams)
         return nextBeams
     }
 
     fun energize(): Int {
-        var beams = mutableListOf(Beam(visitedTiles.first(), Point2D.EAST))
+        var beams = mutableListOf(visitedTiles.first())
+        var backupVisitedTileSize = visitedTiles.size
         while (beams.isNotEmpty()) {
             beams = nextMultiple(beams).toMutableList()
+            if (backupVisitedTileSize == visitedTiles.size) {
+                break
+            }
+            backupVisitedTileSize = visitedTiles.size
+
         }
         return visitedTiles.size
     }

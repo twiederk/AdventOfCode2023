@@ -107,7 +107,7 @@ class Day16Test {
         val visitedTiles = contraption.visitedTiles
 
         // assert
-        assertThat(visitedTiles).containsExactly(Point2D(0, 0))
+        assertThat(visitedTiles).containsExactly(Beam(Point2D(0, 0), Point2D.EAST))
     }
 
     @Test
@@ -123,9 +123,10 @@ class Day16Test {
 
         // assert
         assertThat(contraption.visitedTiles).containsExactlyInAnyOrder(
-            Point2D(1, 0),
-            Point2D(0, 0),
-            Point2D(0, 2),
+            Beam(Point2D(1, 0), Point2D.EAST),
+            Beam(Point2D(0, 0), Point2D.EAST),
+            Beam(Point2D(0, 0), Point2D.NORTH),
+            Beam(Point2D(0, 2), Point2D.SOUTH),
         )
     }
 
