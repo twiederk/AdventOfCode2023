@@ -9,16 +9,59 @@ class Day16 {
 }
 
 data class Beam(
-    val point2D: Point2D,
-    val heading: Heading
-) {
-
-    enum class Heading {
-        RIGHT, LEFT, UP, DOWN
-    }
-
-}
+    val position: Point2D,
+    val heading: Point2D
+)
 
 data class Contraption(
     val data: List<String>
-)
+) {
+
+    val movements: Map<Pair<Char, Point2D>, List<Point2D>> =
+        mapOf(
+            // NORTH = ^
+            // SOUTH = v
+            // WEST = <
+            // EAST = >
+            ('.' to Point2D.NORTH) to listOf(Point2D.NORTH),
+            ('.' to Point2D.SOUTH) to listOf(Point2D.SOUTH),
+            ('.' to Point2D.EAST) to listOf(Point2D.EAST),
+            ('.' to Point2D.WEST) to listOf(Point2D.WEST),
+
+            ('/' to Point2D.NORTH) to listOf(Point2D.WEST),
+            ('/' to Point2D.SOUTH) to listOf(Point2D.EAST),
+            ('/' to Point2D.EAST) to listOf(Point2D.NORTH),
+            ('/' to Point2D.WEST) to listOf(Point2D.SOUTH),
+
+            ('\\' to Point2D.NORTH) to listOf(Point2D.EAST),
+            ('\\' to Point2D.SOUTH) to listOf(Point2D.WEST),
+            ('\\' to Point2D.EAST) to listOf(Point2D.SOUTH),
+            ('\\' to Point2D.WEST) to listOf(Point2D.NORTH),
+
+            ('|' to Point2D.NORTH) to listOf(Point2D.NORTH),
+            ('|' to Point2D.SOUTH) to listOf(Point2D.NORTH),
+            ('|' to Point2D.EAST) to listOf(Point2D.NORTH, Point2D.SOUTH),
+            ('|' to Point2D.WEST) to listOf(Point2D.NORTH, Point2D.SOUTH),
+
+            ('-' to Point2D.NORTH) to listOf(Point2D.WEST, Point2D.EAST),
+            ('-' to Point2D.SOUTH) to listOf(Point2D.WEST, Point2D.EAST),
+            ('-' to Point2D.EAST) to listOf(Point2D.EAST),
+            ('-' to Point2D.WEST) to listOf(Point2D.WEST),
+        )
+
+
+    fun nextSingle(beam: Beam): List<Beam> {
+        val char = data[beam.position.y][beam.position.x]
+        val headings = movements[(char to beam.heading)] ?: throw IllegalStateException("Can't find heading")
+
+        val nextBeams = mutableListOf<Beam>()
+        headings.forEach { heading -> nextBeams.add(Beam(beam.position + heading, heading)) }
+        return nextBeams
+    }
+
+    fun nextMultiple(beams: List<Beam>): List<Beam> {
+        val nextBeams = mutableListOf<Beam>()
+        beams.forEach { beam -> nextBeams.addAll(nextSingle(beam)) }
+        return nextBeams
+    }
+}

@@ -4,17 +4,19 @@ import java.nio.file.Paths
 
 class Day16Test {
 
-    val contraption = listOf(
-        """.|...\....""",
-        """|.-.\.....""",
-        """.....|-...""",
-        """........|.""",
-        """..........""",
-        """.........\""",
-        """..../.\\..""",
-        """.-.-/..|..""",
-        """.|....-|.\""",
-        """..//.|....""",
+    private val contraption = Contraption(
+        listOf(
+            """.|...\....""",
+            """|.-.\.....""",
+            """.....|-...""",
+            """........|.""",
+            """..........""",
+            """.........\""",
+            """..../.\\..""",
+            """.-.-/..|..""",
+            """.|....-|.\""",
+            """..//.|....""",
+        )
     )
 
     @Test
@@ -28,13 +30,34 @@ class Day16Test {
     }
 
     @Test
-    fun should_return_next_beams() {
-        // arrange
+    fun should_return_next_beams_for_a_single_beam() {
 
         // act
-//        val beams = Day16().next(beams)
+        val beams = contraption.nextSingle(Beam(Point2D(0, 0), Point2D.EAST))
 
         // assert
+        assertThat(beams).containsExactly(
+            Beam(Point2D(1, 0), Point2D.EAST)
+        )
+    }
+
+    @Test
+    fun should_return_next_beams_for_multiple_beams() {
+        // arrange
+        var beams = listOf(
+            Beam(Point2D(0, 0), Point2D.EAST),
+            Beam(Point2D(0, 1), Point2D.EAST)
+        )
+
+        // act
+        beams = contraption.nextMultiple(beams)
+
+        // assert
+        assertThat(beams).containsExactly(
+            Beam(Point2D(1, 0), Point2D.EAST),
+            Beam(Point2D(0, 0), Point2D.NORTH),
+            Beam(Point2D(0, 2), Point2D.SOUTH),
+        )
 
     }
 }
