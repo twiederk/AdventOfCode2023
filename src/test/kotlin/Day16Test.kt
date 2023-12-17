@@ -100,4 +100,33 @@ class Day16Test {
         assertThat(beams).isEmpty()
     }
 
+    @Test
+    fun should_init_visited_tiles_with_starting_position() {
+
+        // act
+        val visitedTiles = contraption.visitedTiles
+
+        // assert
+        assertThat(visitedTiles).containsExactly(Point2D(0, 0))
+    }
+
+    @Test
+    fun should_store_visited_tiles() {
+        // arrange
+        val beams = listOf(
+            Beam(Point2D(0, 0), Point2D.EAST),
+            Beam(Point2D(0, 1), Point2D.EAST)
+        )
+
+        // act
+        contraption.nextMultiple(beams)
+
+        // assert
+        assertThat(contraption.visitedTiles).containsExactlyInAnyOrder(
+            Point2D(1, 0),
+            Point2D(0, 0),
+            Point2D(0, 2),
+        )
+
+    }
 }

@@ -17,6 +17,8 @@ data class Contraption(
     val data: List<String>
 ) {
 
+    val visitedTiles = mutableSetOf(Point2D(0, 0))
+
     val movements: Map<Pair<Char, Point2D>, List<Point2D>> =
         mapOf(
             // NORTH = ^
@@ -62,6 +64,7 @@ data class Contraption(
     fun nextMultiple(beams: List<Beam>): List<Beam> {
         val nextBeams = mutableListOf<Beam>()
         beams.forEach { beam -> nextBeams.addAll(nextSingle(beam)) }
+        visitedTiles.addAll(nextBeams.map { it.position })
         return nextBeams
     }
 }
