@@ -58,6 +58,46 @@ class Day16Test {
             Beam(Point2D(0, 0), Point2D.NORTH),
             Beam(Point2D(0, 2), Point2D.SOUTH),
         )
-
     }
+
+    @Test
+    fun should_drop_beam_when_it_leaves_the_contraption_to_the_NORTH() {
+
+        // act
+        val beams = contraption.nextSingle(Beam(Point2D(9, 0), Point2D.NORTH))
+
+        // assert
+        assertThat(beams).isEmpty()
+    }
+
+    @Test
+    fun should_drop_beam_when_it_leaves_the_contraption_to_the_EAST() {
+
+        // act
+        val beams = contraption.nextSingle(Beam(Point2D(9, 0), Point2D.EAST))
+
+        // assert
+        assertThat(beams).isEmpty()
+    }
+
+    @Test
+    fun should_drop_beam_when_it_leaves_the_contraption_to_the_SOUTH() {
+
+        // act
+        val beams = contraption.nextSingle(Beam(Point2D(9, 9), Point2D.SOUTH))
+
+        // assert
+        assertThat(beams).isEmpty()
+    }
+
+    @Test
+    fun should_drop_beam_when_it_leaves_the_contraption_to_the_WEST() {
+
+        // act
+        val beams = contraption.nextSingle(Beam(Point2D(0, 9), Point2D.WEST))
+
+        // assert
+        assertThat(beams).isEmpty()
+    }
+
 }

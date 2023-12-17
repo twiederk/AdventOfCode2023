@@ -56,7 +56,7 @@ data class Contraption(
 
         val nextBeams = mutableListOf<Beam>()
         headings.forEach { heading -> nextBeams.add(Beam(beam.position + heading, heading)) }
-        return nextBeams
+        return nextBeams.filter { it.position.y >= 0 && it.position.x < data[0].length && it.position.y < data.size && it.position.x >= 0 }
     }
 
     fun nextMultiple(beams: List<Beam>): List<Beam> {
