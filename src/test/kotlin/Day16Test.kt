@@ -141,4 +141,5 @@ class Day16Test {
         assertThat(energizedTiles).isEqualTo(46)
     }
 
+
 }

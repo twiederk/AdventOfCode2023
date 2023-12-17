@@ -19,6 +19,7 @@
 | [13] | Point of Incidence              | FAILED | NOT STARTED | Tried solving of part 1 two times. Don't think I will try it once more                                                                         |
 | [14] | Parabolic Reflector Dish        | SOLVED | SOLVED      | Solved part 1 by myself. Needed research for part two. Found help in this [Video from GODdev] and as always from [Day 14 of Todd Ginsberg].    |
 | [15] | Lens Library                    | SOLVED | SOLVED      |                                                                                                                                                |   
+| [16] | The Floor Will Be Lava          | SOLVED |             | Needed help to realize that the beams could fully loop back on themselves. Again the solution form [Day 16 of Todd Ginsberg] gave me the hint. |   
 
 ## Resources
 
@@ -45,8 +46,12 @@
 
 [15]: src/main/kotlin/Day15.kt
 
+[16]: src/main/kotlin/Day16.kt
+
 [Video]: https://www.youtube.com/watch?v=UFa236NO4TU
 [vector graphics]: https://www.reddit.com/r/adventofcode/comments/18fgddy/2023_day_10_part_2_using_a_rendering_algorithm_to/
 [Day 10 of Todd Ginsberg]: https://todd.ginsberg.com/post/advent-of-code/2023/day10/
 [Day 14 of Todd Ginsberg]: https://todd.ginsberg.com/post/advent-of-code/2023/day14/
+
+[Day 16 of Todd Ginsberg]: https://todd.ginsberg.com/post/advent-of-code/2023/day16/
 [Video from GODdev]: https://www.youtube.com/watch?v=hxC3MmhyUDM

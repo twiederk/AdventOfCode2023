@@ -1,4 +1,5 @@
 import java.nio.file.Path
+import java.nio.file.Paths
 
 class Day16 {
 
@@ -81,4 +82,11 @@ data class Contraption(
         }
         return visitedTiles.map { it.position }.toSet().size
     }
+}
+
+fun main() {
+    val day16 = Day16()
+    val contraption = day16.loadContraption(Paths.get("src", "main", "resources", "Day16_InputData.txt"))
+    val part1 = contraption.energize()
+    println("part1 = $part1")
 }
