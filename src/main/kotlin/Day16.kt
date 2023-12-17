@@ -30,18 +30,18 @@ data class Contraption(
             ('.' to Point2D.EAST) to listOf(Point2D.EAST),
             ('.' to Point2D.WEST) to listOf(Point2D.WEST),
 
-            ('/' to Point2D.NORTH) to listOf(Point2D.WEST),
-            ('/' to Point2D.SOUTH) to listOf(Point2D.EAST),
+            ('/' to Point2D.NORTH) to listOf(Point2D.EAST),
+            ('/' to Point2D.SOUTH) to listOf(Point2D.WEST),
             ('/' to Point2D.EAST) to listOf(Point2D.NORTH),
             ('/' to Point2D.WEST) to listOf(Point2D.SOUTH),
 
-            ('\\' to Point2D.NORTH) to listOf(Point2D.EAST),
-            ('\\' to Point2D.SOUTH) to listOf(Point2D.WEST),
+            ('\\' to Point2D.NORTH) to listOf(Point2D.WEST),
+            ('\\' to Point2D.SOUTH) to listOf(Point2D.EAST),
             ('\\' to Point2D.EAST) to listOf(Point2D.SOUTH),
             ('\\' to Point2D.WEST) to listOf(Point2D.NORTH),
 
             ('|' to Point2D.NORTH) to listOf(Point2D.NORTH),
-            ('|' to Point2D.SOUTH) to listOf(Point2D.NORTH),
+            ('|' to Point2D.SOUTH) to listOf(Point2D.SOUTH),
             ('|' to Point2D.EAST) to listOf(Point2D.NORTH, Point2D.SOUTH),
             ('|' to Point2D.WEST) to listOf(Point2D.NORTH, Point2D.SOUTH),
 
@@ -66,5 +66,13 @@ data class Contraption(
         beams.forEach { beam -> nextBeams.addAll(nextSingle(beam)) }
         visitedTiles.addAll(nextBeams.map { it.position })
         return nextBeams
+    }
+
+    fun energize(): Int {
+        var beams = mutableListOf(Beam(visitedTiles.first(), Point2D.EAST))
+        while (beams.isNotEmpty()) {
+            beams = nextMultiple(beams).toMutableList()
+        }
+        return visitedTiles.size
     }
 }

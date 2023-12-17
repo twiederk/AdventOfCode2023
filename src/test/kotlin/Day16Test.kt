@@ -127,6 +127,17 @@ class Day16Test {
             Point2D(0, 0),
             Point2D(0, 2),
         )
-
     }
+
+    @Test
+    fun should_run_beam_through_contraption() {
+
+        // act
+        val energizedTiles = contraption.energize()
+
+        // assert
+        println(contraption.visitedTiles)
+        assertThat(energizedTiles).isEqualTo(46)
+    }
+
 }
