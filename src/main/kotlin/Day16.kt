@@ -101,4 +101,7 @@ fun main() {
     val contraption = day16.loadContraption(Paths.get("src", "main", "resources", "Day16_InputData.txt"))
     val part1 = contraption.energize(Beam(Point2D(0, 0), Point2D.EAST))
     println("part1 = $part1")
+
+    val topRow = contraption.energizeTop()
+    println("topRow = $topRow")
 }
