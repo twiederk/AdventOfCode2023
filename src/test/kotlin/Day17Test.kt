@@ -1,4 +1,4 @@
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.nio.file.Paths
 
@@ -11,7 +11,7 @@ class Day17Test {
         val heatMap = Day17().loadHeatMap(Paths.get("src", "test", "resources", "Day17_TestData.txt"))
 
         // assert
-        Assertions.assertThat(heatMap).hasSize(13)
-
+        assertThat(heatMap).hasSize(13)
     }
+
 }
