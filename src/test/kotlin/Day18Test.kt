@@ -82,6 +82,18 @@ class Day18Test {
         val digInstructions = listOf(
             DigInstruction(direction = 'R', meters = 6, colorCode = "(#70c710)"),
             DigInstruction(direction = 'D', meters = 5, colorCode = "(#0dc571)"),
+            DigInstruction(direction = 'L', meters = 2, colorCode = "(#5713f0)"),
+//            DigInstruction(direction = 'D', meters = 2, colorCode = "(#d2c081)"),
+//            DigInstruction(direction = 'R', meters = 2, colorCode = "(#59c680)"),
+//            DigInstruction(direction = 'D', meters = 2, colorCode = "(#411b91)"),
+//            DigInstruction(direction = 'L', meters = 5, colorCode = "(#8ceee2)"),
+//            DigInstruction(direction = 'U', meters = 2, colorCode = "(#caa173)"),
+//            DigInstruction(direction = 'L', meters = 1, colorCode = "(#1b58a2)"),
+//            DigInstruction(direction = 'U', meters = 2, colorCode = "(#caa171)"),
+//            DigInstruction(direction = 'R', meters = 2, colorCode = "(#7807d2)"),
+//            DigInstruction(direction = 'U', meters = 3, colorCode = "(#a77fa3)"),
+//            DigInstruction(direction = 'L', meters = 2, colorCode = "(#015232)"),
+//            DigInstruction(direction = 'U', meters = 2, colorCode = "(#7a21e3)")
         )
 
         // act
@@ -100,6 +112,8 @@ class Day18Test {
             Point2D(6, 3),
             Point2D(6, 4),
             Point2D(6, 5),
+            Point2D(5, 5),
+            Point2D(4, 5),
         )
     }
 
@@ -116,4 +130,17 @@ class Day18Test {
         assertThat(lagoon.trench).hasSize(38)
     }
 
+    @Test
+    fun should_dig_out_lagoon() {
+        // arrange
+        val lagoon = Lagoon()
+        lagoon.digTrench(digInstructions)
+
+        // act
+        lagoon.digOut()
+
+        // assert
+        assertThat(lagoon.pool.size).isEqualTo(62)
+
+    }
 }
