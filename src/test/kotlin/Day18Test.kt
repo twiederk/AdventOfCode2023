@@ -31,7 +31,6 @@ class Day18Test {
 
     @Test
     fun should_instantiate_lagoon() {
-        // arrange
 
         // act
         val lagoon = Lagoon()
@@ -44,13 +43,19 @@ class Day18Test {
 
     @Test
     fun should_create_trench_when_digging() {
-        // arrange
 
         // act
         val trench = Digger().dig(DigInstruction(direction = 'R', meters = 6, colorCode = "(#70c710)"))
 
         // assert
-        assertThat(trench).hasSize(6)
+        assertThat(trench).containsExactly(
+            Point2D(1, 0),
+            Point2D(2, 0),
+            Point2D(3, 0),
+            Point2D(4, 0),
+            Point2D(5, 0),
+            Point2D(6, 0),
+        )
     }
 
 }
