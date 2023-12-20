@@ -20,8 +20,8 @@
 | [14] | [Parabolic Reflector Dish]        | SOLVED | SOLVED      | Nice puzzle about gravity, even implemented [visualisation]. Solved part 1 by myself. Needed research for part two. Found help in this [Video from GODdev] and as always from [Day 14 of Todd Ginsberg].                                          |
 | [15] | [Lens Library]                    | SOLVED | SOLVED      | Implementation of HASH algorithm (part 1). Create data model to represent a HASHMAP (part 2)                                                                                                                                                      |   
 | [16] | [The Floor Will Be Lava]          | SOLVED | SOLVED      | 2D puzzle with loops. Needed help to realize that the beams could fully loop back on themselves. Again the solution form [Day 16 of Todd Ginsberg] gave me the hint. Used brute force for part 2. Luckily first edge I checked was the right one. |   
-| [17] | [Clumsy Crucible]                 |        |             | Dijkstra-Algorithmus                                                                                                                                                                                                                              |   
-| [18] | [Lavaduct Lagoon]                 | SOLVED | FAILED      | 2D puzzle with fill algorithm. Started part 2,  but I think I won't make it.                                                                                                                                                                      |   
+| [17] | [Clumsy Crucible]                 |        |             | Dijkstra-Algorithmus, check 2022/12                                                                                                                                                                                                               |   
+| [18] | [Lavaduct Lagoon]                 | SOLVED | FAILED      | 2D puzzle with fill algorithm. Started part 2, but I think I won't make it.                                                                                                                                                                       |   
 | [19] | [Aplenty]                         |        |             |                                                                                                                                                                                                                                                   |   
 | [20] | [Pulse Propagation]               |        |             |                                                                                                                                                                                                                                                   |   
 
@@ -49,13 +49,9 @@
 [14]: src/main/kotlin/Day14.kt
 [15]: src/main/kotlin/Day15.kt
 [16]: src/main/kotlin/Day16.kt
-
 [17]: src/main/kotlin/Day17.kt
-
 [18]: src/main/kotlin/Day18.kt
-
 [19]: src/main/kotlin/Day19.kt
-
 [20]: src/main/kotlin/Day20.kt
 
 [Video]: https://www.youtube.com/watch?v=UFa236NO4TU
