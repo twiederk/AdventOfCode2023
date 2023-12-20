@@ -143,4 +143,18 @@ class Day18Test {
         assertThat(lagoon.pool.size).isEqualTo(62)
 
     }
+
+    @Test
+    fun should_solve_part1_with_example_data() {
+        // arrange
+        val day18 = Day18()
+        val digInstructions = day18.loadDigPlan(Paths.get("src", "test", "resources", "Day18_TestData.txt"))
+
+        // act
+        val cubes = day18.part1(digInstructions)
+
+        // assert
+        assertThat(cubes).isEqualTo(62)
+
+    }
 }

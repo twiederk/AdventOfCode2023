@@ -20,6 +20,10 @@
 | [14] | [Parabolic Reflector Dish]        | SOLVED | SOLVED      | Nice puzzle about gravity, even implemented [visualisation]. Solved part 1 by myself. Needed research for part two. Found help in this [Video from GODdev] and as always from [Day 14 of Todd Ginsberg].                                          |
 | [15] | [Lens Library]                    | SOLVED | SOLVED      | Implementation of HASH algorithm (part 1). Create data model to represent a HASHMAP (part 2)                                                                                                                                                      |   
 | [16] | [The Floor Will Be Lava]          | SOLVED | SOLVED      | 2D puzzle with loops. Needed help to realize that the beams could fully loop back on themselves. Again the solution form [Day 16 of Todd Ginsberg] gave me the hint. Used brute force for part 2. Luckily first edge I checked was the right one. |   
+| [17] | [Clumsy Crucible]                 |        |             | Dijkstra-Algorithmus                                                                                                                                                                                                                              |   
+| [18] | [Lavaduct Lagoon]                 | SOLVED |             | 2D puzzle with fill algorithm.                                                                                                                                                                                                                    |   
+| [19] | [Aplenty]                         |        |             |                                                                                                                                                                                                                                                   |   
+| [20] | [Pulse Propagation]               |        |             |                                                                                                                                                                                                                                                   |   
 
 ## Resources
 
@@ -46,6 +50,14 @@
 [15]: src/main/kotlin/Day15.kt
 [16]: src/main/kotlin/Day16.kt
 
+[17]: src/main/kotlin/Day17.kt
+
+[18]: src/main/kotlin/Day18.kt
+
+[19]: src/main/kotlin/Day19.kt
+
+[20]: src/main/kotlin/Day20.kt
+
 [Video]: https://www.youtube.com/watch?v=UFa236NO4TU
 [vector graphics]: https://www.reddit.com/r/adventofcode/comments/18fgddy/2023_day_10_part_2_using_a_rendering_algorithm_to/
 [Day 10 of Todd Ginsberg]: https://todd.ginsberg.com/post/advent-of-code/2023/day10/
@@ -70,4 +82,13 @@
 [Point of Incidence]: https://adventofcode.com/2023/day/13
 [Parabolic Reflector Dish]: https://adventofcode.com/2023/day/14
 [Lens Library]: https://adventofcode.com/2023/day/15
-[The Floor Will Be Lava]: https://adventofcode.com/2023/day/16            
+
+[The Floor Will Be Lava]: https://adventofcode.com/2023/day/16
+
+[Clumsy Crucible]: https://adventofcode.com/2023/day/17
+
+[Lavaduct Lagoon]: https://adventofcode.com/2023/day/18
+
+[Aplenty]: https://adventofcode.com/2023/day/19
+
+[Pulse Propagation]: https://adventofcode.com/2023/day/20

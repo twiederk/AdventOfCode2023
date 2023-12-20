@@ -1,4 +1,5 @@
 import java.nio.file.Path
+import java.nio.file.Paths
 
 class Day18 {
 
@@ -11,6 +12,13 @@ class Day18 {
                 colorCode = it.substringAfterLast(" ")
             )
         }
+    }
+
+    fun part1(digInstructions: List<DigInstruction>): Int {
+        val lagoon = Lagoon()
+        lagoon.digTrench(digInstructions)
+        lagoon.digOut()
+        return lagoon.pool.size
     }
 }
 
@@ -31,11 +39,13 @@ class Lagoon {
 
     fun digOut() {
         val maxX = trench.maxOf { it.x }
+        val minX = trench.minOf { it.x }
         val maxY = trench.maxOf { it.y }
+        val minY = trench.minOf { it.y }
         trench.forEach { pool.add(it) }
-        for (y in 1..maxY) {
+        for (y in (minY + 1)..maxY) {
             var inside = false
-            for (x in 0..maxX) {
+            for (x in minX..maxX) {
                 if (Point2D(x, y) in trench && Point2D(x, y - 1) in trench) {
                     inside = !inside
                 }
@@ -47,9 +57,11 @@ class Lagoon {
 
     private fun print() {
         val maxX = trench.maxOf { it.x }
+        val minX = trench.minOf { it.x }
         val maxY = trench.maxOf { it.y }
-        for (y in 0..maxY) {
-            for (x in 0..maxX) {
+        val minY = trench.minOf { it.y }
+        for (y in minY..maxY) {
+            for (x in minX..maxX) {
                 if (Point2D(x, y) in pool) print("#")
                 else print(".")
             }
@@ -94,3 +106,9 @@ class Digger(
 
 }
 
+fun main() {
+    val day18 = Day18()
+    val digInstructions = day18.loadDigPlan(Paths.get("src", "main", "resources", "Day18_InputData.txt"))
+    val part1 = day18.part1(digInstructions)
+    println("part1 = $part1")
+}
