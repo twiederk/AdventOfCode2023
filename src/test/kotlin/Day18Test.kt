@@ -58,4 +58,31 @@ class Day18Test {
         )
     }
 
+    @Test
+    fun should_create_trench_when_digging_all_instructions() {
+        // arrange
+        val digInstructions = listOf(
+            DigInstruction(direction = 'R', meters = 6, colorCode = "(#70c710)"),
+            DigInstruction(direction = 'D', meters = 5, colorCode = "(#0dc571)"),
+        )
+
+        // act
+        val trench = Digger().digAll(digInstructions)
+
+        // assert
+        assertThat(trench).containsExactly(
+            Point2D(1, 0),
+            Point2D(2, 0),
+            Point2D(3, 0),
+            Point2D(4, 0),
+            Point2D(5, 0),
+            Point2D(6, 0),
+            Point2D(6, 1),
+            Point2D(6, 2),
+            Point2D(6, 3),
+            Point2D(6, 4),
+            Point2D(6, 5),
+        )
+    }
+
 }

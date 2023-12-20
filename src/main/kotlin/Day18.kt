@@ -36,8 +36,8 @@ class Digger(
         (Point2D.SOUTH to 'L') to Point2D.EAST,
         (Point2D.EAST to 'U') to Point2D.NORTH,
         (Point2D.EAST to 'D') to Point2D.SOUTH,
-        (Point2D.EAST to 'U') to Point2D.SOUTH,
-        (Point2D.EAST to 'D') to Point2D.NORTH,
+        (Point2D.WEST to 'U') to Point2D.SOUTH,
+        (Point2D.WEST to 'D') to Point2D.NORTH,
     )
 
     fun dig(digInstruction: DigInstruction): List<Point2D> {
@@ -50,6 +50,13 @@ class Digger(
         }
         return trench
     }
+
+    fun digAll(digInstructions: List<DigInstruction>): List<Point2D> {
+        val trench = mutableListOf<Point2D>()
+        digInstructions.forEach { trench.addAll(dig(it)) }
+        return trench
+    }
+
 
 }
 
