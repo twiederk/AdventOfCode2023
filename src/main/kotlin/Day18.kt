@@ -23,7 +23,7 @@ data class DigInstruction(
 class Lagoon {
     val digger: Digger = Digger()
     val trench = mutableListOf<Point2D>()
-    val pool = mutableListOf<Point2D>()
+    val pool = mutableSetOf<Point2D>()
 
     fun digTrench(digInstructions: List<DigInstruction>) {
         trench.addAll(digger.digAll(digInstructions))
@@ -32,9 +32,26 @@ class Lagoon {
     fun digOut() {
         val maxX = trench.maxOf { it.x }
         val maxY = trench.maxOf { it.y }
+        trench.forEach { pool.add(it) }
+        for (y in 1..maxY) {
+            var inside = false
+            for (x in 0..maxX) {
+                if (Point2D(x, y) in trench && Point2D(x, y - 1) in trench) {
+                    inside = !inside
+                }
+                if (inside) pool.add(Point2D(x, y))
+            }
+        }
+        print()
+    }
+
+    private fun print() {
+        val maxX = trench.maxOf { it.x }
+        val maxY = trench.maxOf { it.y }
         for (y in 0..maxY) {
             for (x in 0..maxX) {
-                print("($x, $y) ")
+                if (Point2D(x, y) in pool) print("#")
+                else print(".")
             }
             println()
         }
@@ -47,7 +64,7 @@ class Digger(
     var facing: Point2D = Point2D.NORTH
 ) {
 
-    val movement = mapOf(
+    private val movement = mapOf(
         (Point2D.NORTH to 'R') to Point2D.EAST,
         (Point2D.NORTH to 'L') to Point2D.WEST,
         (Point2D.SOUTH to 'R') to Point2D.EAST,
