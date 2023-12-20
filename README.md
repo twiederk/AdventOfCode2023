@@ -21,7 +21,7 @@
 | [15] | [Lens Library]                    | SOLVED | SOLVED      | Implementation of HASH algorithm (part 1). Create data model to represent a HASHMAP (part 2)                                                                                                                                                      |   
 | [16] | [The Floor Will Be Lava]          | SOLVED | SOLVED      | 2D puzzle with loops. Needed help to realize that the beams could fully loop back on themselves. Again the solution form [Day 16 of Todd Ginsberg] gave me the hint. Used brute force for part 2. Luckily first edge I checked was the right one. |   
 | [17] | [Clumsy Crucible]                 |        |             | Dijkstra-Algorithmus                                                                                                                                                                                                                              |   
-| [18] | [Lavaduct Lagoon]                 | SOLVED |             | 2D puzzle with fill algorithm.                                                                                                                                                                                                                    |   
+| [18] | [Lavaduct Lagoon]                 | SOLVED | FAILED      | 2D puzzle with fill algorithm. Started part 2,  but I think I won't make it.                                                                                                                                                                      |   
 | [19] | [Aplenty]                         |        |             |                                                                                                                                                                                                                                                   |   
 | [20] | [Pulse Propagation]               |        |             |                                                                                                                                                                                                                                                   |   
 
@@ -82,13 +82,8 @@
 [Point of Incidence]: https://adventofcode.com/2023/day/13
 [Parabolic Reflector Dish]: https://adventofcode.com/2023/day/14
 [Lens Library]: https://adventofcode.com/2023/day/15
-
 [The Floor Will Be Lava]: https://adventofcode.com/2023/day/16
-
 [Clumsy Crucible]: https://adventofcode.com/2023/day/17
-
 [Lavaduct Lagoon]: https://adventofcode.com/2023/day/18
-
 [Aplenty]: https://adventofcode.com/2023/day/19
-
 [Pulse Propagation]: https://adventofcode.com/2023/day/20
