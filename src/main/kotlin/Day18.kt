@@ -22,6 +22,12 @@ data class DigInstruction(
 
 class Lagoon {
     val digger: Digger = Digger()
+    val trench = mutableListOf<Point2D>()
+
+    fun digTrench(digInstructions: List<DigInstruction>) {
+        trench.addAll(digger.digAll(digInstructions))
+    }
+
 }
 
 class Digger(
@@ -56,7 +62,6 @@ class Digger(
         digInstructions.forEach { trench.addAll(dig(it)) }
         return trench
     }
-
 
 }
 
