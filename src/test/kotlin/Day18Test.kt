@@ -39,7 +39,18 @@ class Day18Test {
         // assert
         val digger = lagoon.digger
         assertThat(digger.position).isEqualTo(Point2D(0, 0))
-        assertThat(digger.facing).isEqualTo(Point2D.EAST)
+        assertThat(digger.facing).isEqualTo(Point2D.NORTH)
+    }
+
+    @Test
+    fun should_create_trench_when_digging() {
+        // arrange
+
+        // act
+        val trench = Digger().dig(DigInstruction(direction = 'R', meters = 6, colorCode = "(#70c710)"))
+
+        // assert
+        assertThat(trench).hasSize(6)
     }
 
 }
