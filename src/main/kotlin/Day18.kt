@@ -20,13 +20,28 @@ class Day18 {
         lagoon.digOut()
         return lagoon.pool.size
     }
+
+    fun decodeColorCodes(digInstructions: List<DigInstruction>): List<DigInstruction> {
+        return digInstructions.map { it.decodeColorCode() }
+    }
 }
 
 data class DigInstruction(
     val direction: Char,
     val meters: Int,
     val colorCode: String
-)
+) {
+    fun decodeColorCode(): DigInstruction {
+        val direction = when (colorCode[7]) {
+            '0' -> 'R'
+            '1' -> 'D'
+            '2' -> 'L'
+            else -> 'U'
+        }
+        val meters = Integer.decode("0x${colorCode.substring(2, 7)}")
+        return copy(direction = direction, meters = meters)
+    }
+}
 
 class Lagoon {
     val digger: Digger = Digger()
