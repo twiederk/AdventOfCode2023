@@ -29,4 +29,17 @@ class Day18Test {
         )
     }
 
+    @Test
+    fun should_instantiate_lagoon() {
+        // arrange
+
+        // act
+        val lagoon = Lagoon()
+
+        // assert
+        val digger = lagoon.digger
+        assertThat(digger.position).isEqualTo(Point2D(0, 0))
+        assertThat(digger.facing).isEqualTo(Point2D.EAST)
+    }
+
 }

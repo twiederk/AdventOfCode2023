@@ -19,3 +19,13 @@ data class DigInstruction(
     val meters: Int,
     val colorCode: String
 )
+
+class Lagoon {
+    val digger: Digger = Digger(Point2D(0, 0))
+}
+
+class Digger(
+    var position: Point2D,
+    val facing: Point2D = Point2D.EAST
+)
+
