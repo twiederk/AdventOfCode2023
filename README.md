@@ -17,13 +17,13 @@
 | [11] | [Cosmic Expansion]                | SOLVED | SOLVED      | Nice puzzle to insert elements in lists in part 1, to realize in part 2, that there is a much simpler solution based on Manhatten distance.                                                                                                       |
 | [12] | [Hot Springs]                     | SOLVED | NO IDEA     | Pattern matching and finding all possible matches. Solved part 1 with brute force. Don't think I will try part 2          .                                                                                                                       |
 | [13] | [Point of Incidence]              | FAILED | NOT STARTED | Find reflections (mirrors) in 2D grid. Tried solving of part 1 two times. Don't think I will try it once more                                                                                                                                     |
-| [14] | [Parabolic Reflector Dish]        | SOLVED | SOLVED      | Nice puzzle about gravity, even implemented [visualisation]. Solved part 1 by myself. Needed research for part two. Found help in this [Video from GODdev] and as always from [Day 14 of Todd Ginsberg].                                          |
+| [14] | [Parabolic Reflector Dish]        | SOLVED | SOLVED      | Nice puzzle about gravity, even implemented [visualisation]. Solved part 1 by myself. Needed research for part two. Found help in this [Video from GODdev] and as always from [Day 14 of Todd Ginsberg]. Unlivable implementation on [switch].    |
 | [15] | [Lens Library]                    | SOLVED | SOLVED      | Implementation of HASH algorithm (part 1). Create data model to represent a HASHMAP (part 2)                                                                                                                                                      |   
 | [16] | [The Floor Will Be Lava]          | SOLVED | SOLVED      | 2D puzzle with loops. Needed help to realize that the beams could fully loop back on themselves. Again the solution form [Day 16 of Todd Ginsberg] gave me the hint. Used brute force for part 2. Luckily first edge I checked was the right one. |   
 | [17] | [Clumsy Crucible]                 |        |             | Dijkstra-Algorithmus, check 2022/12                                                                                                                                                                                                               |   
 | [18] | [Lavaduct Lagoon]                 | SOLVED | FAILED      | 2D puzzle with fill algorithm. Started part 2, but I think I won't make it.                                                                                                                                                                       |   
-| [19] | [Aplenty]                         |        |             |                                                                                                                                                                                                                                                   |   
-| [20] | [Pulse Propagation]               |        |             |                                                                                                                                                                                                                                                   |   
+|   19 | [Aplenty]                         |        |             |                                                                                                                                                                                                                                                   |   
+|   20 | [Pulse Propagation]               |        |             |                                                                                                                                                                                                                                                   |   
 
 ## Resources
 
@@ -51,15 +51,14 @@
 [16]: src/main/kotlin/Day16.kt
 [17]: src/main/kotlin/Day17.kt
 [18]: src/main/kotlin/Day18.kt
-[19]: src/main/kotlin/Day19.kt
-[20]: src/main/kotlin/Day20.kt
 
 [Video]: https://www.youtube.com/watch?v=UFa236NO4TU
 [vector graphics]: https://www.reddit.com/r/adventofcode/comments/18fgddy/2023_day_10_part_2_using_a_rendering_algorithm_to/
 [Day 10 of Todd Ginsberg]: https://todd.ginsberg.com/post/advent-of-code/2023/day10/
 [Day 14 of Todd Ginsberg]: https://todd.ginsberg.com/post/advent-of-code/2023/day14/
-
 [visualisation]: src/main/kotlin/Day14Visualisation.kt
+
+[switch]: https://www.reddit.com/r/adventofcode/comments/18jy3tt/2023_day_14_tilting_visualization_with_nintendo/
 [Day 16 of Todd Ginsberg]: https://todd.ginsberg.com/post/advent-of-code/2023/day16/
 [Video from GODdev]: https://www.youtube.com/watch?v=hxC3MmhyUDM
 
