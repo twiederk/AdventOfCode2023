@@ -13,15 +13,15 @@ class Day17 {
     // überprüft alle Nachfolgeknoten und fügt sie der Open List hinzu, wenn entweder
     // - der Nachfolgeknoten zum ersten Mal gefunden wird, oder
     // - ein besserer Weg zu diesem Knoten gefunden wird
-    fun expandNode(heatMap: List<String>, currentAStarNode: AStarNode, closedList: List<AStarNode>): List<AStarNode> {
-        for (successor in currentAStarNode.neighbors(heatMap)) {
+    fun expandNode(heatMap: List<String>, currentHeatNode: HeatNode, closedList: List<HeatNode>): List<HeatNode> {
+        for (successor in currentHeatNode.neighbors(heatMap)) {
             if (closedList.contains(successor)) {
                 continue
             }
 
             // g-Wert für den neuen Weg berechnen: g-Wert des Vorgängers plus
             // die Kosten der gerade benutzten Kante
-            val tentativeG = currentAStarNode.g + currentAStarNode.getHeatLoss(heatMap)
+            val tentativeG = currentHeatNode.g + currentHeatNode.getHeatLoss(heatMap)
 
 //            // wenn der Nachfolgeknoten bereits auf der Open List ist,
 //            // aber der neue Weg nicht besser ist als der alte – tue nichts
@@ -42,22 +42,22 @@ class Day17 {
 //                openList.add(successor)
 //            }
         }
-        return currentAStarNode.neighbors(heatMap).filter { !closedList.contains(it) }
+        return currentHeatNode.neighbors(heatMap).filter { !closedList.contains(it) }
     }
 
 }
 
-data class AStarNode(
+data class HeatNode(
     val coords: Point2D
-) : Comparable<AStarNode> {
+) : Comparable<HeatNode> {
     var f: Int = 0
     var g: Int = 0
-    var parent: AStarNode? = null
+    var parent: HeatNode? = null
 
-    override fun compareTo(other: AStarNode): Int = f.compareTo(other.f)
+    override fun compareTo(other: HeatNode): Int = f.compareTo(other.f)
 
-    fun neighbors(heatMap: List<String>): List<AStarNode> {
-        return coords.cardinalNeighbors(heatMap).map { AStarNode(it) }
+    fun neighbors(heatMap: List<String>): List<HeatNode> {
+        return coords.cardinalNeighbors(heatMap).map { HeatNode(it) }
     }
 
     fun getHeatLoss(heatMap: List<String>): Int {
