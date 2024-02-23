@@ -5,7 +5,7 @@ import java.nio.file.Paths
 
 class Day17Test {
 
-    val heatMap = Day17().loadHeatMap(Paths.get("src", "test", "resources", "Day17_TestData.txt"))
+    private val heatMap = Day17().loadHeatMap(Paths.get("src", "test", "resources", "Day17_TestData.txt"))
 
 
     @Test
@@ -35,7 +35,7 @@ class Day17Test {
         val currentHeatNode = HeatNode(Point2D(0, 0))
 
         // act
-        val neighbors = Day17().expandNode(heatMap, currentHeatNode, emptyList())
+        val neighbors = Day17().expandNode(heatMap, currentHeatNode, emptyList(), emptyList())
 
         // assert
         assertThat(neighbors).hasSize(2)
@@ -45,9 +45,23 @@ class Day17Test {
     fun should_expand_one_neighbor_when_one_is_already_in_closed_list() {
         // arrange
         val currentHeatNode = HeatNode(Point2D(0, 0))
+        val closedList = listOf(HeatNode(Point2D(0, 1)))
 
         // act
-        val neighbors = Day17().expandNode(heatMap, currentHeatNode, listOf(HeatNode(Point2D(0, 1))))
+        val neighbors = Day17().expandNode(heatMap, currentHeatNode, closedList, emptyList())
+
+        // assert
+        assertThat(neighbors).hasSize(1)
+    }
+
+    @Test
+    fun should_expand_one_neighbor_when_one_is_in_open_list_with_better_way() {
+        // arrange
+        val currentHeatNode = HeatNode(Point2D(0, 0))
+        val openList = listOf(HeatNode(Point2D(0, 1)))
+
+        // act
+        val neighbors = Day17().expandNode(heatMap, currentHeatNode, emptyList(), openList)
 
         // assert
         assertThat(neighbors).hasSize(1)

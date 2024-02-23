@@ -13,7 +13,13 @@ class Day17 {
     // überprüft alle Nachfolgeknoten und fügt sie der Open List hinzu, wenn entweder
     // - der Nachfolgeknoten zum ersten Mal gefunden wird, oder
     // - ein besserer Weg zu diesem Knoten gefunden wird
-    fun expandNode(heatMap: List<String>, currentHeatNode: HeatNode, closedList: List<HeatNode>): List<HeatNode> {
+    fun expandNode(
+        heatMap: List<String>,
+        currentHeatNode: HeatNode,
+        closedList: List<HeatNode>,
+        openList: List<HeatNode>
+    ): List<HeatNode> {
+        val expandedNodes = mutableListOf<HeatNode>()
         for (successor in currentHeatNode.neighbors(heatMap)) {
             if (closedList.contains(successor)) {
                 continue
@@ -23,16 +29,19 @@ class Day17 {
             // die Kosten der gerade benutzten Kante
             val tentativeG = currentHeatNode.g + currentHeatNode.getHeatLoss(heatMap)
 
-//            // wenn der Nachfolgeknoten bereits auf der Open List ist,
-//            // aber der neue Weg nicht besser ist als der alte – tue nichts
-//            if (openList.contains(successor) && tentativeG >= successor.g) {
-//                continue
-//            }
-//
-//            // Vorgängerzeiger setzen und g Wert merken oder anpassen
-//            successor.parent = currentNode
-//            successor.g = tentativeG
-//
+            // wenn der Nachfolgeknoten bereits auf der Open List ist,
+            // aber der neue Weg nicht besser ist als der alte – tue nichts
+            if (openList.contains(successor)) {
+                println(tentativeG >= openList[openList.indexOf(successor)].g)
+            }
+            if (openList.contains(successor) && tentativeG >= openList[openList.indexOf(successor)].g) {
+                continue
+            }
+
+            // Vorgängerzeiger setzen und g Wert merken oder anpassen
+            successor.parent = currentHeatNode
+            successor.g = tentativeG
+
 //            // f-Wert des Knotens in der Open List aktualisieren
 //            // bzw. Knoten mit f-Wert in die Open List einfügen
 //            val f = tentativeG + distance(successor, end)
@@ -41,8 +50,9 @@ class Day17 {
 //            if (!openList.contains(successor)) {
 //                openList.add(successor)
 //            }
+            expandedNodes.add(successor)
         }
-        return currentHeatNode.neighbors(heatMap).filter { !closedList.contains(it) }
+        return expandedNodes
     }
 
 }
