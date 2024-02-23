@@ -52,4 +52,34 @@ class Day17Test {
         // assert
         assertThat(neighbors).hasSize(1)
     }
+
+    @Test
+    fun should_return_heat_loss_with_coords_0_0() {
+        // arrange
+        val heatMap = listOf(
+            "12",
+            "34",
+        )
+
+        // act
+        val heatLoss = AStarNode(Point2D(0, 0)).getHeatLoss(heatMap)
+
+        // assert
+        assertThat(heatLoss).isEqualTo(1)
+    }
+
+    @Test
+    fun should_return_heat_loss_with_coords_1_1() {
+        // arrange
+        val heatMap = listOf(
+            "12",
+            "34",
+        )
+
+        // act
+        val heatLoss = AStarNode(Point2D(1, 1)).getHeatLoss(heatMap)
+
+        // assert
+        assertThat(heatLoss).isEqualTo(4)
+    }
 }
