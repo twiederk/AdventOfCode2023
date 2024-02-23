@@ -32,13 +32,24 @@ class Day17Test {
     @Test
     fun should_expand_two_neighbor_nodes_when_current_is_upper_left_corner() {
         // arrange
-        val currentHeatNode = HeatNode(Point2D(0, 0))
+        val currentAStarNode = AStarNode(Point2D(0, 0))
 
         // act
-        val neighbors = Day17().expandNode(heatMap, currentHeatNode)
+        val neighbors = Day17().expandNode(heatMap, currentAStarNode, emptyList())
 
         // assert
         assertThat(neighbors).hasSize(2)
     }
 
+    @Test
+    fun should_expand_one_neighbor_when_one_is_already_in_closed_list() {
+        // arrange
+        val currentAStarNode = AStarNode(Point2D(0, 0))
+
+        // act
+        val neighbors = Day17().expandNode(heatMap, currentAStarNode, listOf(AStarNode(Point2D(0, 1))))
+
+        // assert
+        assertThat(neighbors).hasSize(1)
+    }
 }

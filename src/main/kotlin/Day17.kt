@@ -10,16 +10,16 @@ class Day17 {
         return 0
     }
 
-    fun expandNode(heatMap: List<String>, currentHeatNode: HeatNode): List<HeatNode> {
-        return currentHeatNode.neighbors(heatMap)
+    fun expandNode(heatMap: List<String>, currentAStarNode: AStarNode, closedList: List<AStarNode>): List<AStarNode> {
+        return currentAStarNode.neighbors(heatMap).filter { !closedList.contains(it) }
     }
 
 }
 
-data class HeatNode(
+data class AStarNode(
     val coords: Point2D
 ) {
-    fun neighbors(heatMap: List<String>): List<HeatNode> {
-        return coords.cardinalNeighbors(heatMap).map { HeatNode(it) }
+    fun neighbors(heatMap: List<String>): List<AStarNode> {
+        return coords.cardinalNeighbors(heatMap).map { AStarNode(it) }
     }
 }
