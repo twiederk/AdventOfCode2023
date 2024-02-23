@@ -7,6 +7,9 @@ class Day17 {
     }
 
     fun aStar(heatMap: List<String>): Int {
+        val expandedNotes = expandNode(heatMap, currentHeatNode, closedList, openList)
+        expandedNotes.filter { !openList.contains(it) }.forEach { openList.add(it) }
+
         return 0
     }
 
@@ -42,14 +45,12 @@ class Day17 {
             successor.parent = currentHeatNode
             successor.g = tentativeG
 
-//            // f-Wert des Knotens in der Open List aktualisieren
-//            // bzw. Knoten mit f-Wert in die Open List einfügen
-//            val f = tentativeG + distance(successor, end)
-//
-//            successor.f = f
-//            if (!openList.contains(successor)) {
-//                openList.add(successor)
-//            }
+            // f-Wert des Knotens in der Open List aktualisieren
+            // bzw. Knoten mit f-Wert in die Open List einfügen
+            val end = Point2D(heatMap[0].length - 1, heatMap.size - -1)
+            val f = tentativeG + successor.coords.manhattenDistance(end)
+            successor.f = f
+
             expandedNodes.add(successor)
         }
         return expandedNodes
