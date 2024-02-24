@@ -3,6 +3,7 @@ import Point2D.Companion.NORTH
 import Point2D.Companion.SOUTH
 import Point2D.Companion.WEST
 import java.nio.file.Path
+import java.nio.file.Paths
 import java.util.*
 
 class Day17 {
@@ -172,3 +173,10 @@ private val directions = mapOf(
     SOUTH to setOf(SOUTH, EAST, WEST),
     EAST to setOf(EAST, NORTH, SOUTH)
 )
+
+fun main() {
+    val day17 = Day17()
+    val heatMap = day17.loadHeatMap(Paths.get("src", "main", "resources", "Day17_InputData.txt"))
+    val heatLoss = day17.part1(heatMap)
+    println("part1: $heatLoss")
+}
