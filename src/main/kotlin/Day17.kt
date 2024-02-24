@@ -37,7 +37,7 @@ class Day17 {
             debug("currentNode = $currentHeatNode", debug)
 
             // Wurde das Ziel gefunden?
-            if (currentHeatNode == end) {
+            if (currentHeatNode.coords == end.coords) {
                 closedList.add(currentHeatNode)
                 return getPath(end, closedList.toList())
             }
@@ -61,7 +61,7 @@ class Day17 {
     }
 
     fun getPath(end: HeatNode, closedList: List<HeatNode>): List<HeatNode> {
-        var currentNode: HeatNode? = closedList.first { it == end }
+        var currentNode: HeatNode? = closedList.first { it.coords == end.coords }
         val path = mutableListOf<HeatNode>()
         while (currentNode != null) {
             path.add(currentNode)
