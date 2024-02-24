@@ -1,3 +1,7 @@
+import Point2D.Companion.EAST
+import Point2D.Companion.NORTH
+import Point2D.Companion.SOUTH
+import Point2D.Companion.WEST
 import java.nio.file.Path
 import java.util.*
 
@@ -15,12 +19,12 @@ class Day17 {
         val openList = PriorityQueue<HeatNode>()
         val closedList = mutableSetOf<HeatNode>()
 
-        val start = HeatNode(Point2D(0, 0))
+        val start = HeatNode(Point2D(0, 0), EAST, 0)
         val end = HeatNode(Point2D(heatMap[0].length - 1, heatMap.size - 1))
 
         // Initialisierung der Open List, die Closed List ist noch leer
         // (die Priorität bzw. der f-Wert des Startknotens ist unerheblich)
-        openList.add(start)
+        openList.addAll(start.neighbors(heatMap))
         // diese Schleife wird durchlaufen bis entweder
         // - die optimale Lösung gefunden wurde oder
         // - feststeht, dass keine Lösung existiert
@@ -112,7 +116,7 @@ class Day17 {
     }
 
     fun sumHeatLoss(heatMap: List<String>, path: List<HeatNode>): Int {
-        return path.dropLast(1).sumOf { it.getHeatLoss(heatMap) }
+        return path.sumOf { it.getHeatLoss(heatMap) }
     }
 
     fun part1(heatMap: List<String>): Int {
@@ -123,7 +127,9 @@ class Day17 {
 }
 
 data class HeatNode(
-    val coords: Point2D
+    val coords: Point2D,
+    val direction: Point2D = EAST,
+    val steps: Int = 1
 ) : Comparable<HeatNode> {
     var f: Int = 0
     var g: Int = 0
@@ -132,10 +138,37 @@ data class HeatNode(
     override fun compareTo(other: HeatNode): Int = f.compareTo(other.f)
 
     fun neighbors(heatMap: List<String>): List<HeatNode> {
-        return coords.cardinalNeighbors(heatMap).map { HeatNode(it) }
+        return directions.getValue(direction)
+            .filter { isOnHeatMap(heatMap, coords + it) }
+            .filter { isValidMove(it) }
+            .map { nextDirection ->
+                HeatNode(
+                    coords = coords + nextDirection,
+                    direction = nextDirection,
+                    steps = if (direction == nextDirection) steps + 1 else 1
+                )
+            }
+    }
+
+    private fun isOnHeatMap(heatMap: List<String>, location: Point2D): Boolean {
+        return location.x >= 0 && location.x < heatMap[0].length
+                && location.y >= 0 && location.y < heatMap.size
+    }
+
+
+    private fun isValidMove(nextDirection: Point2D): Boolean {
+        val steps = if (direction == nextDirection) steps + 1 else 1
+        return steps <= 3
     }
 
     fun getHeatLoss(heatMap: List<String>): Int {
         return heatMap[coords.y][coords.x].digitToInt()
     }
 }
+
+private val directions = mapOf(
+    NORTH to setOf(NORTH, EAST, WEST),
+    WEST to setOf(WEST, NORTH, SOUTH),
+    SOUTH to setOf(SOUTH, EAST, WEST),
+    EAST to setOf(EAST, NORTH, SOUTH)
+)

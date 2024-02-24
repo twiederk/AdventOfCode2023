@@ -1,3 +1,4 @@
+import Point2D.Companion.SOUTH
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.nio.file.Paths
@@ -43,7 +44,7 @@ class Day17Test {
     fun should_expand_one_neighbor_when_one_is_already_in_closed_list() {
         // arrange
         val currentHeatNode = HeatNode(Point2D(0, 0))
-        val closedList = setOf(HeatNode(Point2D(0, 1)))
+        val closedList = setOf(HeatNode(Point2D(0, 1), SOUTH, 1))
 
         // act
         val neighbors = Day17().expandNode(heatMap, currentHeatNode, closedList, emptyList())
@@ -56,7 +57,7 @@ class Day17Test {
     fun should_expand_one_neighbor_when_one_is_in_open_list_with_better_way() {
         // arrange
         val currentHeatNode = HeatNode(Point2D(0, 0))
-        val openList = listOf(HeatNode(Point2D(0, 1)))
+        val openList = listOf(HeatNode(Point2D(0, 1), SOUTH, 1))
 
         // act
         val neighbors = Day17().expandNode(heatMap, currentHeatNode, emptySet(), openList)
@@ -113,7 +114,7 @@ class Day17Test {
         val heatLoss = Day17().sumHeatLoss(heatMap, path)
 
         // assert
-        assertThat(heatLoss).isEqualTo(6)
+        assertThat(heatLoss).isEqualTo(7)
 
     }
 }
