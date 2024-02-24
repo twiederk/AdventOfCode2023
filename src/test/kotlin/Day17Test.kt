@@ -1,3 +1,4 @@
+import Point2D.Companion.EAST
 import Point2D.Companion.SOUTH
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -115,6 +116,28 @@ class Day17Test {
 
         // assert
         assertThat(heatLoss).isEqualTo(7)
+
+    }
+
+    @Test
+    fun should_solve_with_a_start_when_simple_map_is_given() {
+        // arrange
+        val heatMap = listOf(
+            "123",
+            "456",
+            "789",
+        )
+
+        // act
+        val path = Day17().aStar(heatMap)
+
+        // assert
+        assertThat(path).containsExactly(
+            HeatNode(coords = Point2D(x = 1, y = 0), EAST, steps = 1),
+            HeatNode(coords = Point2D(x = 2, y = 0), EAST, steps = 2),
+            HeatNode(coords = Point2D(x = 2, y = 1), SOUTH, steps = 1),
+            HeatNode(coords = Point2D(x = 2, y = 2), SOUTH, steps = 2)
+        )
 
     }
 }

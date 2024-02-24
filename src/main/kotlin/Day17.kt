@@ -12,11 +12,7 @@ class Day17 {
         return Resources.resourceAsListOfString(path.toFile().name)
     }
 
-    fun aStar(
-        heatMap: List<String>,
-        maxRounds: Int = Integer.MAX_VALUE,
-        debug: Boolean = false
-    ): List<HeatNode> {
+    fun aStar(heatMap: List<String>): List<HeatNode> {
         val openList = PriorityQueue<HeatNode>()
         val closedList = mutableSetOf<HeatNode>()
 
@@ -33,8 +29,6 @@ class Day17 {
         do {
             // Knoten mit dem geringsten f-Wert aus der Open List entfernen
             val currentHeatNode = openList.remove()
-            debug("######## round $round #############", debug)
-            debug("currentNode = $currentHeatNode", debug)
 
             // Wurde das Ziel gefunden?
             if (currentHeatNode.coords == end.coords) {
@@ -52,9 +46,8 @@ class Day17 {
             expandedNotes.filter { !openList.contains(it) }.forEach { openList.add(it) }
 
             round++
-//            debug(render(grid), debug)
 
-        } while (openList.isNotEmpty() && round < maxRounds)
+        } while (openList.isNotEmpty() && round < Integer.MAX_VALUE)
 
         // die Open List ist leer, es existiert kein Pfad zum Ziel
         return emptyList()
