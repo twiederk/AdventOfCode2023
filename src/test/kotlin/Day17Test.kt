@@ -138,6 +138,25 @@ class Day17Test {
             HeatNode(coords = Point2D(x = 2, y = 1), SOUTH, steps = 1),
             HeatNode(coords = Point2D(x = 2, y = 2), SOUTH, steps = 2)
         )
-
     }
+
+    @Test
+    fun should_find_path_when_closed_list_is_given() {
+        // arrange
+        val step1 = HeatNode(coords = Point2D(x = 1, y = 0), EAST, steps = 1)
+        val step2 = HeatNode(coords = Point2D(x = 2, y = 0), EAST, steps = 2).apply { parent = step1 }
+        val step3 = HeatNode(coords = Point2D(x = 2, y = 1), SOUTH, steps = 1).apply { parent = step2 }
+        val end = HeatNode(coords = Point2D(x = 2, y = 2), SOUTH, steps = 2).apply { parent = step3 }
+
+        val closedList = listOf(
+            end, step1, step2, step3
+        )
+
+        // act
+        val path = Day17().getPath(end, closedList)
+
+        // assert
+        assertThat(path).containsExactly(step1, step2, step3, end)
+    }
+
 }

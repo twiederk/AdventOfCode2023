@@ -63,12 +63,6 @@ class Day17 {
         return path.reversed()
     }
 
-    private fun debug(message: String, debug: Boolean) {
-        if (debug) {
-            println(message)
-        }
-    }
-
     // überprüft alle Nachfolgeknoten und fügt sie der Open List hinzu, wenn entweder
     // - der Nachfolgeknoten zum ersten Mal gefunden wird, oder
     // - ein besserer Weg zu diesem Knoten gefunden wird
