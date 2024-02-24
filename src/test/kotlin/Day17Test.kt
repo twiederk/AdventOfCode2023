@@ -1,5 +1,4 @@
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.nio.file.Paths
 
@@ -19,11 +18,10 @@ class Day17Test {
     }
 
     @Test
-    @Disabled
     fun should_solve_part_1_with_A_Star_Algorithm() {
 
         // act
-        val heatLoss = Day17().aStar(heatMap)
+        val heatLoss = Day17().part1(heatMap)
 
         // assert
         assertThat(heatLoss).isEqualTo(102)
@@ -35,7 +33,7 @@ class Day17Test {
         val currentHeatNode = HeatNode(Point2D(0, 0))
 
         // act
-        val neighbors = Day17().expandNode(heatMap, currentHeatNode, emptyList(), emptyList())
+        val neighbors = Day17().expandNode(heatMap, currentHeatNode, emptySet(), emptyList())
 
         // assert
         assertThat(neighbors).hasSize(2)
@@ -45,7 +43,7 @@ class Day17Test {
     fun should_expand_one_neighbor_when_one_is_already_in_closed_list() {
         // arrange
         val currentHeatNode = HeatNode(Point2D(0, 0))
-        val closedList = listOf(HeatNode(Point2D(0, 1)))
+        val closedList = setOf(HeatNode(Point2D(0, 1)))
 
         // act
         val neighbors = Day17().expandNode(heatMap, currentHeatNode, closedList, emptyList())
@@ -61,7 +59,7 @@ class Day17Test {
         val openList = listOf(HeatNode(Point2D(0, 1)))
 
         // act
-        val neighbors = Day17().expandNode(heatMap, currentHeatNode, emptyList(), openList)
+        val neighbors = Day17().expandNode(heatMap, currentHeatNode, emptySet(), openList)
 
         // assert
         assertThat(neighbors).hasSize(1)
@@ -95,5 +93,27 @@ class Day17Test {
 
         // assert
         assertThat(heatLoss).isEqualTo(4)
+    }
+
+    @Test
+    fun should_sum_up_heat_loss_of_all_heat_node_when_path_is_given() {
+        // arrange
+        val heatMap = listOf(
+            "12",
+            "34",
+        )
+
+        val path = listOf(
+            HeatNode(Point2D(1, 1)),
+            HeatNode(Point2D(1, 0)),
+            HeatNode(Point2D(0, 0))
+        )
+
+        // act
+        val heatLoss = Day17().sumHeatLoss(heatMap, path)
+
+        // assert
+        assertThat(heatLoss).isEqualTo(6)
+
     }
 }
