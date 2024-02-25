@@ -46,6 +46,7 @@ class Day17 {
             expandedNotes.filter { !openList.contains(it) }.forEach { openList.add(it) }
 
             round++
+            renderStep(heatMap, openList, closedList, round)
 
         } while (openList.isNotEmpty() && round < Integer.MAX_VALUE)
 
@@ -110,17 +111,17 @@ class Day17 {
 
     fun part1(heatMap: List<String>): Int {
         val path = aStar(heatMap, HeatNode::isValidMovePart1)
-        render(heatMap, path)
+        renderSolution(heatMap, path)
         return sumHeatLoss(heatMap, path)
     }
 
     fun part2(heatMap: List<String>): Int {
         val path = aStar(heatMap, HeatNode::isValidMovePart2)
-        render(heatMap, path)
+        renderSolution(heatMap, path)
         return sumHeatLoss(heatMap, path)
     }
 
-    private fun render(heatMap: List<String>, path: List<HeatNode>) {
+    private fun renderSolution(heatMap: List<String>, path: List<HeatNode>) {
         val pathDirections = path.associate { (it.coords to it.direction) }
         for ((row, line) in heatMap.withIndex()) {
             for ((col, char) in line.withIndex()) {
@@ -132,6 +133,30 @@ class Day17 {
                         WEST -> print('<')
                         EAST -> print('>')
                     }
+                } else {
+                    print(char)
+                }
+            }
+            println()
+        }
+    }
+
+    private fun renderStep(
+        heatMap: List<String>,
+        openList: PriorityQueue<HeatNode>,
+        closedList: MutableSet<HeatNode>,
+        step: Int
+    ) {
+        println("************* $step *************")
+        val openDirections = openList.associate { (it.coords to it.direction) }
+        val closedDirections = closedList.associate { (it.coords to it.direction) }
+        for ((row, line) in heatMap.withIndex()) {
+            for ((col, char) in line.withIndex()) {
+                val coords = Point2D(col, row)
+                if (openDirections.contains(coords)) {
+                    print('O')
+                } else if (closedDirections.contains(coords)) {
+                    print('C')
                 } else {
                     print(char)
                 }

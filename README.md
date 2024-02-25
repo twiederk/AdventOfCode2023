@@ -33,7 +33,6 @@
 * Day07 refactor strengthWithJoker
 * Day17
   * Implement Dijkstra-Algorithmus
-  * Render to console
   * Implement Visualisation
   * Implement solution which solves part 1 and part 2
 
