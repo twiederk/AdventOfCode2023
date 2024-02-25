@@ -110,12 +110,34 @@ class Day17 {
 
     fun part1(heatMap: List<String>): Int {
         val path = aStar(heatMap, HeatNode::isValidMovePart1)
+        render(heatMap, path)
         return sumHeatLoss(heatMap, path)
     }
 
     fun part2(heatMap: List<String>): Int {
         val path = aStar(heatMap, HeatNode::isValidMovePart2)
+        render(heatMap, path)
         return sumHeatLoss(heatMap, path)
+    }
+
+    private fun render(heatMap: List<String>, path: List<HeatNode>) {
+        val pathDirections = path.associate { (it.coords to it.direction) }
+        for ((row, line) in heatMap.withIndex()) {
+            for ((col, char) in line.withIndex()) {
+                val coords = Point2D(col, row)
+                if (pathDirections.contains(coords)) {
+                    when (pathDirections[coords]) {
+                        NORTH -> print('^')
+                        SOUTH -> print('v')
+                        WEST -> print('<')
+                        EAST -> print('>')
+                    }
+                } else {
+                    print(char)
+                }
+            }
+            println()
+        }
     }
 
 }
