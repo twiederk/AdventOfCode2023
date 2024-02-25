@@ -12,7 +12,11 @@ class Day17 {
         return Resources.resourceAsListOfString(path.toFile().name)
     }
 
-    fun aStar(heatMap: List<String>, isValidMove: (Point2D, Point2D, Int) -> Boolean): List<HeatNode> {
+    fun aStar(
+        heatMap: List<String>,
+        isValidMove: (Point2D, Point2D, Int) -> Boolean,
+        debug: Boolean = false
+    ): List<HeatNode> {
         val openList = PriorityQueue<HeatNode>()
         val closedList = mutableSetOf<HeatNode>()
 
@@ -46,7 +50,9 @@ class Day17 {
             expandedNotes.filter { !openList.contains(it) }.forEach { openList.add(it) }
 
             round++
-            renderStep(heatMap, openList, closedList, round)
+            if (debug) {
+                renderStep(heatMap, openList, closedList, round)
+            }
 
         } while (openList.isNotEmpty() && round < Integer.MAX_VALUE)
 
@@ -207,8 +213,7 @@ data class HeatNode(
         }
 
         fun isValidMovePart2(direction: Point2D, nextDirection: Point2D, steps: Int): Boolean {
-            val nextSteps = if (direction == nextDirection) steps + 1 else 1
-            return when (nextSteps) {
+            return when (steps) {
                 in 0..3 -> direction == nextDirection
                 in 4..9 -> true
                 else -> direction != nextDirection
@@ -228,7 +233,7 @@ private val directions = mapOf(
 fun main() {
     val day17 = Day17()
     val heatMap = day17.loadHeatMap(Paths.get("src", "main", "resources", "Day17_InputData.txt"))
-    val heatLoss = day17.part1(heatMap)
-    println("part1: $heatLoss")
+    println("part1: ${day17.part1(heatMap)}")
+    println("part2: ${day17.part2(heatMap)}")
 }
 

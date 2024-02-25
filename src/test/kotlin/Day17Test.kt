@@ -171,4 +171,14 @@ class Day17Test {
         assertThat(path).containsExactly(step1, step2, step3, end)
     }
 
+    @Test
+    fun should_allow_turn_to_south_when_4_steps_is_reached() {
+
+        // act
+        val result = HeatNode.isValidMovePart2(EAST, SOUTH, 4)
+
+        // assert
+        assertThat(result).isTrue()
+
+    }
 }
