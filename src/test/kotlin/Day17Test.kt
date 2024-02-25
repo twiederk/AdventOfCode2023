@@ -30,6 +30,16 @@ class Day17Test {
     }
 
     @Test
+    fun should_solve_part_2_with_A_Star_Algorithm() {
+
+        // act
+        val heatLoss = Day17().part2(heatMap)
+
+        // assert
+        assertThat(heatLoss).isEqualTo(94)
+    }
+
+    @Test
     fun should_expand_two_neighbor_nodes_when_current_is_upper_left_corner() {
         // arrange
         val currentHeatNode = HeatNode(Point2D(0, 0))

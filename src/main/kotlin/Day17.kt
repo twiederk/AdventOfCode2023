@@ -109,8 +109,12 @@ class Day17 {
     }
 
     fun part1(heatMap: List<String>): Int {
-
         val path = aStar(heatMap, HeatNode::isValidMovePart1)
+        return sumHeatLoss(heatMap, path)
+    }
+
+    fun part2(heatMap: List<String>): Int {
+        val path = aStar(heatMap, HeatNode::isValidMovePart2)
         return sumHeatLoss(heatMap, path)
     }
 
@@ -145,17 +149,6 @@ data class HeatNode(
                 && location.y >= 0 && location.y < heatMap.size
     }
 
-
-//    private fun isValidMove(nextDirection: Point2D): Boolean {
-//        val steps = if (direction == nextDirection) steps + 1 else 1
-//        return when (steps) {
-//            in 0..3 -> direction == nextDirection
-//            in 4..9 -> true
-//            else -> direction != nextDirection
-//        }
-//    }
-
-
     fun getHeatLoss(heatMap: List<String>): Int {
         return heatMap[coords.y][coords.x].digitToInt()
     }
@@ -164,6 +157,15 @@ data class HeatNode(
         fun isValidMovePart1(direction: Point2D, nextDirection: Point2D, steps: Int): Boolean {
             val nextSteps = if (direction == nextDirection) steps + 1 else 1
             return nextSteps <= 3
+        }
+
+        fun isValidMovePart2(direction: Point2D, nextDirection: Point2D, steps: Int): Boolean {
+            val nextSteps = if (direction == nextDirection) steps + 1 else 1
+            return when (nextSteps) {
+                in 0..3 -> direction == nextDirection
+                in 4..9 -> true
+                else -> direction != nextDirection
+            }
         }
 
     }
