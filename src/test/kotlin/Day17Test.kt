@@ -35,7 +35,8 @@ class Day17Test {
         val currentHeatNode = HeatNode(Point2D(0, 0))
 
         // act
-        val neighbors = Day17().expandNode(heatMap, currentHeatNode, emptySet(), emptyList())
+        val neighbors =
+            Day17().expandNode(heatMap, currentHeatNode, emptySet(), emptyList(), HeatNode::isValidMovePart1)
 
         // assert
         assertThat(neighbors).hasSize(2)
@@ -48,7 +49,8 @@ class Day17Test {
         val closedList = setOf(HeatNode(Point2D(0, 1), SOUTH, 1))
 
         // act
-        val neighbors = Day17().expandNode(heatMap, currentHeatNode, closedList, emptyList())
+        val neighbors =
+            Day17().expandNode(heatMap, currentHeatNode, closedList, emptyList(), HeatNode::isValidMovePart1)
 
         // assert
         assertThat(neighbors).hasSize(1)
@@ -61,7 +63,7 @@ class Day17Test {
         val openList = listOf(HeatNode(Point2D(0, 1), SOUTH, 1))
 
         // act
-        val neighbors = Day17().expandNode(heatMap, currentHeatNode, emptySet(), openList)
+        val neighbors = Day17().expandNode(heatMap, currentHeatNode, emptySet(), openList, HeatNode::isValidMovePart1)
 
         // assert
         assertThat(neighbors).hasSize(1)
@@ -129,7 +131,7 @@ class Day17Test {
         )
 
         // act
-        val path = Day17().aStar(heatMap)
+        val path = Day17().aStar(heatMap, HeatNode::isValidMovePart1)
 
         // assert
         assertThat(path).containsExactly(

@@ -12,7 +12,7 @@ class Day17 {
         return Resources.resourceAsListOfString(path.toFile().name)
     }
 
-    fun aStar(heatMap: List<String>): List<HeatNode> {
+    fun aStar(heatMap: List<String>, isValidMove: (Point2D, Point2D, Int) -> Boolean): List<HeatNode> {
         val openList = PriorityQueue<HeatNode>()
         val closedList = mutableSetOf<HeatNode>()
 
@@ -21,7 +21,7 @@ class Day17 {
 
         // Initialisierung der Open List, die Closed List ist noch leer
         // (die Priorität bzw. der f-Wert des Startknotens ist unerheblich)
-        openList.addAll(start.neighbors(heatMap))
+        openList.addAll(start.neighbors(heatMap, isValidMove))
         // diese Schleife wird durchlaufen bis entweder
         // - die optimale Lösung gefunden wurde oder
         // - feststeht, dass keine Lösung existiert
@@ -42,7 +42,7 @@ class Day17 {
 
             // Wenn das Ziel noch nicht gefunden wurde: Nachfolgeknoten
             // des aktuellen Knotens auf die Open List setzen
-            val expandedNotes = expandNode(heatMap, currentHeatNode, closedList, openList.toList())
+            val expandedNotes = expandNode(heatMap, currentHeatNode, closedList, openList.toList(), isValidMove)
             expandedNotes.filter { !openList.contains(it) }.forEach { openList.add(it) }
 
             round++
@@ -70,10 +70,11 @@ class Day17 {
         heatMap: List<String>,
         currentHeatNode: HeatNode,
         closedList: Set<HeatNode>,
-        openList: List<HeatNode>
+        openList: List<HeatNode>,
+        isValidMove: (Point2D, Point2D, Int) -> Boolean
     ): List<HeatNode> {
         val expandedNodes = mutableListOf<HeatNode>()
-        for (successor in currentHeatNode.neighbors(heatMap)) {
+        for (successor in currentHeatNode.neighbors(heatMap, isValidMove)) {
             if (closedList.contains(successor)) {
                 continue
             }
@@ -108,7 +109,8 @@ class Day17 {
     }
 
     fun part1(heatMap: List<String>): Int {
-        val path = aStar(heatMap)
+
+        val path = aStar(heatMap, HeatNode::isValidMovePart1)
         return sumHeatLoss(heatMap, path)
     }
 
@@ -125,10 +127,10 @@ data class HeatNode(
 
     override fun compareTo(other: HeatNode): Int = f.compareTo(other.f)
 
-    fun neighbors(heatMap: List<String>): List<HeatNode> {
+    fun neighbors(heatMap: List<String>, isValidMove: (Point2D, Point2D, Int) -> Boolean): List<HeatNode> {
         return directions.getValue(direction)
             .filter { isOnHeatMap(heatMap, coords + it) }
-            .filter { isValidMove(it) }
+            .filter { isValidMove(this.direction, it, this.steps) }
             .map { nextDirection ->
                 HeatNode(
                     coords = coords + nextDirection,
@@ -144,13 +146,26 @@ data class HeatNode(
     }
 
 
-    private fun isValidMove(nextDirection: Point2D): Boolean {
-        val steps = if (direction == nextDirection) steps + 1 else 1
-        return steps <= 3
-    }
+//    private fun isValidMove(nextDirection: Point2D): Boolean {
+//        val steps = if (direction == nextDirection) steps + 1 else 1
+//        return when (steps) {
+//            in 0..3 -> direction == nextDirection
+//            in 4..9 -> true
+//            else -> direction != nextDirection
+//        }
+//    }
+
 
     fun getHeatLoss(heatMap: List<String>): Int {
         return heatMap[coords.y][coords.x].digitToInt()
+    }
+
+    companion object {
+        fun isValidMovePart1(direction: Point2D, nextDirection: Point2D, steps: Int): Boolean {
+            val nextSteps = if (direction == nextDirection) steps + 1 else 1
+            return nextSteps <= 3
+        }
+
     }
 }
 
@@ -167,3 +182,4 @@ fun main() {
     val heatLoss = day17.part1(heatMap)
     println("part1: $heatLoss")
 }
+

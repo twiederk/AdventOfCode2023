@@ -31,6 +31,11 @@
 * Replace for-loop with streams everywhere
 * Day05 optimize performance of part 2
 * Day07 refactor strengthWithJoker
+* Day17
+  * Implement Dijkstra-Algorithmus
+  * Render to console
+  * Implement Visualisation
+  * Implement solution which solves part 1 and part 2
 
 
 [1]: src/main/kotlin/Day01.kt
