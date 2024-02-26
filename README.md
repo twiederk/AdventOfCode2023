@@ -20,10 +20,15 @@
 | [14] | [Parabolic Reflector Dish]        | SOLVED | SOLVED      | Nice puzzle about gravity, even implemented [visualisation]. Solved part 1 by myself. Needed research for part two. Found help in this [Video from GODdev] and as always from [Day 14 of Todd Ginsberg]. Unlivable implementation on [switch].    |
 | [15] | [Lens Library]                    | SOLVED | SOLVED      | Implementation of HASH algorithm (part 1). Create data model to represent a HASHMAP (part 2)                                                                                                                                                      |   
 | [16] | [The Floor Will Be Lava]          | SOLVED | SOLVED      | 2D puzzle with loops. Needed help to realize that the beams could fully loop back on themselves. Again the solution form [Day 16 of Todd Ginsberg] gave me the hint. Used brute force for part 2. Luckily first edge I checked was the right one. |   
-| [17] | [Clumsy Crucible]                 | SOLVED | SOLVED      | Used A* Algorithm, but Dijkstra-Algorithmus should be enough, check also 2022/12                                                                                                                                                                  |   
+| [17] | [Clumsy Crucible]                 | SOLVED | SOLVED      | Used A* Algorithm, but Dijkstra-Algorithm should be enough, check also 2022/12                                                                                                                                                                    |   
 | [18] | [Lavaduct Lagoon]                 | SOLVED | FAILED      | 2D puzzle with fill algorithm. Started part 2, but I think I won't make it.                                                                                                                                                                       |   
 |   19 | [Aplenty]                         |        |             |                                                                                                                                                                                                                                                   |   
 |   20 | [Pulse Propagation]               |        |             |                                                                                                                                                                                                                                                   |   
+|   21 | [Step Counter]                    |        |             |                                                                                                                                                                                                                                                   |   
+|   22 | [Sand Slabs]                      |        |             |                                                                                                                                                                                                                                                   |   
+|   23 | [A Long Walk]                     |        |             |                                                                                                                                                                                                                                                   |   
+|   24 | [Never Tell Me The Odds]          |        |             |                                                                                                                                                                                                                                                   |   
+|   25 | [Snowverload]                     |        |             |                                                                                                                                                                                                                                                   |   
 
 ## Resources
 
@@ -84,3 +89,13 @@
 [Lavaduct Lagoon]: https://adventofcode.com/2023/day/18
 [Aplenty]: https://adventofcode.com/2023/day/19
 [Pulse Propagation]: https://adventofcode.com/2023/day/20
+
+[Step Counter]: https://adventofcode.com/2023/day/21
+
+[Sand Slabs]: https://adventofcode.com/2023/day/22
+
+[A Long Walk]: https://adventofcode.com/2023/day/23
+
+[Never Tell Me The Odds]: https://adventofcode.com/2023/day/24
+
+[Snowverload]: https://adventofcode.com/2023/day/25
