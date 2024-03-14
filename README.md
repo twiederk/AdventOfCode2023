@@ -22,7 +22,7 @@
 | [16] | [The Floor Will Be Lava]          | SOLVED | SOLVED      | 2D puzzle with loops. Needed help to realize that the beams could fully loop back on themselves. Again the solution form [Day 16 of Todd Ginsberg] gave me the hint. Used brute force for part 2. Luckily first edge I checked was the right one. |   
 | [17] | [Clumsy Crucible]                 | SOLVED | SOLVED      | Used A* Algorithm, check also [2022/12]. [Day 17 of Todd Ginsberg] uses Dijkstra-Algorithm                                                                                                                                                        |   
 | [18] | [Lavaduct Lagoon]                 | SOLVED | FAILED      | 2D puzzle with fill algorithm. Started part 2, but I think I won't make it.                                                                                                                                                                       |   
-|   19 | [Aplenty]                         |        |             |                                                                                                                                                                                                                                                   |   
+| [19] | [Aplenty]                         | SOLVED | NO IDEA     | Sending a part through a list of workflows based on rules of each workflow. No idea how to solve the 2nd part                                                                                                                                     |   
 |   20 | [Pulse Propagation]               |        |             |                                                                                                                                                                                                                                                   |   
 |   21 | [Step Counter]                    |        |             |                                                                                                                                                                                                                                                   |   
 |   22 | [Sand Slabs]                      |        |             |                                                                                                                                                                                                                                                   |   
@@ -58,6 +58,8 @@
 [16]: src/main/kotlin/Day16.kt
 [17]: src/main/kotlin/Day17.kt
 [18]: src/main/kotlin/Day18.kt
+
+[19]: src/main/kotlin/Day19.kt
 
 [Video]: https://www.youtube.com/watch?v=UFa236NO4TU
 [vector graphics]: https://www.reddit.com/r/adventofcode/comments/18fgddy/2023_day_10_part_2_using_a_rendering_algorithm_to/
