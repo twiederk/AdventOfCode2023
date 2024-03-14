@@ -82,6 +82,10 @@ data class Part(val line: String) {
         throw IllegalArgumentException("Unknown field $field")
     }
 
+    fun rating(): Int {
+        return x + m + a + s
+    }
+
 }
 
 // s>2770:qs

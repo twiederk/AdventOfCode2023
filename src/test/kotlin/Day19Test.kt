@@ -18,11 +18,11 @@ class Day19Test {
         "hdj" to Workflow("hdj{m>838:A,pv}"),
     )
 
-    private val part1 = Part("{x=2127,m=1623,a=2188,s=1013}")
-    private val part2 = Part("{x=2461,m=1339,a=466,s=291}")
+    private val part1 = Part("{x=787,m=2655,a=1222,s=2876}")
+    private val part2 = Part("{x=1679,m=44,a=2067,s=496}")
     private val part3 = Part("{x=2036,m=264,a=79,s=2244}")
-    private val part4 = Part("{x=1679,m=44,a=2067,s=496}")
-    private val part5 = Part("{x=787,m=2655,a=1222,s=2876}")
+    private val part4 = Part("{x=2461,m=1339,a=466,s=291}")
+    private val part5 = Part("{x=2127,m=1623,a=2188,s=1013}")
 
 
     private val parts = listOf(part1, part2, part3, part4, part5)
@@ -135,7 +135,7 @@ class Day19Test {
     @Test
     fun should_run_workflows_with_part1() {
         // act
-        val result = Day19().runWorkflows(workflows, part1)
+        val result = Day19().runWorkflows(workflows, part5)
 
         // assert
         // in -> qqz -> qs -> lnx -> A
@@ -145,7 +145,7 @@ class Day19Test {
     @Test
     fun should_run_workflows_with_part2() {
         // act
-        val result = Day19().runWorkflows(workflows, part2)
+        val result = Day19().runWorkflows(workflows, part4)
 
         // assert
         // in -> px -> rfg -> gd -> R
@@ -165,7 +165,7 @@ class Day19Test {
     @Test
     fun should_run_workflows_with_part4() {
         // act
-        val result = Day19().runWorkflows(workflows, part4)
+        val result = Day19().runWorkflows(workflows, part2)
 
         // assert
         // in -> px -> qkq -> crn -> R
@@ -193,5 +193,15 @@ class Day19Test {
 
         // assert
         assertThat(result).containsExactly(part1, part3, part5)
+    }
+
+    @Test
+    fun should_calculate_value_of_part_1() {
+
+        // act
+        val result = part1.rating()
+
+        // assert
+        assertThat(result).isEqualTo(7540)
     }
 }
