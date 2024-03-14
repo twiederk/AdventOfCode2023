@@ -2,9 +2,9 @@ import java.nio.file.Path
 
 class Day19 {
 
-    fun loadWorkflows(path: Path): List<String> {
+    fun loadWorkflows(path: Path): Map<String, Workflow> {
         val lines = Resources.resourceAsListOfString(path.toFile().name)
-        return lines.subList(0, lines.indexOf(""))
+        return lines.subList(0, lines.indexOf("")).map { Workflow(it) }.associateBy { it.key }
     }
 
     fun loadParts(path: Path): List<String> {

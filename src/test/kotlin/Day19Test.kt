@@ -12,6 +12,19 @@ class Day19Test {
 
         // assert
         assertThat(workflows).hasSize(11)
+        assertThat(workflows.keys).containsExactly(
+            "px",
+            "pv",
+            "lnx",
+            "rfg",
+            "qs",
+            "qkq",
+            "crn",
+            "in",
+            "qqz",
+            "gd",
+            "hdj",
+        )
     }
 
     @Test
