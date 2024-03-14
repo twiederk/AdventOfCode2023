@@ -7,9 +7,9 @@ class Day19 {
         return lines.subList(0, lines.indexOf("")).map { Workflow(it) }.associateBy { it.key }
     }
 
-    fun loadParts(path: Path): List<String> {
+    fun loadParts(path: Path): List<Part> {
         val lines = Resources.resourceAsListOfString(path.toFile().name)
-        return lines.subList(lines.indexOf("") + 1, lines.size)
+        return lines.subList(lines.indexOf("") + 1, lines.size).map { Part(it) }
     }
 
     fun runWorkflows(workflows: Map<String, Workflow>, part1: Part): String {
@@ -25,6 +25,14 @@ class Day19 {
 
     fun runWorkflowsAll(workflows: Map<String, Workflow>, parts: List<Part>): List<Part> {
         return parts.filter { part -> runWorkflows(workflows, part) == "A" }
+    }
+
+    fun sumOfRatings(parts: List<Part>): Int {
+        return parts.sumOf { it.rating() }
+    }
+
+    fun part1(workflows: Map<String, Workflow>, parts: List<Part>): Int {
+        return sumOfRatings(runWorkflowsAll(workflows, parts))
     }
 
 }
@@ -108,6 +116,12 @@ data class Rule(val line: String) {
             next = line
         }
     }
+}
 
+fun main() {
+    val day19 = Day19()
+    val workflows = day19.loadWorkflows(Path.of("src/main/resources/Day19_InputData.txt"))
+    val parts = day19.loadParts(Path.of("src/main/resources/Day19_InputData.txt"))
+    println("part1: " + day19.part1(workflows, parts))
 }
 

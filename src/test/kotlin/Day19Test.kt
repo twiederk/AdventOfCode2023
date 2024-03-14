@@ -56,7 +56,7 @@ class Day19Test {
         val parts = Day19().loadParts(Paths.get("src", "test", "resources", "Day19_TestData.txt"))
 
         // assert
-        assertThat(parts).hasSize(5)
+        assertThat(parts).containsExactly(part1, part2, part3, part4, part5)
     }
 
     @Test
@@ -196,12 +196,37 @@ class Day19Test {
     }
 
     @Test
-    fun should_calculate_value_of_part_1() {
+    fun should_calculate_rating_of_part_1() {
 
         // act
-        val result = part1.rating()
+        val rating = part1.rating()
 
         // assert
-        assertThat(result).isEqualTo(7540)
+        assertThat(rating).isEqualTo(7540)
+    }
+
+
+    @Test
+    fun should_calculate_rating_of_all_parts() {
+
+        // act
+        val sumOfRatings = Day19().sumOfRatings(listOf(part1, part3, part5))
+
+        // assert
+        assertThat(sumOfRatings).isEqualTo(19114)
+    }
+
+    @Test
+    fun should_solve_part1() {
+        // arrange
+        val day19 = Day19()
+        val workflows = day19.loadWorkflows(Paths.get("src", "test", "resources", "Day19_TestData.txt"))
+        val parts = day19.loadParts(Paths.get("src", "test", "resources", "Day19_TestData.txt"))
+
+        // act
+        val result = day19.part1(workflows, parts)
+
+        // assert
+        assertThat(result).isEqualTo(19114)
     }
 }
