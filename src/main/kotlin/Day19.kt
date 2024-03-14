@@ -22,16 +22,20 @@ class Day19 {
         }
         throw IllegalStateException("Invalid workflow")
     }
+
+    fun runWorkflowsAll(workflows: Map<String, Workflow>, parts: List<Part>): List<Part> {
+        return parts.filter { part -> runWorkflows(workflows, part) == "A" }
+    }
+
 }
 
 // qqz{s>2770:qs,m<1801:hdj,R}
 data class Workflow(val line: String) {
 
-    val key: String
+    val key: String = line.substringBefore("{")
     val rules = mutableListOf<Rule>()
 
     init {
-        key = line.substringBefore("{")
         line.substringAfter("{").substringBefore("}").split(',')
             .forEach { rules.add(Rule(it)) }
     }
