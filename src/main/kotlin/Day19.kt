@@ -15,15 +15,13 @@ class Day19 {
     fun runWorkflows(workflows: Map<String, Workflow>, part1: Part): String {
         var workflow = workflows["in"]!!
         while (workflow.key != "R" && workflow.key != "A") {
-            println(workflow.key)
+//            println(workflow.key)
             val nextKey = workflow.next(part1)
             val nextWorkflow = workflows[nextKey] ?: return nextKey
             workflow = nextWorkflow
         }
         throw IllegalStateException("Invalid workflow")
     }
-
-
 }
 
 // qqz{s>2770:qs,m<1801:hdj,R}

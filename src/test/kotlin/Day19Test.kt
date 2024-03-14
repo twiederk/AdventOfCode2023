@@ -4,6 +4,20 @@ import java.nio.file.Paths
 
 class Day19Test {
 
+    private val workflows = mapOf(
+        "px" to Workflow("px{a<2006:qkq,m>2090:A,rfg}"),
+        "pv" to Workflow("pv{a>1716:R,A}"),
+        "lnx" to Workflow("lnx{m>1548:A,A}"),
+        "rfg" to Workflow("rfg{s<537:gd,x>2440:R,A}"),
+        "qs" to Workflow("qs{s>3448:A,lnx}"),
+        "qkq" to Workflow("qkq{x<1416:A,crn}"),
+        "crn" to Workflow("crn{x>2662:A,R}"),
+        "in" to Workflow("in{s<1351:px,qqz}"),
+        "qqz" to Workflow("qqz{s>2770:qs,m<1801:hdj,R}"),
+        "gd" to Workflow("gd{a>3333:R,R}"),
+        "hdj" to Workflow("hdj{m>838:A,pv}"),
+    )
+
     @Test
     fun should_load_workflows() {
 
@@ -25,7 +39,6 @@ class Day19Test {
             "gd",
             "hdj",
         )
-        println(workflows)
     }
 
     @Test
@@ -113,19 +126,6 @@ class Day19Test {
     @Test
     fun should_run_workflows_with_part1() {
         // arrange
-        val workflows = mapOf(
-            "px" to Workflow("px{a<2006:qkq,m>2090:A,rfg}"),
-            "pv" to Workflow("pv{a>1716:R,A}"),
-            "lnx" to Workflow("lnx{m>1548:A,A}"),
-            "rfg" to Workflow("rfg{s<537:gd,x>2440:R,A}"),
-            "qs" to Workflow("qs{s>3448:A,lnx}"),
-            "qkq" to Workflow("qkq{x<1416:A,crn}"),
-            "crn" to Workflow("crn{x>2662:A,R}"),
-            "in" to Workflow("in{s<1351:px,qqz}"),
-            "qqz" to Workflow("qqz{s>2770:qs,m<1801:hdj,R}"),
-            "gd" to Workflow("gd{a>3333:R,R}"),
-            "hdj" to Workflow("hdj{m>838:A,pv}"),
-        )
         val part1 = Part("{x=787,m=2655,a=1222,s=2876}")
 
 
@@ -136,4 +136,61 @@ class Day19Test {
         // in -> qqz -> qs -> lnx -> A
         assertThat(result).isEqualTo("A")
     }
+
+    @Test
+    fun should_run_workflows_with_part2() {
+        // arrange
+        val part2 = Part("{x=1679,m=44,a=2067,s=496}")
+
+
+        // act
+        val result = Day19().runWorkflows(workflows, part2)
+
+        // assert
+        // in -> px -> rfg -> gd -> R
+        assertThat(result).isEqualTo("R")
+    }
+
+    @Test
+    fun should_run_workflows_with_part3() {
+        // arrange
+        val part3 = Part("{x=2036,m=264,a=79,s=2244}")
+
+
+        // act
+        val result = Day19().runWorkflows(workflows, part3)
+
+        // assert
+        // in -> qqz -> hdj -> pv -> A
+        assertThat(result).isEqualTo("A")
+    }
+
+    @Test
+    fun should_run_workflows_with_part4() {
+        // arrange
+        val part4 = Part("{x=2461,m=1339,a=466,s=291}")
+
+
+        // act
+        val result = Day19().runWorkflows(workflows, part4)
+
+        // assert
+        // in -> px -> qkq -> crn -> R
+        assertThat(result).isEqualTo("R")
+    }
+
+    @Test
+    fun should_run_workflows_with_part5() {
+        // arrange
+        val part5 = Part("{x=2127,m=1623,a=2188,s=1013}")
+
+
+        // act
+        val result = Day19().runWorkflows(workflows, part5)
+
+        // assert
+        // in -> px -> rfg -> A
+        assertThat(result).isEqualTo("A")
+    }
+
 }
