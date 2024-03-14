@@ -25,6 +25,7 @@ class Day19Test {
             "gd",
             "hdj",
         )
+        println(workflows)
     }
 
     @Test
@@ -109,4 +110,30 @@ class Day19Test {
         assertThat(rule.next).isEqualTo("srfg")
     }
 
+    @Test
+    fun should_run_workflows_with_part1() {
+        // arrange
+        val workflows = mapOf(
+            "px" to Workflow("px{a<2006:qkq,m>2090:A,rfg}"),
+            "pv" to Workflow("pv{a>1716:R,A}"),
+            "lnx" to Workflow("lnx{m>1548:A,A}"),
+            "rfg" to Workflow("rfg{s<537:gd,x>2440:R,A}"),
+            "qs" to Workflow("qs{s>3448:A,lnx}"),
+            "qkq" to Workflow("qkq{x<1416:A,crn}"),
+            "crn" to Workflow("crn{x>2662:A,R}"),
+            "in" to Workflow("in{s<1351:px,qqz}"),
+            "qqz" to Workflow("qqz{s>2770:qs,m<1801:hdj,R}"),
+            "gd" to Workflow("gd{a>3333:R,R}"),
+            "hdj" to Workflow("hdj{m>838:A,pv}"),
+        )
+        val part1 = Part("{x=787,m=2655,a=1222,s=2876}")
+
+
+        // act
+        val result = Day19().runWorkflows(workflows, part1)
+
+        // assert
+        // in -> qqz -> qs -> lnx -> A
+        assertThat(result).isEqualTo("A")
+    }
 }

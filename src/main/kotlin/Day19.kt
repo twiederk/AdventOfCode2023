@@ -12,6 +12,17 @@ class Day19 {
         return lines.subList(lines.indexOf("") + 1, lines.size)
     }
 
+    fun runWorkflows(workflows: Map<String, Workflow>, part1: Part): String {
+        var workflow = workflows["in"]!!
+        while (workflow.key != "R" && workflow.key != "A") {
+            println(workflow.key)
+            val nextKey = workflow.next(part1)
+            val nextWorkflow = workflows[nextKey] ?: return nextKey
+            workflow = nextWorkflow
+        }
+        throw IllegalStateException("Invalid workflow")
+    }
+
 
 }
 
