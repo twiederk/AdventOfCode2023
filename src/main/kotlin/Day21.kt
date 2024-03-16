@@ -37,6 +37,7 @@ class Day21 {
             }
             current.position.cardinalNeighbors(smallestMap)
                 .filter { !isRock(smallestMap, it) }
+                .filter { it !in queue.map { queueElement -> queueElement.position } }
                 .forEach {
                     queue.add(Work(it, current.steps + 1))
                 }
