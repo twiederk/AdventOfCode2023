@@ -220,4 +220,43 @@ class Day21Test {
         assertThat(result).isEqualTo(16)
     }
 
+    @Test
+    fun should_find_rock_on_infinite_map_in_positive_x() {
+
+        // act
+        val rock = Day21().isRock(mapOfGarden, Point2D(12, 5))
+
+        // assert
+        assertThat(rock).isTrue()
+    }
+
+    @Test
+    fun should_find_rock_on_infinite_map_in_negative_x() {
+
+        // act
+        val rock = Day21().isRock(mapOfGarden, Point2D(-2, 5))
+
+        // assert
+        assertThat(rock).isTrue()
+    }
+
+    @Test
+    fun should_find_rock_on_infinite_map_in_positive_y() {
+
+        // act
+        val rock = Day21().isRock(mapOfGarden, Point2D(5, 12))
+
+        // assert
+        assertThat(rock).isTrue()
+    }
+
+    @Test
+    fun should_find_rock_on_infinite_map_in_negative_y() {
+
+        // act
+        val rock = Day21().isRock(mapOfGarden, Point2D(5, -2))
+
+        // assert
+        assertThat(rock).isTrue()
+    }
 }

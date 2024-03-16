@@ -14,7 +14,17 @@ class Day21 {
     }
 
     fun isRock(mapOfGarden: List<String>, coords: Point2D): Boolean {
-        return mapOfGarden[coords.y][coords.x] == '#'
+        val x = if (coords.x >= 0) {
+            coords.x % mapOfGarden[0].length
+        } else {
+            mapOfGarden[0].length + (coords.x % mapOfGarden[0].length)
+        }
+        val y = if (coords.y >= 0) {
+            coords.y % mapOfGarden.size
+        } else {
+            mapOfGarden.size + (coords.y % mapOfGarden.size)
+        }
+        return mapOfGarden[y][x] == '#'
     }
 
     fun render(mapOfGard: List<String>, finalSteps: List<Point2D>): String {
