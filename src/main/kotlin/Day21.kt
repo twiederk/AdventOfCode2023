@@ -44,6 +44,12 @@ class Day21 {
         return finalSteps.map { it.position }
     }
 
+    fun part1(mapOfGarden: List<String>, maxSteps: Int): Int {
+        val startingPosition = startingPosition(mapOfGarden)
+        val finalSteps = bfs(mapOfGarden, startingPosition, maxSteps)
+        return finalSteps.count()
+    }
+
 
 }
 

@@ -101,7 +101,7 @@ class Day21Test {
     }
 
     @Test
-    fun should_find_final_steps_with_step_1() {
+    fun should_find_final_steps_when_smallest_map_with_step_1() {
 
         // act
         val finalSteps = Day21().bfs(smallestMap, Point2D(0, 1), 1)
@@ -110,4 +110,114 @@ class Day21Test {
         assertThat(finalSteps).contains(Point2D(0, 0), Point2D(0, 0), Point2D(1, 1), Point2D(0, 2))
 
     }
+
+    @Test
+    fun should_find_final_steps_when_map_of_garden_with_step_1() {
+
+        // act
+        val finalSteps = Day21().bfs(mapOfGarden, Point2D(5, 5), 1)
+
+        // assert
+        val renderedMap = Day21().render(mapOfGarden, finalSteps)
+        assertThat(renderedMap).isEqualTo(
+            """
+            ...........
+            .....###.#.
+            .###.##..#.
+            ..#.#...#..
+            ....#O#....
+            .##.OS####.
+            .##..#...#.
+            .......##..
+            .##.#.####.
+            .##..##.##.
+            ...........
+            """.trimIndent()
+        )
+    }
+
+    @Test
+    fun should_find_final_steps_when_map_of_garden_with_step_2() {
+
+        // act
+        val finalSteps = Day21().bfs(mapOfGarden, Point2D(5, 5), 2)
+
+        // assert
+        val renderedMap = Day21().render(mapOfGarden, finalSteps)
+        assertThat(renderedMap).isEqualTo(
+            """
+            ...........
+            .....###.#.
+            .###.##..#.
+            ..#.#O..#..
+            ....#.#....
+            .##O.O####.
+            .##.O#...#.
+            .......##..
+            .##.#.####.
+            .##..##.##.
+            ...........
+            """.trimIndent()
+        )
+    }
+
+    @Test
+    fun should_find_final_steps_when_map_of_garden_with_step_3() {
+
+        // act
+        val finalSteps = Day21().bfs(mapOfGarden, Point2D(5, 5), 3)
+
+        // assert
+        val renderedMap = Day21().render(mapOfGarden, finalSteps)
+        assertThat(renderedMap).isEqualTo(
+            """
+            ...........
+            .....###.#.
+            .###.##..#.
+            ..#.#.O.#..
+            ...O#O#....
+            .##.OS####.
+            .##O.#...#.
+            ....O..##..
+            .##.#.####.
+            .##..##.##.
+            ...........
+            """.trimIndent()
+        )
+    }
+
+    @Test
+    fun should_find_final_steps_when_map_of_garden_with_step_6() {
+
+        // act
+        val finalSteps = Day21().bfs(mapOfGarden, Point2D(5, 5), 6)
+
+        // assert
+        val renderedMap = Day21().render(mapOfGarden, finalSteps)
+        assertThat(renderedMap).isEqualTo(
+            """
+            ...........
+            .....###.#.
+            .###.##.O#.
+            .O#O#O.O#..
+            O.O.#.#.O..
+            .##O.O####.
+            .##.O#O..#.
+            .O.O.O.##..
+            .##.#.####.
+            .##O.##.##.
+            ...........
+            """.trimIndent()
+        )
+    }
+
+    @Test
+    fun should_solve_part_1_with_map_of_garden() {
+        // act
+        val result = Day21().part1(mapOfGarden, 6)
+
+        // assert
+        assertThat(result).isEqualTo(16)
+    }
+
 }
