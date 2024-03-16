@@ -58,3 +58,11 @@ data class Work(
     val position: Point2D,
     val steps: Int
 )
+
+
+fun main() {
+    val day21 = Day21()
+    val mapOfGarden = day21.loadMapOfGarden(Path.of("src/main/resources/Day21_InputData.txt"))
+    val part1 = day21.part1(mapOfGarden, 64)
+    println("part1: $part1")
+}
