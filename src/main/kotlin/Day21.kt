@@ -16,5 +16,11 @@ class Day21 {
         return mapOfGarden[coords.y][coords.x] == '#'
     }
 
+    fun render(mapOfGard: List<String>, finalSteps: List<Point2D>): String {
+        val map = mapOfGard.toMutableList()
+        finalSteps.forEach { map[it.y] = map[it.y].replaceRange(it.x, it.x + 1, "O") }
+        return map.joinToString("\n")
+    }
+
 
 }

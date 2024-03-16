@@ -4,6 +4,12 @@ import java.nio.file.Paths
 
 class Day21Test {
 
+    private val smallestMap = listOf(
+        "...",
+        "S..",
+        "..#",
+    )
+
     private val mapOfGarden = listOf(
         "...........",
         ".....###.#.",
@@ -29,12 +35,6 @@ class Day21Test {
 
     @Test
     fun should_find_starting_position_on_smallest_map() {
-        // arrange
-        val smallestMap = listOf(
-            "...",
-            "S..",
-            "..#",
-        )
 
         // act
         val startingPosition = Day21().startingPosition(smallestMap)
@@ -85,4 +85,20 @@ class Day21Test {
         assertThat(rock).isFalse()
     }
 
+    @Test
+    fun should_render_garden_map_with_final_steps() {
+
+        // act
+        val gardenMapWithFinalSteps = Day21().render(smallestMap, listOf(Point2D(0, 0), Point2D(1, 1), Point2D(0, 2)))
+
+        // assert
+        assertThat(gardenMapWithFinalSteps).isEqualTo(
+            """
+            O..
+            SO.
+            O.#
+            """.trimIndent()
+        )
+
+    }
 }
