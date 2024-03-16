@@ -87,7 +87,6 @@ class Day21Test {
 
     @Test
     fun should_render_garden_map_with_final_steps() {
-
         // act
         val gardenMapWithFinalSteps = Day21().render(smallestMap, listOf(Point2D(0, 0), Point2D(1, 1), Point2D(0, 2)))
 
@@ -99,6 +98,16 @@ class Day21Test {
             O.#
             """.trimIndent()
         )
+    }
+
+    @Test
+    fun should_find_final_steps_with_step_1() {
+
+        // act
+        val finalSteps = Day21().bfs(smallestMap, Point2D(0, 1), 1)
+
+        // assert
+        assertThat(finalSteps).contains(Point2D(0, 0), Point2D(0, 0), Point2D(1, 1), Point2D(0, 2))
 
     }
 }
