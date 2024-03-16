@@ -75,6 +75,19 @@ data class Point2D(
         return neighbors
     }
 
+    fun cardinalNeighbors(): List<Point2D> {
+        val neighbors = mutableListOf<Point2D>()
+        // north
+        neighbors.add(this + NORTH)
+        // south
+        neighbors.add(this + SOUTH)
+        // west
+        neighbors.add(this + WEST)
+        // east
+        neighbors.add(this + EAST)
+        return neighbors
+    }
+
     operator fun minus(other: Point2D): Point2D =
         Point2D(x - other.x, y - other.y)
 

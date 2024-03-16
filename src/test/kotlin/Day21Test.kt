@@ -1,4 +1,5 @@
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.nio.file.Paths
 
@@ -258,5 +259,59 @@ class Day21Test {
 
         // assert
         assertThat(rock).isTrue()
+    }
+
+    @Test
+    fun should_find_final_steps_when_infinite_map_with_step_6() {
+
+        // act
+        val finalSteps = Day21().bfsInfinite(mapOfGarden, Point2D(5, 5), 6)
+
+        // assert
+        assertThat(finalSteps.size).isEqualTo(16)
+    }
+
+    @Test
+    fun should_find_final_steps_when_infinite_map_with_step_10() {
+
+        // act
+        val finalSteps = Day21().bfsInfinite(mapOfGarden, Point2D(5, 5), 10)
+
+        // assert
+        assertThat(finalSteps.size).isEqualTo(50)
+    }
+
+    @Test
+    fun should_find_final_steps_when_infinite_map_with_step_5000() {
+
+        // act
+        val finalSteps = Day21().bfsInfinite(mapOfGarden, Point2D(5, 5), 5000)
+
+        // assert
+        assertThat(finalSteps.size).isEqualTo(16733044)
+    }
+
+    @Test
+    @Disabled
+    fun should_test_many_coords() {
+        // arrange
+
+        // act
+        for (x in -100..100) {
+            for (y in -100..100) {
+                val coords = Point2D(x, y)
+                try {
+                    val isRock = Day21().isRock(mapOfGarden, coords)
+                    if (isRock) {
+                        println("Rock at $coords")
+                    }
+                } catch (e: Exception) {
+                    println("Exception at $coords")
+                }
+            }
+        }
+
+        // assert
+
     }
 }
