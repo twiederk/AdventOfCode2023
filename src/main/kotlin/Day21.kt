@@ -11,4 +11,10 @@ class Day21 {
         val x = mapOfGarden[y].indexOfFirst { it == 'S' }
         return Point2D(x, y)
     }
+
+    fun isRock(mapOfGarden: List<String>, coords: Point2D): Boolean {
+        return mapOfGarden[coords.y][coords.x] == '#'
+    }
+
+
 }

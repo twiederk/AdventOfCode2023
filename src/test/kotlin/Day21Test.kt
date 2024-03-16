@@ -51,4 +51,38 @@ class Day21Test {
         // assert
         assertThat(startingPosition).isEqualTo(Point2D(5, 5))
     }
+
+    @Test
+    fun should_return_true_when_position_is_rock() {
+        // arrange
+
+        // act
+        val rock = Day21().isRock(mapOfGarden, Point2D(1, 2))
+
+        // assert
+        assertThat(rock).isTrue()
+    }
+
+    @Test
+    fun should_return_false_when_position_is_garden_plot() {
+        // arrange
+
+        // act
+        val rock = Day21().isRock(mapOfGarden, Point2D(0, 0))
+
+        // assert
+        assertThat(rock).isFalse()
+    }
+
+    @Test
+    fun should_return_false_when_position_is_starting_position() {
+        // arrange
+
+        // act
+        val rock = Day21().isRock(mapOfGarden, Point2D(5, 5))
+
+        // assert
+        assertThat(rock).isFalse()
+    }
+
 }
