@@ -24,7 +24,7 @@
 | [18] | [Lavaduct Lagoon]                 | SOLVED | FAILED      | 2D puzzle with fill algorithm. Started part 2, but I think I won't make it.                                                                                                                                                                       |   
 | [19] | [Aplenty]                         | SOLVED | NO IDEA     | Sending a part through a list of workflows based on rules of each workflow. No idea how to solve the 2nd part                                                                                                                                     |   
 |   20 | [Pulse Propagation]               |        |             |                                                                                                                                                                                                                                                   |   
-|   21 | [Step Counter]                    |        |             |                                                                                                                                                                                                                                                   |   
+| [21] | [Step Counter]                    | SOLVED |             | BFS in part 1. BFS with infinity in part 2.                                                                                                                                                                                                       |   
 |   22 | [Sand Slabs]                      |        |             |                                                                                                                                                                                                                                                   |   
 |   23 | [A Long Walk]                     |        |             |                                                                                                                                                                                                                                                   |   
 |   24 | [Never Tell Me The Odds]          |        |             |                                                                                                                                                                                                                                                   |   
@@ -58,8 +58,9 @@
 [16]: src/main/kotlin/Day16.kt
 [17]: src/main/kotlin/Day17.kt
 [18]: src/main/kotlin/Day18.kt
-
 [19]: src/main/kotlin/Day19.kt
+
+[21]: src/main/kotlin/Day21.kt
 
 [Video]: https://www.youtube.com/watch?v=UFa236NO4TU
 [vector graphics]: https://www.reddit.com/r/adventofcode/comments/18fgddy/2023_day_10_part_2_using_a_rendering_algorithm_to/
