@@ -5,8 +5,8 @@ class Day23 {
 
     private val neighbors = mapOf(
         '.' to listOf(Point2D.EAST, Point2D.SOUTH, Point2D.WEST, Point2D.NORTH),
-        '>' to listOf(Point2D.WEST),
-        '<' to listOf(Point2D.EAST),
+        '>' to listOf(Point2D.EAST),
+        '<' to listOf(Point2D.WEST),
         '^' to listOf(Point2D.NORTH),
         'v' to listOf(Point2D.SOUTH)
     )
@@ -20,19 +20,16 @@ class Day23 {
         val work: Queue<HikingPath> = LinkedList()
         work.add(HikingPath(Point2D(1, 0), emptyList()))
 
-        val goal = Point2D(mapOfHikingTrails[0].length - 1, mapOfHikingTrails.size - 1)
+        val goal = Point2D(mapOfHikingTrails[0].length - 2, mapOfHikingTrails.size - 1)
 
         while (work.isNotEmpty()) {
             val current = work.remove()
-            println("work.size = ${work.size}")
-            println("current.position = ${current.position}")
             if (current.position == goal) {
                 paths.add(current.copy(path = current.path + current))
                 continue
             }
             val sign = mapOfHikingTrails[current.position.y][current.position.x]
-            val neighbors = neighbors[sign]!!
-            neighbors
+            neighbors[sign]!!
                 .filter { isSafe(mapOfHikingTrails, current, it) }
                 .filter { !isForest(mapOfHikingTrails, current, it) }
                 .filter { !isVisited(current, it) }
@@ -66,6 +63,11 @@ class Day23 {
             map[it.y] = map[it.y].replaceRange(it.x, it.x + 1, "O")
         }
         return map.joinToString("\n")
+    }
+
+    fun part1(mapOfHikingTrails: List<String>): Int {
+        val paths = findAllPaths(mapOfHikingTrails)
+        return paths.maxOf { it.path.size } - 1
     }
 }
 
