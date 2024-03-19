@@ -59,6 +59,14 @@ class Day23 {
         val next = current.position + it
         return mapOfHikingTrails[next.y][next.x] == '#'
     }
+
+    fun renderMapWithPath(mapOfHikingTrails: List<String>, path: List<Point2D>): String {
+        val map = mapOfHikingTrails.toMutableList()
+        path.forEach {
+            map[it.y] = map[it.y].replaceRange(it.x, it.x + 1, "O")
+        }
+        return map.joinToString("\n")
+    }
 }
 
 
