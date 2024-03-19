@@ -26,7 +26,7 @@
 |   20 | [Pulse Propagation]               |        |             |                                                                                                                                                                                                                                                   |   
 | [21] | [Step Counter]                    | SOLVED |             | BFS in part 1. BFS with infinity in part 2.                                                                                                                                                                                                       |   
 |   22 | [Sand Slabs]                      |        |             |                                                                                                                                                                                                                                                   |   
-|   23 | [A Long Walk]                     |        |             |                                                                                                                                                                                                                                                   |   
+| [23] | [A Long Walk]                     | SOLVED |             | BFS in part 1. Out of memory in part 2.                                                                                                                                                                                                           |   
 |   24 | [Never Tell Me The Odds]          |        |             |                                                                                                                                                                                                                                                   |   
 |   25 | [Snowverload]                     |        |             |                                                                                                                                                                                                                                                   |   
 
@@ -59,8 +59,9 @@
 [17]: src/main/kotlin/Day17.kt
 [18]: src/main/kotlin/Day18.kt
 [19]: src/main/kotlin/Day19.kt
-
 [21]: src/main/kotlin/Day21.kt
+
+[23]: src/main/kotlin/Day23.kt
 
 [Video]: https://www.youtube.com/watch?v=UFa236NO4TU
 [vector graphics]: https://www.reddit.com/r/adventofcode/comments/18fgddy/2023_day_10_part_2_using_a_rendering_algorithm_to/
