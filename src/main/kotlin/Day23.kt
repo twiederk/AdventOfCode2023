@@ -76,3 +76,11 @@ data class HikingPath(
     val position: Point2D,
     val path: List<HikingPath>
 )
+
+
+fun main() {
+    val day23 = Day23()
+    val mapOfHikingTrails = day23.loadMapOfHikingTrails(Path.of("src/main/resources/Day23_InputData.txt"))
+    val part1 = day23.part1(mapOfHikingTrails)
+    println("Part 1: $part1")
+}
